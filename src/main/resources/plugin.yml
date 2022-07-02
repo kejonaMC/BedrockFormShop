@@ -1,0 +1,14 @@
+name: BedrockFormShop
+version: '${project.version}'
+main: dev.kejona.bedrockformshop.BedrockFormShop
+api-version: 1.19
+softdepend:
+  - Vault
+depend: [ floodgate ]
+authors: [ kejonaMC ]
+commands:
+  shop:
+    description: Open Shop
+    permission: formshop.shop
+    default: true
+    aliases: /shop
