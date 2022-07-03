@@ -23,6 +23,15 @@ public class Utils {
         return finalText;
     }
 
+    public static String pricePlaceholder(String text, double buyPrice, double sellPrice) {
+        String finalText = colorCode(text);
+        finalText = finalText.replace("%buyprice%", String.valueOf(buyPrice))
+                .replace("%sellprice%", String.valueOf(sellPrice))
+                .replace("_", " ")
+                .toLowerCase(Locale.ROOT);
+        return finalText;
+    }
+
     public static String colorCode(String text) {
         return ChatColor.translateAlternateColorCodes('&', text);
     }

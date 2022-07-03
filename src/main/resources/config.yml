@@ -40,7 +40,8 @@ form:
   buy-sell:
     title: "Buy or sell %item%"
     buy-or-sell: Buy - sell
-    slider: "Select the amount you want to buy/sell."
+    slider: "Amount you want to buy/sell"
+    label: "price each: buy $%buyprice% - sell $%sellprice%"
 
   #############################################################################
   # ItemList
@@ -49,45 +50,45 @@ form:
     content: "Select which item you want to buy/sell."
     buttons:
       coal-ore:
-        image: "https://i.imgur.com/XqQZQZq.png"
+        image: "https://static.wikia.nocookie.net/minecraft_gamepedia/images/4/48/Coal_Ore_JE5_BE4.png/revision/latest?cb=20210325235945"
         item: "COAL_ORE"
         buy-price: 10.0
         sell-price: 5.0
-      diamond-ore:
-        image: "https://i.imgur.com/XqQZQZq.png"
-        item: "DIAMOND_ORE"
-        buy-price: 100.0
-        sell-price: 50.0
-      emerald-ore:
-        image: "https://i.imgur.com/XqQZQZq.png"
-        item: "EMERALD_ORE"
-        buy-price: 70.0
-        sell-price: 35.0
-      gold-ore:
-        image: "https://i.imgur.com/XqQZQZq.png"
-        item: "GOLD_ORE"
-        buy-price: 50.0
-        sell-price: 25.0
       iron-ore:
-        image: "https://i.imgur.com/XqQZQZq.png"
+        image: "https://static.wikia.nocookie.net/minecraft_gamepedia/images/1/19/Iron_Ore_JE6_BE4.png/revision/latest?cb=20210326000111"
         item: "IRON_ORE"
         buy-price: 20.0
         sell-price: 10.0
       redstone-ore:
-        image: "https://i.imgur.com/XqQZQZq.png"
+        image: "https://static.wikia.nocookie.net/minecraft_gamepedia/images/c/cd/Redstone_Ore_JE4_BE3.png/revision/latest?cb=20210226103025"
         item: "REDSTONE_ORE"
         buy-price: 35.0
         sell-price: 10.0
       lapis-ore:
-        image: "https://i.imgur.com/XqQZQZq.png"
+        image: "https://static.wikia.nocookie.net/minecraft_gamepedia/images/e/ea/Lapis_Lazuli_Ore_JE4_BE4.png/revision/latest?cb=20210414171130"
         item: "LAPIS_ORE"
         buy-price: 35.0
         sell-price: 10.0
       nether-quartz:
-        image: "https://i.imgur.com/XqQZQZq.png"
+        image: "https://static.wikia.nocookie.net/minecraft_gamepedia/images/2/28/Nether_Quartz_Ore_JE3_BE2.png/revision/latest?cb=20200317191508"
         item: "NETHER_QUARTZ_ORE"
         buy-price: 35.0
         sell-price: 10.0
+      emerald-ore:
+        image: "https://static.wikia.nocookie.net/minecraft_gamepedia/images/a/a9/Emerald_Ore_JE4_BE3.png/revision/latest?cb=20210225021326"
+        item: "EMERALD_ORE"
+        buy-price: 70.0
+        sell-price: 35.0
+      gold-ore:
+        image: "https://static.wikia.nocookie.net/minecraft_gamepedia/images/1/18/Gold_Ore_JE7_BE4.png/revision/latest?cb=20210414170925"
+        item: "GOLD_ORE"
+        buy-price: 50.0
+        sell-price: 25.0
+      diamond-ore:
+        image: "https://static.wikia.nocookie.net/minecraft_gamepedia/images/2/29/Diamond_Ore_JE5_BE5.png/revision/latest?cb=20210326000237"
+        item: "DIAMOND_ORE"
+        buy-price: 100.0
+        sell-price: 50.0
   Items:
     title: "%item% shop"
     content: "Select which item you want to buy/sell."
@@ -95,68 +96,68 @@ form:
       bone:
         image: "https://i.imgur.com/XqQZQZq.png"
         item: "BONE"
-        buy-price: 0,0
-        sell-price: 0,0
+        buy-price: 0.0
+        sell-price: 0.0
       bucket:
         image: "https://i.imgur.com/XqQZQZq.png"
         item: "BUCKET"
-        buy-price: 0,0
-        sell-price: 0,0
+        buy-price: 0.0
+        sell-price: 0.0
       oak-sapling:
         image: "https://i.imgur.com/XqQZQZq.png"
         item: "OAK_SAPLING"
-        buy-price: 0,0
-        sell-price: 0,0
+        buy-price: 0.0
+        sell-price: 0.0
       spruce-sapling:
         image: "https://i.imgur.com/XqQZQZq.png"
         item: "SPRUCE_SAPLING"
-        buy-price: 0,0
-        sell-price: 0,0
+        buy-price: 0.0
+        sell-price: 0.0
       birch-sapling:
         image: "https://i.imgur.com/XqQZQZq.png"
         item: "BIRCH_SAPLING"
-        buy-price: 0,0
-        sell-price: 0,0
+        buy-price: 0.0
+        sell-price: 0.0
       jungle-sapling:
         image: "https://i.imgur.com/XqQZQZq.png"
         item: "JUNGLE_SAPLING"
-        buy-price: 0,0
-        sell-price: 0,0
+        buy-price: 0.0
+        sell-price: 0.0
       acacia-sapling:
         image: "https://i.imgur.com/XqQZQZq.png"
         item: "ACACIA_SAPLING"
-        buy-price: 0,0
-        sell-price: 0,0
+        buy-price: 0.0
+        sell-price: 0.0
       dark-oak-sapling:
         image: "https://i.imgur.com/XqQZQZq.png"
         item: "DARK_OAK_SAPLING"
-        buy-price: 0,0
-        sell-price: 0,0
+        buy-price: 0.0
+        sell-price: 0.0
       wheat-seeds:
         image: "https://i.imgur.com/XqQZQZq.png"
         item: "WHEAT-SEEDS"
-        buy-price: 0,0
-        sell-price: 0,0
+        buy-price: 0.0
+        sell-price: 0.0
       pumpkin-seed:
         image: "https://i.imgur.com/XqQZQZq.png"
         item: "PUMPKIN_SEEDS"
-        buy-price: 0,0
-        sell-price: 0,0
+        buy-price: 0.0
+        sell-price: 0.0
       melon-seed:
         image: "https://i.imgur.com/XqQZQZq.png"
         item: "MELON_SEEDS"
-        buy-price: 0,0
-        sell-price: 0,0
+        buy-price: 0.0
+        sell-price: 0.0
       beetroot-seed:
         image: "https://i.imgur.com/XqQZQZq.png"
         item: "BEETROOT_SEEDS"
-        buy-price: 0,0
-        sell-price: 0,0
+        buy-price: 0.0
+        sell-price: 0.0
       cactus-seed:
         image: "https://i.imgur.com/XqQZQZq.png"
         item: "CACTUS_SEEDS"
-        buy-price: 0,0
-        sell-price: 0,0
+        buy-price: 0.0
+        sell-price: 0.0
   Blocks:
     title: "%item% shop"
     content: "Select which item you want to buy/sell."
@@ -164,143 +165,143 @@ form:
       stone-brick:
         image: "https://i.imgur.com/XqQZQZq.png"
         item: "STONE-BRICKS"
-        buy-price: 0,0
-        sell-price: 0,0
+        buy-price: 0.0
+        sell-price: 0.0
       mossy-stone-brick:
         image: "https://i.imgur.com/XqQZQZq.png"
         item: "MOSSY_STONE_BRICKS"
-        buy-price: 0,0
-        sell-price: 0,0
+        buy-price: 0.0
+        sell-price: 0.0
       cracked-stone-brick:
         image: "https://i.imgur.com/XqQZQZq.png"
         item: "CRACKED_STONE_BRICKS"
-        buy-price: 0,0
-        sell-price: 0,0
+        buy-price: 0.0
+        sell-price: 0.0
       chiseled-stone-brick:
         image: "https://i.imgur.com/XqQZQZq.png"
         item: "CHISELED_STONE_BRICKS"
-        buy-price: 0,0
-        sell-price: 0,0
+        buy-price: 0.0
+        sell-price: 0.0
       stone:
         image: "https://i.imgur.com/XqQZQZq.png"
         item: "STONE"
-        buy-price: 0,0
-        sell-price: 0,0
+        buy-price: 0.0
+        sell-price: 0.0
       cobblestone:
         image: "https://i.imgur.com/XqQZQZq.png"
         item: "COBBLESTONE"
-        buy-price: 0,0
-        sell-price: 0,0
+        buy-price: 0.0
+        sell-price: 0.0
       mossy-cobblestone:
         image: "https://i.imgur.com/XqQZQZq.png"
         item: "MOSSY_COBBLESTONE"
-        buy-price: 0,0
-        sell-price: 0,0
+        buy-price: 0.0
+        sell-price: 0.0
       grass-block:
         image: "https://i.imgur.com/XqQZQZq.png"
         item: "GRASS-BLOCK"
-        buy-price: 0,0
-        sell-price: 0,0
+        buy-price: 0.0
+        sell-price: 0.0
       dirt:
         image: "https://i.imgur.com/XqQZQZq.png"
         item: "DIRT"
-        buy-price: 0,0
-        sell-price: 0,0
+        buy-price: 0.0
+        sell-price: 0.0
       oak-log:
         image: "https://i.imgur.com/XqQZQZq.png"
         item: "OAK_LOG"
-        buy-price: 0,0
-        sell-price: 0,0
+        buy-price: 0.0
+        sell-price: 0.0
       spruce-log:
         image: "https://i.imgur.com/XqQZQZq.png"
         item: "SPRUCE_LOG"
-        buy-price: 0,0
-        sell-price: 0,0
+        buy-price: 0.0
+        sell-price: 0.0
       birch-log:
         image: "https://i.imgur.com/XqQZQZq.png"
         item: "BIRCH_LOG"
-        buy-price: 0,0
-        sell-price: 0,0
+        buy-price: 0.0
+        sell-price: 0.0
       jungle-log:
         image: "https://i.imgur.com/XqQZQZq.png"
         item: "JUNGLE_LOG"
-        buy-price: 0,0
-        sell-price: 0,0
+        buy-price: 0.0
+        sell-price: 0.0
       acacia-log:
         image: "https://i.imgur.com/XqQZQZq.png"
         item: "ACACIA_LOG"
-        buy-price: 0,0
-        sell-price: 0,0
+        buy-price: 0.0
+        sell-price: 0.0
       dark-oak-log:
         image: "https://i.imgur.com/XqQZQZq.png"
         item: "DARK_OAK_LOG"
-        buy-price: 0,0
-        sell-price: 0,0
+        buy-price: 0.0
+        sell-price: 0.0
       sponge:
         image: "https://i.imgur.com/XqQZQZq.png"
         item: "SPONGE"
-        buy-price: 0,0
-        sell-price: 0,0
+        buy-price: 0.0
+        sell-price: 0.0
       brick:
         image: "https://i.imgur.com/XqQZQZq.png"
         item: "BRICKS"
-        buy-price: 0,0
-        sell-price: 0,0
+        buy-price: 0.0
+        sell-price: 0.0
       white-wool:
         image: "https://i.imgur.com/XqQZQZq.png"
         item: "WHITE_WOOL"
-        buy-price: 0,0
-        sell-price: 0,0
+        buy-price: 0.0
+        sell-price: 0.0
       orange-wool:
         image: "https://i.imgur.com/XqQZQZq.png"
         item: "ORANGE_WOOL"
-        buy-price: 0,0
-        sell-price: 0,0
+        buy-price: 0.0
+        sell-price: 0.0
       magenta-wool:
         image: "https://i.imgur.com/XqQZQZq.png"
         item: "MAGENTA_WOOL"
-        buy-price: 0,0
-        sell-price: 0,0
+        buy-price: 0.0
+        sell-price: 0.0
       light-blue-wool:
         image: "https://i.imgur.com/XqQZQZq.png"
         item: "LIGHT_BLUE_WOOL"
-        buy-price: 0,0
-        sell-price: 0,0
+        buy-price: 0.0
+        sell-price: 0.0
       yellow-wool:
         image: "https://i.imgur.com/XqQZQZq.png"
         item: "YELLOW_WOOL"
-        buy-price: 0,0
-        sell-price: 0,0
+        buy-price: 0.0
+        sell-price: 0.0
       lime-wool:
         image: "https://i.imgur.com/XqQZQZq.png"
         item: "LIME_WOOL"
-        buy-price: 0,0
-        sell-price: 0,0
+        buy-price: 0.0
+        sell-price: 0.0
       pink-wool:
         image: "https://i.imgur.com/XqQZQZq.png"
         item: "PINK_WOOL"
-        buy-price: 0,0
-        sell-price: 0,0
+        buy-price: 0.0
+        sell-price: 0.0
       gray-wool:
         image: "https://i.imgur.com/XqQZQZq.png"
         item: "GRAY_WOOL"
-        buy-price: 0,0
-        sell-price: 0,0
+        buy-price: 0.0
+        sell-price: 0.0
       light-gray-wool:
         image: "https://i.imgur.com/XqQZQZq.png"
         item: "LIGHT_GRAY_WOOL"
-        buy-price: 0,0
-        sell-price: 0,0
+        buy-price: 0.0
+        sell-price: 0.0
       cyan-wool:
         image: "https://i.imgur.com/XqQZQZq.png"
         item: "CYAN_WOOL"
-        buy-price: 0,0
-        sell-price: 0,0
+        buy-price: 0.0
+        sell-price: 0.0
       glass:
         image: "https://i.imgur.com/XqQZQZq.png"
         item: "GLASS"
-        buy-price: 0,0
-        sell-price: 0,0
+        buy-price: 0.0
+        sell-price: 0.0
 
 
 

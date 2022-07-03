@@ -20,7 +20,10 @@ public class SellBuyForm {
         form.title(Utils.textPlaceholder((config.getString("form.buy-sell.title")), itemStackName));
         form.toggle(Utils.colorCode(config.getString("form.buy-sell.buy-or-sell")),false);
         form.slider(Utils.colorCode(config.getString("form.buy-sell.slider")), 0, 100);
-
+        // Get item prices
+        double buyPrice = config.getDouble("form." + category + ".buttons." + clickedButton + ".buy-price");
+        double sellPrice = config.getDouble("form." + category + ".buttons." + clickedButton + ".sell-price");
+        form.label(Utils.pricePlaceholder(config.getString("form.buy-sell.label"), buyPrice, sellPrice));
         // Handle buttons responses.
         form.responseHandler((responseData) -> {
             CustomFormResponse response = form.build().parseResponse(responseData);
@@ -33,10 +36,8 @@ public class SellBuyForm {
             int getAmount = (int) response.getSlider(1);
 
             if (response.getToggle(0)) {
-                double sellPrice = config.getDouble("form." + category + ".buttons." + clickedButton + ".sell-price");
                 ItemHandler.sellItem(uuid, itemStackName, sellPrice, getAmount);
             } else {
-                double buyPrice = config.getDouble("form." + category + ".buttons." + clickedButton + ".buy-price");
                 ItemHandler.buyItem(uuid, itemStackName, buyPrice, getAmount);
             }
             // get Item from config.
