@@ -2,7 +2,7 @@ messages:
   not-enough-money: "§cYou don't have enough money"
   not-enough-items: "§cYou don't have enough %item% to sell"
   no-items: "§cYou don't have any %item% to sell"
-  item-bought: "§2You bought %item% for $%price%$"
+  item-bought: "§2You bought %item% for $%price%"
   item-sold: "§2You sold %item% for $%price%"
 
 form:
