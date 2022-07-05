@@ -6,7 +6,7 @@ import java.util.Locale;
 
 public class Placeholders {
 
-    public static String textPlaceholder(String text, String item) {
+    public static String placeholder(String text, String item) {
         String finalText = colorCode(text);
         finalText = finalText.replace("%item%", item)
                 .replace("_", " ")
@@ -14,7 +14,7 @@ public class Placeholders {
         return finalText;
     }
 
-    public static String transactionPlaceholder(String text, String item, double price, int amount) {
+    public static String placeholder(String text, String item, double price, int amount) {
         String finalText = colorCode(text);
         finalText = finalText.replace("%item%", item)
                 .replace("%price%", String.valueOf(price * amount))
@@ -23,7 +23,7 @@ public class Placeholders {
         return finalText;
     }
 
-    public static String pricePlaceholder(String text, double buyPrice, double sellPrice) {
+    public static String placeholder(String text, double buyPrice, double sellPrice) {
         String finalText = colorCode(text);
         finalText = finalText.replace("%buyprice%", String.valueOf(buyPrice))
                 .replace("%sellprice%", String.valueOf(sellPrice))

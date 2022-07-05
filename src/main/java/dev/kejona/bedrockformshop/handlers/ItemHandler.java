@@ -31,7 +31,7 @@ public class ItemHandler {
         // Give item to player
         itemStack.setAmount(amount);
         player.getInventory().addItem(itemStack);
-        player.sendMessage(Placeholders.transactionPlaceholder(config.getString("messages.item-bought"), item, price, amount));
+        player.sendMessage(Placeholders.placeholder(config.getString("messages.item-bought"), item, price, amount));
     }
 
     public void sellItem(UUID uuid, String item, double price, int amount) {
@@ -49,7 +49,7 @@ public class ItemHandler {
         ItemStack[] inv = list.toArray(new ItemStack[0]);
         for (ItemStack fullinventory : inv) {
             if (fullinventory == null) {
-                player.sendMessage(Placeholders.textPlaceholder(config.getString("messages.no-items"), item));
+                player.sendMessage(Placeholders.placeholder(config.getString("messages.no-items"), item));
                 return;
             }
 
@@ -58,11 +58,11 @@ public class ItemHandler {
                 VaultAPI.eco().depositBalance(player, price * amount);
                 // Remove item from player
                 fullinventory.setAmount(fullinventory.getAmount() - amount);
-                player.sendMessage(Placeholders.transactionPlaceholder(config.getString("messages.item-sold"), item, price, amount));
+                player.sendMessage(Placeholders.placeholder(config.getString("messages.item-sold"), item, price, amount));
                 return;
             }
             else if (fullinventory.getType() == Material.valueOf(item) && fullinventory.getAmount() < amount) {
-                player.sendMessage(Placeholders.textPlaceholder(config.getString("messages.not-enough-items"), item));
+                player.sendMessage(Placeholders.placeholder(config.getString("messages.not-enough-items"), item));
                 return;
             }
         }

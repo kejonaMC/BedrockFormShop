@@ -15,8 +15,8 @@ public class ItemListForm {
 
         // Form Builder
         SimpleForm.Builder form = SimpleForm.builder()
-        .title(Placeholders.textPlaceholder(Objects.requireNonNull(config.getString("form." + category + ".title")), category))
-        .content(Placeholders.textPlaceholder(Objects.requireNonNull(config.getString("form."+ category +".content")), category));
+        .title(Placeholders.placeholder(Objects.requireNonNull(config.getString("form." + category + ".title")), category))
+        .content(Placeholders.placeholder(Objects.requireNonNull(config.getString("form."+ category +".content")), category));
         // Get all Buttons in config.
         Set<String> listButtons = Objects.requireNonNull(config.getConfigurationSection("form."+ category +".buttons")).getKeys(false);
         List<String> buttons = new ArrayList<>(listButtons);

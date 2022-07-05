@@ -16,13 +16,13 @@ public class SellBuyForm {
 
         // Form Builder
         CustomForm.Builder form = CustomForm.builder()
-        .title(Placeholders.textPlaceholder((config.getString("form.buy-sell.title")), itemStackName))
+        .title(Placeholders.placeholder((config.getString("form.buy-sell.title")), itemStackName))
         .toggle(Placeholders.colorCode(config.getString("form.buy-sell.buy-or-sell")), false)
         .slider(Placeholders.colorCode(config.getString("form.buy-sell.slider")), 0, 100);
         // Get item prices
         double buyPrice = config.getDouble("form." + category + ".buttons." + clickedButton + ".buy-price");
         double sellPrice = config.getDouble("form." + category + ".buttons." + clickedButton + ".sell-price");
-        form.label(Placeholders.pricePlaceholder(config.getString("form.buy-sell.label"), buyPrice, sellPrice));
+        form.label(Placeholders.placeholder(config.getString("form.buy-sell.label"), buyPrice, sellPrice));
         // Handle buttons responses.
         form.closedOrInvalidResultHandler(response -> {
             response.isClosed();
