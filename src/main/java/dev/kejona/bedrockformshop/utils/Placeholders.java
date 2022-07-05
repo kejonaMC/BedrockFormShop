@@ -4,7 +4,7 @@ import org.bukkit.ChatColor;
 
 import java.util.Locale;
 
-public class Utils {
+public class Placeholders {
 
     public static String textPlaceholder(String text, String item) {
         String finalText = colorCode(text);

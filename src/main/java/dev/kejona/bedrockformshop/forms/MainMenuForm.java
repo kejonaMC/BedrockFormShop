@@ -10,7 +10,7 @@ import java.util.*;
 
 public class MainMenuForm {
 
-    public static void mainMenu(UUID uuid) {
+    public void mainMenu(UUID uuid) {
         FileConfiguration config = BedrockFormShop.getInstance().getConfig();
 
         // Form Builder
@@ -36,7 +36,8 @@ public class MainMenuForm {
 
         form.validResultHandler(response -> {
             // Send itemlist to player
-            ItemListForm.itemList(uuid, buttons.get(response.clickedButtonId()));
+            ItemListForm itemList = new ItemListForm();
+            itemList.itemList(uuid, buttons.get(response.clickedButtonId()));
 
         });
         // Build form and send to player.

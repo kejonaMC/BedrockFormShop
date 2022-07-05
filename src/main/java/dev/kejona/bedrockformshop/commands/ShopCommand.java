@@ -19,7 +19,8 @@ public class ShopCommand implements CommandExecutor {
         Player player = (Player) sender;
 
         if (FloodgateUser.isFloodgatePlayer(player.getUniqueId())) {
-            MainMenuForm.mainMenu(player.getUniqueId());
+            MainMenuForm mainMenuForm = new MainMenuForm();
+            mainMenuForm.mainMenu(player.getUniqueId());
             return true;
         }
         return true;

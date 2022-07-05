@@ -1,16 +1,19 @@
 package dev.kejona.bedrockformshop.handlers;
 
 import dev.kejona.bedrockformshop.BedrockFormShop;
-import dev.kejona.bedrockformshop.utils.Utils;
+import dev.kejona.bedrockformshop.utils.Placeholders;
 import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 public class ItemHandler {
 
-    public static void buyItem(UUID uuid, String item, double price, int amount) {
+    public void buyItem(UUID uuid, String item, double price, int amount) {
         FileConfiguration config = BedrockFormShop.getInstance().getConfig();
         // Get Player Instance
         Player player = BedrockFormShop.getInstance().getServer().getPlayer(uuid);
@@ -19,7 +22,7 @@ public class ItemHandler {
         // Check if player has enough money
         if (VaultAPI.eco().getBalance(player) < price * amount) {
             assert player != null;
-            player.sendMessage(Utils.colorCode(config.getString("messages.not-enough-money")));
+            player.sendMessage(Placeholders.colorCode(config.getString("messages.not-enough-money")));
             return;
         }
         // Withdraw money from player
@@ -28,31 +31,38 @@ public class ItemHandler {
         // Give item to player
         itemStack.setAmount(amount);
         player.getInventory().addItem(itemStack);
-        player.sendMessage(Utils.transactionPlaceholder(config.getString("messages.item-bought"), item, price, amount));
+        player.sendMessage(Placeholders.transactionPlaceholder(config.getString("messages.item-bought"), item, price, amount));
     }
 
-    public static void sellItem(UUID uuid, String item, double price, int amount) {
+    public void sellItem(UUID uuid, String item, double price, int amount) {
         FileConfiguration config = BedrockFormShop.getInstance().getConfig();
         // Get Player Instance
         Player player = BedrockFormShop.getInstance().getServer().getPlayer(uuid);
         // Get Item from form
         assert player != null;
 
-        for (ItemStack itemStack : player.getInventory().getContents()) {
-            if (itemStack == null) {
-                player.sendMessage(Utils.textPlaceholder(config.getString("messages.no-items"), item));
+        List<ItemStack> list = new ArrayList<>();
+        for(ItemStack i : player.getInventory().getContents()){
+            if(i != null)
+                list.add(i);
+        }
+        ItemStack[] inv = list.toArray(new ItemStack[0]);
+        for (ItemStack fullinventory : inv) {
+            if (fullinventory == null) {
+                player.sendMessage(Placeholders.textPlaceholder(config.getString("messages.no-items"), item));
                 return;
             }
-            if (itemStack.getType() == Material.valueOf(item) && itemStack.getAmount() >= amount) {
+
+            if (fullinventory.getType() == Material.valueOf(item) && fullinventory.getAmount() >= amount) {
                 // Withdraw money from player
                 VaultAPI.eco().depositBalance(player, price * amount);
                 // Remove item from player
-                itemStack.setAmount(itemStack.getAmount() - amount);
-                player.sendMessage(Utils.transactionPlaceholder(config.getString("messages.item-sold"), item, price, amount));
+                fullinventory.setAmount(fullinventory.getAmount() - amount);
+                player.sendMessage(Placeholders.transactionPlaceholder(config.getString("messages.item-sold"), item, price, amount));
                 return;
             }
-            else if (itemStack.getType() == Material.valueOf(item) && itemStack.getAmount() < amount) {
-                player.sendMessage(Utils.textPlaceholder(config.getString("messages.not-enough-items"), item));
+            else if (fullinventory.getType() == Material.valueOf(item) && fullinventory.getAmount() < amount) {
+                player.sendMessage(Placeholders.textPlaceholder(config.getString("messages.not-enough-items"), item));
                 return;
             }
         }
