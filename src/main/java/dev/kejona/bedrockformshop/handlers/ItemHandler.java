@@ -46,6 +46,7 @@ public class ItemHandler {
             if(i != null)
                 list.add(i);
         }
+
         ItemStack[] inv = list.toArray(new ItemStack[0]);
         for (ItemStack fullinventory : inv) {
             if (fullinventory == null) {
