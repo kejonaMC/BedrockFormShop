@@ -13,7 +13,7 @@ form:
     content: "Select which shop you want to buy/sell from"
     buttons:
       Ores:
-        image: "https://static.wikia.nocookie.net/minecraft_gamepedia/images/4/48/Coal_Ore_JE5_BE4.png/revision/latest?cb=20210325235945"
+        image: "textures/blocks/stone"
       Items:
         image: "https://static.wikia.nocookie.net/minecraft_gamepedia/images/f/fc/Bucket_JE2_BE2.png/revision/latest?cb=20200510234539"
       Blocks:

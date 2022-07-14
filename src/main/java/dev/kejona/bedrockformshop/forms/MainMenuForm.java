@@ -23,9 +23,13 @@ public class MainMenuForm {
         List<String> buttons = new ArrayList<>(listButtons);
 
         for (String button : buttons) {
-            form.button(button, FormImage.Type.URL, Objects.requireNonNull(config
-                    .getString("form.menu.buttons." + button + ".image")));
-
+            String imageLocation = Objects.requireNonNull(config.getString("form.menu.buttons." + button + ".image"));
+            // Check if image is url or path.
+            if (imageLocation.startsWith("http")) {
+                form.button(button, FormImage.Type.URL, imageLocation);
+            } else {
+                form.button(button, FormImage.Type.PATH, imageLocation);
+            }
         }
 
         // Handle buttons responses.
