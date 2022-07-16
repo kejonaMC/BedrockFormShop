@@ -1,24 +1,31 @@
+# do not change version number!
+version: 1
+
+# Messages. placeholders: %item%, %amount%, %price%, %command%
 messages:
   not-enough-money: "§cYou don't have enough money"
   not-enough-items: "§cYou don't have enough %item% to sell"
   no-items: "§cYou don't have any %item% to sell"
   item-bought: "§2You bought %item% for $%price%"
   item-sold: "§2You sold %item% for $%price%"
+  command-bought: "§2You bought %command% for $%price%"
+  reload-config: "§2Config is reloaded!"
 
 form:
-  #############################################################################
-  # Main Menu
+  #########################
+  # Main Menu             #
+  #########################
   menu:
     title: "Bedrock Shops"
     content: "Select which shop you want to buy/sell from"
     buttons:
       Ores:
-        image: "textures/blocks/stone"
+        image: "textures/blocks/stone.png"
       Items:
-        image: "https://static.wikia.nocookie.net/minecraft_gamepedia/images/f/fc/Bucket_JE2_BE2.png/revision/latest?cb=20200510234539"
+        image: "textures/items/bucket.png"
       Blocks:
-        image: "https://static.wikia.nocookie.net/minecraftpocketedition/images/c/c7/Grass_Block.png/revision/latest?cb=20130224164042"
-      Spawn-eggs:
+        image: "textures/blocks/dirt.png"
+      SpawnEggs:
         image: "https://static.wikia.nocookie.net/minecraft_gamepedia/images/a/a2/Spider_Spawner.png/revision/latest?cb=20190801053107"
       Enchantments:
         image: "https://static.wikia.nocookie.net/minecraft_gamepedia/images/d/d7/Enchanted_Book_JE1_BE1.png/revision/latest?cb=20190910062812"
@@ -37,55 +44,67 @@ form:
       Exit:
         image: "https://static.wikia.nocookie.net/minecraft_gamepedia/images/c/cd/Barrier_%28held%29_JE1_BE1.png/revision/latest?cb=20190811152525"
 
+  #########################
+  # Buy/Sell Menu         #
+  #########################
   buy-sell:
     title: "Buy or sell %item%"
     buy-or-sell: Buy - sell
     slider: "Amount you want to buy/sell"
     label: "price each: buy $%buyprice% - sell $%sellprice%"
 
-  #############################################################################
-  # ItemList
+  #########################
+  # ItemShopList Menu     #
+  #########################
   Ores:
     title: "%item% shop"
     content: "Select which item you want to buy/sell."
     buttons:
       coal-ore:
         image: "https://static.wikia.nocookie.net/minecraft_gamepedia/images/4/48/Coal_Ore_JE5_BE4.png/revision/latest?cb=20210325235945"
+        type: ITEM
         item: "COAL_ORE"
         buy-price: 10.0
         sell-price: 5.0
       iron-ore:
         image: "https://static.wikia.nocookie.net/minecraft_gamepedia/images/1/19/Iron_Ore_JE6_BE4.png/revision/latest?cb=20210326000111"
+        type: ITEM
         item: "IRON_ORE"
         buy-price: 20.0
         sell-price: 10.0
       redstone-ore:
         image: "https://static.wikia.nocookie.net/minecraft_gamepedia/images/c/cd/Redstone_Ore_JE4_BE3.png/revision/latest?cb=20210226103025"
+        type: ITEM
         item: "REDSTONE_ORE"
         buy-price: 35.0
         sell-price: 10.0
       lapis-ore:
         image: "https://static.wikia.nocookie.net/minecraft_gamepedia/images/e/ea/Lapis_Lazuli_Ore_JE4_BE4.png/revision/latest?cb=20210414171130"
+        type: ITEM
         item: "LAPIS_ORE"
         buy-price: 35.0
         sell-price: 10.0
       nether-quartz:
         image: "https://static.wikia.nocookie.net/minecraft_gamepedia/images/2/28/Nether_Quartz_Ore_JE3_BE2.png/revision/latest?cb=20200317191508"
+        type: ITEM
         item: "NETHER_QUARTZ_ORE"
         buy-price: 35.0
         sell-price: 10.0
       emerald-ore:
         image: "https://static.wikia.nocookie.net/minecraft_gamepedia/images/a/a9/Emerald_Ore_JE4_BE3.png/revision/latest?cb=20210225021326"
+        type: ITEM
         item: "EMERALD_ORE"
         buy-price: 70.0
         sell-price: 35.0
       gold-ore:
         image: "https://static.wikia.nocookie.net/minecraft_gamepedia/images/1/18/Gold_Ore_JE7_BE4.png/revision/latest?cb=20210414170925"
+        type: ITEM
         item: "GOLD_ORE"
         buy-price: 50.0
         sell-price: 25.0
       diamond-ore:
         image: "https://static.wikia.nocookie.net/minecraft_gamepedia/images/2/29/Diamond_Ore_JE5_BE5.png/revision/latest?cb=20210326000237"
+        type: ITEM
         item: "DIAMOND_ORE"
         buy-price: 100.0
         sell-price: 50.0
@@ -372,7 +391,7 @@ form:
         item: "BRICKS"
         buy-price: 0.0
         sell-price: 0.0
-  Spawn-eggs:
+  SpawnEggs:
     title: "%item% shop"
     content: "Select which item you want to buy/sell."
     buttons:
@@ -478,9 +497,22 @@ form:
         sell-price: 0.0
       magma-cube:
         image: "https://i.imgur.com/XqQZQZq.png"
+        type: ITEM
         item: "MAGMA_CUBE_SPAWN_EGG"
         buy-price: 0.0
         sell-price: 0.0
+  Misc:
+    title: "%item% shop"
+    content: "Select which item you want to buy/sell."
+    buttons:
+      compass:
+        label: "You can buy the spawn command for $%price% \n
+                the command will take you back to spawn"
+        image: "https://i.imgur.com/XqQZQZq.png"
+        type: COMMAND
+        command: "spawn"
+        buy-price: 0.0
+
 
 
 

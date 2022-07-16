@@ -41,7 +41,7 @@ public class MainMenuForm {
         form.validResultHandler(response -> {
             // Send itemlist to player
             ItemListForm itemList = new ItemListForm();
-            itemList.itemList(uuid, buttons.get(response.clickedButtonId()));
+            itemList.itemList(uuid, buttons.get(response.clickedButtonId()), config);
 
         });
         // Build form and send to player.

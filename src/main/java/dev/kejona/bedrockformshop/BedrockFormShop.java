@@ -22,6 +22,9 @@ public final class BedrockFormShop extends JavaPlugin {
         INSTANCE = this;
         Logger logger = new JavaUtilLogger(this.getLogger());
         loadConfig();
+        if (getConfig().getInt("version") < 1) {
+            logger.severe("Your config file is outdated, Please update/regenerate config by renaming your current config file to config.yml.old");
+        }
         // Register commands
         Objects.requireNonNull(this.getCommand("shop")).setExecutor(new ShopCommand());
         // Check if there are hooks and if so register them.
