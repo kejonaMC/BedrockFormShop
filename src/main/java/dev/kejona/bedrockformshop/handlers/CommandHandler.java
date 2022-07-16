@@ -9,8 +9,7 @@ import java.util.UUID;
 
 public class CommandHandler {
 
-    public void executeCommand(UUID uuid, String command, double price) {
-        FileConfiguration config = BedrockFormShop.getInstance().getConfig();
+    public void executeCommand(UUID uuid, String command, double price, FileConfiguration config) {
         // Get Player Instance
         Player player = BedrockFormShop.getInstance().getServer().getPlayer(uuid);
         // Check if player has enough money

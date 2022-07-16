@@ -43,13 +43,13 @@ public class SellBuyForm {
                 if (response.asToggle(0)) {
                     itemHandler.sellItem(uuid, object, sellPrice, getAmount);
                 } else {
-                    itemHandler.buyItem(uuid, object, buyPrice, getAmount);
+                    itemHandler.buyItem(uuid, object, buyPrice, getAmount, config);
                 }
             }
             // If shopType is command inputs do not exist
             if (shopType.equalsIgnoreCase("command")) {
                 CommandHandler commandHandler = new CommandHandler();
-                commandHandler.executeCommand(uuid, object, buyPrice);
+                commandHandler.executeCommand(uuid, object, buyPrice, config);
             }
         });
         FloodgateApi.getInstance().sendForm(uuid, form.build());

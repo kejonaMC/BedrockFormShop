@@ -13,8 +13,7 @@ import java.util.UUID;
 
 public class ItemHandler {
 
-    public void buyItem(UUID uuid, String item, double price, int amount) {
-        FileConfiguration config = BedrockFormShop.getInstance().getConfig();
+    public void buyItem(UUID uuid, String item, double price, int amount, FileConfiguration config) {
         // Get Player Instance
         Player player = BedrockFormShop.getInstance().getServer().getPlayer(uuid);
         // Get Item from form
