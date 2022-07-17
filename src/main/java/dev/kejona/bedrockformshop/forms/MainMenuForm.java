@@ -9,7 +9,7 @@ import org.geysermc.floodgate.api.FloodgateApi;
 import java.util.*;
 
 public class MainMenuForm {
-
+    // A form with shop categories as buttons.
     public void mainMenu(UUID uuid) {
         FileConfiguration config = BedrockFormShop.getInstance().getConfig();
 
@@ -39,7 +39,7 @@ public class MainMenuForm {
         });
 
         form.validResultHandler(response -> {
-            // Send itemlist to player
+            // Send itemlist to player.
             ItemListForm itemList = new ItemListForm();
             itemList.itemList(uuid, buttons.get(response.clickedButtonId()), config);
 

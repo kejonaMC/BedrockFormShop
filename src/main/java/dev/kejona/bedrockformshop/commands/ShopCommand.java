@@ -23,17 +23,18 @@ public class ShopCommand implements CommandExecutor {
                 return true;
             }
         } else {
-            // Sender is probably console. and can't open shops ofc
+            // Sender is not a player.
             sender.sendMessage(ChatColor.RED + "You cannot preform command. This command only works for floodgate players");
             return true;
         }
         // If Arg is reload then reload config, can also be used in console.
         if (args[0].equalsIgnoreCase("reload")) {
-            // If arg was reload, reload config
+            // If arg was reload, reload config.
             BedrockFormShop.getInstance().reloadConfig();
             sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Objects.requireNonNull(BedrockFormShop.getInstance().getConfig().getString("messages.reload-config"))));
             return true;
         } else {
+            // Arg is not a valid command.
             sender.sendMessage("The argument " + args[0] + " is not a valid command. please use /shop");
         }
 

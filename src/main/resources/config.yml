@@ -5,6 +5,7 @@ version: 1
 messages:
   not-enough-money: "§cYou don't have enough money"
   not-enough-items: "§cYou don't have enough %item% to sell"
+  no-sell-price: "§cYou cannot sell this item"
   no-items: "§cYou don't have any %item% to sell"
   item-bought: "§2You bought %item% for $%price%"
   item-sold: "§2You sold %item% for $%price%"
@@ -51,7 +52,7 @@ form:
     title: "Buy or sell %item%"
     buy-or-sell: Buy - sell
     slider: "Amount you want to buy/sell"
-    label: "price each: buy $%buyprice% - sell $%sellprice%"
+    label: "price each\n buy: %buyprice% \n sell: %sellprice%"
 
   #########################
   # ItemShopList Menu     #
@@ -114,116 +115,139 @@ form:
     buttons:
       bone:
         image: "https://i.imgur.com/XqQZQZq.png"
+        type: ITEM
         item: "BONE"
         buy-price: 0.0
         sell-price: 0.0
       bucket:
         image: "https://i.imgur.com/XqQZQZq.png"
+        type: ITEM
         item: "BUCKET"
         buy-price: 0.0
         sell-price: 0.0
       white-wool:
         image: "https://i.imgur.com/XqQZQZq.png"
+        type: ITEM
         item: "WHITE_WOOL"
         buy-price: 0.0
         sell-price: 0.0
       orange-wool:
         image: "https://i.imgur.com/XqQZQZq.png"
+        type: ITEM
         item: "ORANGE_WOOL"
         buy-price: 0.0
         sell-price: 0.0
       magenta-wool:
         image: "https://i.imgur.com/XqQZQZq.png"
+        type: ITEM
         item: "MAGENTA_WOOL"
         buy-price: 0.0
         sell-price: 0.0
       light-blue-wool:
         image: "https://i.imgur.com/XqQZQZq.png"
+        type: ITEM
         item: "LIGHT_BLUE_WOOL"
         buy-price: 0.0
         sell-price: 0.0
       yellow-wool:
         image: "https://i.imgur.com/XqQZQZq.png"
+        type: ITEM
         item: "YELLOW_WOOL"
         buy-price: 0.0
         sell-price: 0.0
       lime-wool:
         image: "https://i.imgur.com/XqQZQZq.png"
+        type: ITEM
         item: "LIME_WOOL"
         buy-price: 0.0
         sell-price: 0.0
       pink-wool:
         image: "https://i.imgur.com/XqQZQZq.png"
+        type: ITEM
         item: "PINK_WOOL"
         buy-price: 0.0
         sell-price: 0.0
       gray-wool:
         image: "https://i.imgur.com/XqQZQZq.png"
+        type: ITEM
         item: "GRAY_WOOL"
         buy-price: 0.0
         sell-price: 0.0
       light-gray-wool:
         image: "https://i.imgur.com/XqQZQZq.png"
+        type: ITEM
         item: "LIGHT_GRAY_WOOL"
         buy-price: 0.0
         sell-price: 0.0
       cyan-wool:
         image: "https://i.imgur.com/XqQZQZq.png"
+        type: ITEM
         item: "CYAN_WOOL"
         buy-price: 0.0
         sell-price: 0.0
       oak-sapling:
         image: "https://i.imgur.com/XqQZQZq.png"
+        type: ITEM
         item: "OAK_SAPLING"
         buy-price: 0.0
         sell-price: 0.0
       spruce-sapling:
         image: "https://i.imgur.com/XqQZQZq.png"
+        type: ITEM
         item: "SPRUCE_SAPLING"
         buy-price: 0.0
         sell-price: 0.0
       birch-sapling:
         image: "https://i.imgur.com/XqQZQZq.png"
+        type: ITEM
         item: "BIRCH_SAPLING"
         buy-price: 0.0
         sell-price: 0.0
       jungle-sapling:
         image: "https://i.imgur.com/XqQZQZq.png"
+        type: ITEM
         item: "JUNGLE_SAPLING"
         buy-price: 0.0
         sell-price: 0.0
       acacia-sapling:
         image: "https://i.imgur.com/XqQZQZq.png"
+        type: ITEM
         item: "ACACIA_SAPLING"
         buy-price: 0.0
         sell-price: 0.0
       dark-oak-sapling:
         image: "https://i.imgur.com/XqQZQZq.png"
+        type: ITEM
         item: "DARK_OAK_SAPLING"
         buy-price: 0.0
         sell-price: 0.0
       wheat-seeds:
         image: "https://i.imgur.com/XqQZQZq.png"
+        type: ITEM
         item: "WHEAT-SEEDS"
         buy-price: 0.0
         sell-price: 0.0
       pumpkin-seed:
         image: "https://i.imgur.com/XqQZQZq.png"
+        type: ITEM
         item: "PUMPKIN_SEEDS"
         buy-price: 0.0
         sell-price: 0.0
       melon-seed:
         image: "https://i.imgur.com/XqQZQZq.png"
+        type: ITEM
         item: "MELON_SEEDS"
         buy-price: 0.0
         sell-price: 0.0
       beetroot-seed:
         image: "https://i.imgur.com/XqQZQZq.png"
+        type: ITEM
         item: "BEETROOT_SEEDS"
         buy-price: 0.0
         sell-price: 0.0
       cactus-seed:
         image: "https://i.imgur.com/XqQZQZq.png"
+        type: ITEM
         item: "CACTUS_SEEDS"
         buy-price: 0.0
         sell-price: 0.0
