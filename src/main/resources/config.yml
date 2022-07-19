@@ -835,7 +835,7 @@ form:
         item: "ARROW"
         buy-price: 0.0
         sell-price: 0.0
-  Armour:
+  Armor:
     title: "%item% shop"
     content: "Select which item you want to buy/sell."
     buttons:
