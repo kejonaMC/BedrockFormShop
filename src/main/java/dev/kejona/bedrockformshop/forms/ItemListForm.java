@@ -1,5 +1,6 @@
 package dev.kejona.bedrockformshop.forms;
 
+import dev.kejona.bedrockformshop.handlers.ShopType;
 import dev.kejona.bedrockformshop.utils.Placeholders;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.geysermc.cumulus.form.SimpleForm;
@@ -43,17 +44,19 @@ public class ItemListForm {
         form.validResultHandler(response -> {
             String clickedButton = buttons.get(response.clickedButtonId());
             String shopType = config.getString("form." + category + ".buttons." + clickedButton + ".type");
-            // Check if shopType is an item or a command.
-            if (shopType != null && shopType.equalsIgnoreCase("item")) {
-                String itemStackName = config.getString("form." + category + ".buttons." + clickedButton + ".item");
-                SellBuyForm sell = new SellBuyForm();
-                sell.buysellForm(uuid, itemStackName, clickedButton, category, shopType, config);
-            }
-
-            if (shopType != null && shopType.equalsIgnoreCase("command")) {
-                String command = config.getString("form." + category + ".buttons." + clickedButton + ".command");
-                SellBuyForm buy = new SellBuyForm();
-                buy.buysellForm(uuid, command, clickedButton, category, shopType, config);
+            SellBuyForm sellbuy = new SellBuyForm();
+            // Loop all shop types and check if the clicked button is of that type.
+            for (ShopType type : ShopType.values()) {
+                if (type.name().equals(shopType)) {
+                    if (ShopType.ITEM == type) {
+                        String itemStackName = config.getString("form." + category + ".buttons." + clickedButton + ".item");
+                        sellbuy.buysellForm(uuid, itemStackName, clickedButton, category, shopType, config);
+                    }
+                    if (ShopType.COMMAND == type) {
+                        String command = config.getString("form." + category + ".buttons." + clickedButton + ".command");
+                        sellbuy.buysellForm(uuid, command, clickedButton, category, shopType, config);
+                    }
+                }
             }
         });
         // Build form and send to player.

@@ -2,6 +2,7 @@ package dev.kejona.bedrockformshop.forms;
 
 import dev.kejona.bedrockformshop.handlers.CommandHandler;
 import dev.kejona.bedrockformshop.handlers.ItemHandler;
+import dev.kejona.bedrockformshop.handlers.ShopType;
 import dev.kejona.bedrockformshop.utils.Placeholders;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -22,12 +23,12 @@ public class SellBuyForm {
         CustomForm.Builder form = CustomForm.builder()
         .title(Placeholders.placeholder((config.getString("form.buy-sell.title")), object));
         // Check if config block is an item or command.
-        if (shopType.equalsIgnoreCase("item")) {
+        if (ShopType.ITEM.name().equals(shopType)) {
             form.toggle(Placeholders.colorCode(config.getString("form.buy-sell.buy-or-sell")), false);
             form.slider(Placeholders.colorCode(config.getString("form.buy-sell.slider")), 0, 100);
             form.label(Placeholders.placeholder(config.getString("form.buy-sell.label"), buyPrice, sellPrice));
-
-        } else if (shopType.equalsIgnoreCase("command")) {
+        }
+        if (shopType.equalsIgnoreCase("command")) {
             form.label(Placeholders.placeholder(config.getString("form." + category + ".buttons." + clickedButton + ".label"), buyPrice, sellPrice));
         }
 
@@ -39,7 +40,7 @@ public class SellBuyForm {
 
         form.validResultHandler(response -> {
             // If shopType is item get the input from slider.
-            if (shopType.equalsIgnoreCase("item")) {
+            if (ShopType.ITEM.name().equals(shopType)) {
                 ItemHandler itemHandler = new ItemHandler();
                 int getAmount = (int) response.asSlider(1);
 
@@ -56,7 +57,7 @@ public class SellBuyForm {
                 }
             }
             // If shopType is command inputs do not exist.
-            if (shopType.equalsIgnoreCase("command")) {
+            if (ShopType.COMMAND.name().equals(shopType)) {
                 CommandHandler commandHandler = new CommandHandler();
                 commandHandler.executeCommand(uuid, object, buyPrice, config);
             }

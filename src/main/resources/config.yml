@@ -257,161 +257,193 @@ form:
     buttons:
       stone-brick:
         image: "https://i.imgur.com/XqQZQZq.png"
+        type: ITEM
         item: "STONE-BRICKS"
         buy-price: 0.0
         sell-price: 0.0
       mossy-stone-brick:
         image: "https://i.imgur.com/XqQZQZq.png"
+        type: ITEM
         item: "MOSSY_STONE_BRICKS"
         buy-price: 0.0
         sell-price: 0.0
       cracked-stone-brick:
         image: "https://i.imgur.com/XqQZQZq.png"
+        type: ITEM
         item: "CRACKED_STONE_BRICKS"
         buy-price: 0.0
         sell-price: 0.0
       chiseled-stone-brick:
         image: "https://i.imgur.com/XqQZQZq.png"
+        type: ITEM
         item: "CHISELED_STONE_BRICKS"
         buy-price: 0.0
         sell-price: 0.0
       stone:
         image: "https://i.imgur.com/XqQZQZq.png"
+        type: ITEM
         item: "STONE"
         buy-price: 0.0
         sell-price: 0.0
       cobblestone:
         image: "https://i.imgur.com/XqQZQZq.png"
+        type: ITEM
         item: "COBBLESTONE"
         buy-price: 0.0
         sell-price: 0.0
       mossy-cobblestone:
         image: "https://i.imgur.com/XqQZQZq.png"
+        type: ITEM
         item: "MOSSY_COBBLESTONE"
         buy-price: 0.0
         sell-price: 0.0
       grass-block:
         image: "https://i.imgur.com/XqQZQZq.png"
+        type: ITEM
         item: "GRASS-BLOCK"
         buy-price: 0.0
         sell-price: 0.0
       dirt:
         image: "https://i.imgur.com/XqQZQZq.png"
+        type: ITEM
         item: "DIRT"
         buy-price: 0.0
         sell-price: 0.0
       oak-log:
         image: "https://i.imgur.com/XqQZQZq.png"
+        type: ITEM
         item: "OAK_LOG"
         buy-price: 0.0
         sell-price: 0.0
       spruce-log:
         image: "https://i.imgur.com/XqQZQZq.png"
+        type: ITEM
         item: "SPRUCE_LOG"
         buy-price: 0.0
         sell-price: 0.0
       birch-log:
         image: "https://i.imgur.com/XqQZQZq.png"
+        type: ITEM
         item: "BIRCH_LOG"
         buy-price: 0.0
         sell-price: 0.0
       jungle-log:
         image: "https://i.imgur.com/XqQZQZq.png"
+        type: ITEM
         item: "JUNGLE_LOG"
         buy-price: 0.0
         sell-price: 0.0
       acacia-log:
         image: "https://i.imgur.com/XqQZQZq.png"
+        type: ITEM
         item: "ACACIA_LOG"
         buy-price: 0.0
         sell-price: 0.0
       dark-oak-log:
         image: "https://i.imgur.com/XqQZQZq.png"
+        type: ITEM
         item: "DARK_OAK_LOG"
         buy-price: 0.0
         sell-price: 0.0
       obsidian:
         image: "https://i.imgur.com/XqQZQZq.png"
+        type: ITEM
         item: "OBSIDIAN"
         buy-price: 500.0
         sell-price: 0.0
       sand-stone:
         image: "https://i.imgur.com/XqQZQZq.png"
+        type: ITEM
         item: "SANDSTONE"
         buy-price: 0.0
         sell-price: 0.0
       sand:
         image: "https://i.imgur.com/XqQZQZq.png"
+        type: ITEM
         item: "SAND"
         buy-price: 0.0
         sell-price: 0.0
       red-sand:
         image: "https://i.imgur.com/XqQZQZq.png"
+        type: ITEM
         item: "RED_SAND"
         buy-price: 0.0
         sell-price: 0.0
       glass:
         image: "https://i.imgur.com/XqQZQZq.png"
+        type: ITEM
         item: "GLASS"
         buy-price: 0.0
         sell-price: 0.0
       gravel:
         image: "https://i.imgur.com/XqQZQZq.png"
+        type: ITEM
         item: "GRAVEL"
         buy-price: 0.0
         sell-price: 0.0
       quarts-pillar:
         image: "https://i.imgur.com/XqQZQZq.png"
+        type: ITEM
         item: "QUARTZ_PILLAR"
         buy-price: 0.0
         sell-price: 0.0
       netherrack:
         image: "https://i.imgur.com/XqQZQZq.png"
+        type: ITEM
         item: "NETHERRACK"
         buy-price: 0.0
         sell-price: 0.0
       nether-brick:
         image: "https://i.imgur.com/XqQZQZq.png"
+        type: ITEM
         item: "NETHER_BRICK"
         buy-price: 0.0
         sell-price: 0.0
       soul-sand:
         image: "https://i.imgur.com/XqQZQZq.png"
+        type: ITEM
         item: "SOUL_SAND"
         buy-price: 0.0
         sell-price: 0.0
       glowstone:
         image: "https://i.imgur.com/XqQZQZq.png"
+        type: ITEM
         item: "GLOWSTONE"
         buy-price: 0.0
         sell-price: 0.0
       ice:
         image: "https://i.imgur.com/XqQZQZq.png"
+        type: ITEM
         item: "ICE"
         buy-price: 0.0
         sell-price: 0.0
       packed-ice:
         image: "https://i.imgur.com/XqQZQZq.png"
+        type: ITEM
         item: "PACKED_ICE"
         buy-price: 0.0
         sell-price: 0.0
       end-stone:
         image: "https://i.imgur.com/XqQZQZq.png"
+        type: ITEM
         item: "END_STONE"
         buy-price: 0.0
         sell-price: 0.0
       beacon:
         image: "https://i.imgur.com/XqQZQZq.png"
+        type: ITEM
         item: "BEACON"
         buy-price: 0.0
         sell-price: 0.0
       sponge:
         image: "https://i.imgur.com/XqQZQZq.png"
+        type: ITEM
         item: "SPONGE"
         buy-price: 0.0
         sell-price: 0.0
       brick:
         image: "https://i.imgur.com/XqQZQZq.png"
+        type: ITEM
         item: "BRICKS"
         buy-price: 0.0
         sell-price: 0.0
@@ -421,101 +453,121 @@ form:
     buttons:
       pig:
         image: "https://i.imgur.com/XqQZQZq.png"
+        type: ITEM
         item: "PIG_SPAWN_EGG"
         buy-price: 0.0
         sell-price: 0.0
       cow:
         image: "https://i.imgur.com/XqQZQZq.png"
+        type: ITEM
         item: "COW_SPAWN_EGG"
         buy-price: 0.0
         sell-price: 0.0
       chicken:
         image: "https://i.imgur.com/XqQZQZq.png"
+        type: ITEM
         item: "CHICKEN_SPAWN_EGG"
         buy-price: 0.0
         sell-price: 0.0
       squid:
         image: "https://i.imgur.com/XqQZQZq.png"
+        type: ITEM
         item: "SQUID_SPAWN_EGG"
         buy-price: 0.0
         sell-price: 0.0
       wolf:
         image: "https://i.imgur.com/XqQZQZq.png"
+        type: ITEM
         item: "WOLF_SPAWN_EGG"
         buy-price: 0.0
         sell-price: 0.0
       mooshroom:
         image: "https://i.imgur.com/XqQZQZq.png"
+        type: ITEM
         item: "MOOSHROOM_SPAWN_EGG"
         buy-price: 0.0
         sell-price: 0.0
       ocelot:
         image: "https://i.imgur.com/XqQZQZq.png"
+        type: ITEM
         item: "OCELOT_SPAWN_EGG"
         buy-price: 0.0
         sell-price: 0.0
       rabbit:
         image: "https://i.imgur.com/XqQZQZq.png"
+        type: ITEM
         item: "RABBIT_SPAWN_EGG"
         buy-price: 0.0
         sell-price: 0.0
       bat:
         image: "https://i.imgur.com/XqQZQZq.png"
+        type: ITEM
         item: "BAT_SPAWN_EGG"
         buy-price: 0.0
         sell-price: 0.0
       horse:
         image: "https://i.imgur.com/XqQZQZq.png"
+        type: ITEM
         item: "HORSE_SPAWN_EGG"
         buy-price: 0.0
         sell-price: 0.0
       zombie:
         image: "https://i.imgur.com/XqQZQZq.png"
+        type: ITEM
         item: "ZOMBIE_SPAWN_EGG"
         buy-price: 0.0
         sell-price: 0.0
       creeper:
         image: "https://i.imgur.com/XqQZQZq.png"
+        type: ITEM
         item: "CREEPER_SPAWN_EGG"
         buy-price: 0.0
         sell-price: 0.0
       skeleton:
         image: "https://i.imgur.com/XqQZQZq.png"
+        type: ITEM
         item: "SKELETON_SPAWN_EGG"
         buy-price: 0.0
         sell-price: 0.0
       spider:
         image: "https://i.imgur.com/XqQZQZq.png"
+        type: ITEM
         item: "SPIDER_SPAWN_EGG"
         buy-price: 0.0
         sell-price: 0.0
       zombie-pigman:
         image: "https://i.imgur.com/XqQZQZq.png"
+        type: ITEM
         item: "ZOMBIE_PIGMAN_SPAWN_EGG"
         buy-price: 0.0
         sell-price: 0.0
       slime:
         image: "https://i.imgur.com/XqQZQZq.png"
+        type: ITEM
         item: "SLIME_SPAWN_EGG"
         buy-price: 0.0
         sell-price: 0.0
       silverfish:
         image: "https://i.imgur.com/XqQZQZq.png"
+        type: ITEM
         item: "SILVERFISH_SPAWN_EGG"
         buy-price: 0.0
         sell-price: 0.0
       enderman:
         image: "https://i.imgur.com/XqQZQZq.png"
+        type: ITEM
         item: "ENDERMAN_SPAWN_EGG"
         buy-price: 0.0
         sell-price: 0.0
       cave-spider:
         image: "https://i.imgur.com/XqQZQZq.png"
+        type: ITEM
         item: "CAVE_SPIDER_SPAWN_EGG"
         buy-price: 0.0
         sell-price: 0.0
       blaze:
         image: "https://i.imgur.com/XqQZQZq.png"
+        type: ITEM
         item: "BLAZE_SPAWN_EGG"
         buy-price: 0.0
         sell-price: 0.0
