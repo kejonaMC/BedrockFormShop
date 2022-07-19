@@ -7,8 +7,8 @@ messages:
   not-enough-items: "§cYou don't have enough %item% to sell"
   no-sell-price: "§cYou cannot sell this item"
   no-items: "§cYou don't have any %item% to sell"
-  item-bought: "§2You bought %item% for $%price%"
-  item-sold: "§2You sold %item% for $%price%"
+  item-bought: "§2You bought %amount% %item% for $%price%"
+  item-sold: "§2You sold %amount% %item% for $%price%"
   command-bought: "§2You bought %command% for $%price%"
   reload-config: "§2Config is reloaded!"
 
@@ -21,29 +21,29 @@ form:
     content: "Select which shop you want to buy/sell from"
     buttons:
       Ores:
-        image: "textures/blocks/stone.png"
+        image: "kejona/coal_ore.png"
       Items:
-        image: "textures/items/bucket.png"
+        image: "kejona/bucket.png"
       Blocks:
-        image: "textures/blocks/dirt.png"
-      SpawnEggs:
-        image: "https://static.wikia.nocookie.net/minecraft_gamepedia/images/a/a2/Spider_Spawner.png/revision/latest?cb=20190801053107"
-      Enchantments:
-        image: "https://static.wikia.nocookie.net/minecraft_gamepedia/images/d/d7/Enchanted_Book_JE1_BE1.png/revision/latest?cb=20190910062812"
-      Potions:
-        image: "https://static.wikia.nocookie.net/minecraft_gamepedia/images/b/b3/Brewing_Stand_%28empty%29_JE10.png/revision/latest?cb=20220502063418"
+        image: "kejona/dirt.png"
       Food:
-        image: "https://static.wikia.nocookie.net/minecraft/images/6/63/Carrot_Updated.png/revision/latest?cb=20190721134506"
+        image: "kejona/apple.png"
       Tools:
-        image: "https://static.wikia.nocookie.net/minecraft_gamepedia/images/e/e7/Diamond_Pickaxe_JE3_BE3.png/revision/latest?cb=20200226193952"
+        image: "kejona/diamond_pickaxe.png"
       Weapons:
-        image: "https://static.wikia.nocookie.net/minecraft_gamepedia/images/4/44/Diamond_Sword_JE3_BE3.png/revision/latest?cb=20201017135722"
+        image: "kejona/diamond_sword.png"
       Armor:
-        image: "https://static.wikia.nocookie.net/minecraft_gamepedia/images/e/e0/Diamond_Chestplate_JE3_BE2.png/revision/latest?cb=20200218002341"
+        image: "kejona/diamond_chestplate.png"
+      Enchantments:
+        image: "kejona/enchanted_book.png"
+      Potions:
+        image: "kejona/potion.png"
+      SpawnEggs:
+        image: "kejona/chicken_spawn_egg.png"
       Misc:
-        image: "https://static.wikia.nocookie.net/minecraft_gamepedia/images/3/32/Dispenser_%28S%29_JE4.png/revision/latest?cb=20210111083647"
+        image: "kejona/dispenser.png"
       Exit:
-        image: "https://static.wikia.nocookie.net/minecraft_gamepedia/images/c/cd/Barrier_%28held%29_JE1_BE1.png/revision/latest?cb=20190811152525"
+        image: "kejona/barrier.png"
 
   #########################
   # Buy/Sell Menu         #
@@ -52,7 +52,7 @@ form:
     title: "Buy or sell %item%"
     buy-or-sell: Buy - sell
     slider: "Amount you want to buy/sell"
-    label: "price each\n buy: %buyprice% \n sell: %sellprice%"
+    label: "price each\n\nbuy: %buyprice% \nsell: %sellprice%"
 
   #########################
   # ItemShopList Menu     #
@@ -62,49 +62,49 @@ form:
     content: "Select which item you want to buy/sell."
     buttons:
       coal-ore:
-        image: "https://static.wikia.nocookie.net/minecraft_gamepedia/images/4/48/Coal_Ore_JE5_BE4.png/revision/latest?cb=20210325235945"
+        image: "default"
         type: ITEM
         item: "COAL_ORE"
         buy-price: 10.0
         sell-price: 5.0
       iron-ore:
-        image: "https://static.wikia.nocookie.net/minecraft_gamepedia/images/1/19/Iron_Ore_JE6_BE4.png/revision/latest?cb=20210326000111"
+        image: "default"
         type: ITEM
         item: "IRON_ORE"
         buy-price: 20.0
         sell-price: 10.0
       redstone-ore:
-        image: "https://static.wikia.nocookie.net/minecraft_gamepedia/images/c/cd/Redstone_Ore_JE4_BE3.png/revision/latest?cb=20210226103025"
+        image: "default"
         type: ITEM
         item: "REDSTONE_ORE"
         buy-price: 35.0
         sell-price: 10.0
       lapis-ore:
-        image: "https://static.wikia.nocookie.net/minecraft_gamepedia/images/e/ea/Lapis_Lazuli_Ore_JE4_BE4.png/revision/latest?cb=20210414171130"
+        image: "default"
         type: ITEM
         item: "LAPIS_ORE"
         buy-price: 35.0
         sell-price: 10.0
       nether-quartz:
-        image: "https://static.wikia.nocookie.net/minecraft_gamepedia/images/2/28/Nether_Quartz_Ore_JE3_BE2.png/revision/latest?cb=20200317191508"
+        image: "default"
         type: ITEM
         item: "NETHER_QUARTZ_ORE"
         buy-price: 35.0
         sell-price: 10.0
       emerald-ore:
-        image: "https://static.wikia.nocookie.net/minecraft_gamepedia/images/a/a9/Emerald_Ore_JE4_BE3.png/revision/latest?cb=20210225021326"
+        image: "default"
         type: ITEM
         item: "EMERALD_ORE"
         buy-price: 70.0
         sell-price: 35.0
       gold-ore:
-        image: "https://static.wikia.nocookie.net/minecraft_gamepedia/images/1/18/Gold_Ore_JE7_BE4.png/revision/latest?cb=20210414170925"
+        image: "default"
         type: ITEM
         item: "GOLD_ORE"
         buy-price: 50.0
         sell-price: 25.0
       diamond-ore:
-        image: "https://static.wikia.nocookie.net/minecraft_gamepedia/images/2/29/Diamond_Ore_JE5_BE5.png/revision/latest?cb=20210326000237"
+        image: "default"
         type: ITEM
         item: "DIAMOND_ORE"
         buy-price: 100.0
@@ -114,139 +114,133 @@ form:
     content: "Select which item you want to buy/sell."
     buttons:
       bone:
-        image: "https://i.imgur.com/XqQZQZq.png"
+        image: "default"
         type: ITEM
         item: "BONE"
         buy-price: 0.0
         sell-price: 0.0
       bucket:
-        image: "https://i.imgur.com/XqQZQZq.png"
+        image: "default"
         type: ITEM
         item: "BUCKET"
         buy-price: 0.0
         sell-price: 0.0
       white-wool:
-        image: "https://i.imgur.com/XqQZQZq.png"
+        image: "default"
         type: ITEM
         item: "WHITE_WOOL"
         buy-price: 0.0
         sell-price: 0.0
       orange-wool:
-        image: "https://i.imgur.com/XqQZQZq.png"
+        image: "default"
         type: ITEM
         item: "ORANGE_WOOL"
         buy-price: 0.0
         sell-price: 0.0
       magenta-wool:
-        image: "https://i.imgur.com/XqQZQZq.png"
+        image: "default"
         type: ITEM
         item: "MAGENTA_WOOL"
         buy-price: 0.0
         sell-price: 0.0
       light-blue-wool:
-        image: "https://i.imgur.com/XqQZQZq.png"
+        image: "default"
         type: ITEM
         item: "LIGHT_BLUE_WOOL"
         buy-price: 0.0
         sell-price: 0.0
       yellow-wool:
-        image: "https://i.imgur.com/XqQZQZq.png"
+        image: "default"
         type: ITEM
         item: "YELLOW_WOOL"
         buy-price: 0.0
         sell-price: 0.0
       lime-wool:
-        image: "https://i.imgur.com/XqQZQZq.png"
+        image: "default"
         type: ITEM
         item: "LIME_WOOL"
         buy-price: 0.0
         sell-price: 0.0
       pink-wool:
-        image: "https://i.imgur.com/XqQZQZq.png"
+        image: "default"
         type: ITEM
         item: "PINK_WOOL"
         buy-price: 0.0
         sell-price: 0.0
       gray-wool:
-        image: "https://i.imgur.com/XqQZQZq.png"
+        image: "default"
         type: ITEM
         item: "GRAY_WOOL"
         buy-price: 0.0
         sell-price: 0.0
       light-gray-wool:
-        image: "https://i.imgur.com/XqQZQZq.png"
+        image: "default"
         type: ITEM
         item: "LIGHT_GRAY_WOOL"
         buy-price: 0.0
         sell-price: 0.0
       cyan-wool:
-        image: "https://i.imgur.com/XqQZQZq.png"
+        image: "default"
         type: ITEM
         item: "CYAN_WOOL"
         buy-price: 0.0
         sell-price: 0.0
       oak-sapling:
-        image: "https://i.imgur.com/XqQZQZq.png"
+        image: "default"
         type: ITEM
         item: "OAK_SAPLING"
         buy-price: 0.0
         sell-price: 0.0
       spruce-sapling:
-        image: "https://i.imgur.com/XqQZQZq.png"
+        image: "default"
         type: ITEM
         item: "SPRUCE_SAPLING"
         buy-price: 0.0
         sell-price: 0.0
       birch-sapling:
-        image: "https://i.imgur.com/XqQZQZq.png"
+        image: "default"
         type: ITEM
         item: "BIRCH_SAPLING"
         buy-price: 0.0
         sell-price: 0.0
       jungle-sapling:
-        image: "https://i.imgur.com/XqQZQZq.png"
+        image: "default"
         type: ITEM
         item: "JUNGLE_SAPLING"
         buy-price: 0.0
         sell-price: 0.0
       acacia-sapling:
-        image: "https://i.imgur.com/XqQZQZq.png"
+        image: "default"
         type: ITEM
         item: "ACACIA_SAPLING"
         buy-price: 0.0
         sell-price: 0.0
       dark-oak-sapling:
-        image: "https://i.imgur.com/XqQZQZq.png"
+        image: "default"
         type: ITEM
         item: "DARK_OAK_SAPLING"
         buy-price: 0.0
         sell-price: 0.0
-      wheat-seeds:
-        image: "https://i.imgur.com/XqQZQZq.png"
-        type: ITEM
-        item: "WHEAT-SEEDS"
-        buy-price: 0.0
-        sell-price: 0.0
       pumpkin-seed:
-        image: "https://i.imgur.com/XqQZQZq.png"
+        image: "default"
         type: ITEM
         item: "PUMPKIN_SEEDS"
         buy-price: 0.0
         sell-price: 0.0
       melon-seed:
-        image: "https://i.imgur.com/XqQZQZq.png"
+        image: "default"
         type: ITEM
         item: "MELON_SEEDS"
         buy-price: 0.0
         sell-price: 0.0
       beetroot-seed:
-        image: "https://i.imgur.com/XqQZQZq.png"
+        image: "default"
         type: ITEM
         item: "BEETROOT_SEEDS"
         buy-price: 0.0
         sell-price: 0.0
       cactus-seed:
-        image: "https://i.imgur.com/XqQZQZq.png"
+        image: "default"
         type: ITEM
         item: "CACTUS_SEEDS"
         buy-price: 0.0
@@ -256,193 +250,193 @@ form:
     content: "Select which item you want to buy/sell."
     buttons:
       stone-brick:
-        image: "https://i.imgur.com/XqQZQZq.png"
+        image: "default"
         type: ITEM
         item: "STONE-BRICKS"
         buy-price: 0.0
         sell-price: 0.0
       mossy-stone-brick:
-        image: "https://i.imgur.com/XqQZQZq.png"
+        image: "default"
         type: ITEM
         item: "MOSSY_STONE_BRICKS"
         buy-price: 0.0
         sell-price: 0.0
       cracked-stone-brick:
-        image: "https://i.imgur.com/XqQZQZq.png"
+        image: "default"
         type: ITEM
         item: "CRACKED_STONE_BRICKS"
         buy-price: 0.0
         sell-price: 0.0
       chiseled-stone-brick:
-        image: "https://i.imgur.com/XqQZQZq.png"
+        image: "default"
         type: ITEM
         item: "CHISELED_STONE_BRICKS"
         buy-price: 0.0
         sell-price: 0.0
       stone:
-        image: "https://i.imgur.com/XqQZQZq.png"
+        image: "default"
         type: ITEM
         item: "STONE"
         buy-price: 0.0
         sell-price: 0.0
       cobblestone:
-        image: "https://i.imgur.com/XqQZQZq.png"
+        image: "default"
         type: ITEM
         item: "COBBLESTONE"
         buy-price: 0.0
         sell-price: 0.0
       mossy-cobblestone:
-        image: "https://i.imgur.com/XqQZQZq.png"
+        image: "default"
         type: ITEM
         item: "MOSSY_COBBLESTONE"
         buy-price: 0.0
         sell-price: 0.0
       grass-block:
-        image: "https://i.imgur.com/XqQZQZq.png"
+        image: "default"
         type: ITEM
         item: "GRASS-BLOCK"
         buy-price: 0.0
         sell-price: 0.0
       dirt:
-        image: "https://i.imgur.com/XqQZQZq.png"
+        image: "default"
         type: ITEM
         item: "DIRT"
         buy-price: 0.0
         sell-price: 0.0
       oak-log:
-        image: "https://i.imgur.com/XqQZQZq.png"
+        image: "default"
         type: ITEM
         item: "OAK_LOG"
         buy-price: 0.0
         sell-price: 0.0
       spruce-log:
-        image: "https://i.imgur.com/XqQZQZq.png"
+        image: "default"
         type: ITEM
         item: "SPRUCE_LOG"
         buy-price: 0.0
         sell-price: 0.0
       birch-log:
-        image: "https://i.imgur.com/XqQZQZq.png"
+        image: "default"
         type: ITEM
         item: "BIRCH_LOG"
         buy-price: 0.0
         sell-price: 0.0
       jungle-log:
-        image: "https://i.imgur.com/XqQZQZq.png"
+        image: "default"
         type: ITEM
         item: "JUNGLE_LOG"
         buy-price: 0.0
         sell-price: 0.0
       acacia-log:
-        image: "https://i.imgur.com/XqQZQZq.png"
+        image: "default"
         type: ITEM
         item: "ACACIA_LOG"
         buy-price: 0.0
         sell-price: 0.0
       dark-oak-log:
-        image: "https://i.imgur.com/XqQZQZq.png"
+        image: "default"
         type: ITEM
         item: "DARK_OAK_LOG"
         buy-price: 0.0
         sell-price: 0.0
       obsidian:
-        image: "https://i.imgur.com/XqQZQZq.png"
+        image: "default"
         type: ITEM
         item: "OBSIDIAN"
         buy-price: 500.0
         sell-price: 0.0
       sand-stone:
-        image: "https://i.imgur.com/XqQZQZq.png"
+        image: "default"
         type: ITEM
         item: "SANDSTONE"
         buy-price: 0.0
         sell-price: 0.0
       sand:
-        image: "https://i.imgur.com/XqQZQZq.png"
+        image: "default"
         type: ITEM
         item: "SAND"
         buy-price: 0.0
         sell-price: 0.0
       red-sand:
-        image: "https://i.imgur.com/XqQZQZq.png"
+        image: "default"
         type: ITEM
         item: "RED_SAND"
         buy-price: 0.0
         sell-price: 0.0
       glass:
-        image: "https://i.imgur.com/XqQZQZq.png"
+        image: "default"
         type: ITEM
         item: "GLASS"
         buy-price: 0.0
         sell-price: 0.0
       gravel:
-        image: "https://i.imgur.com/XqQZQZq.png"
+        image: "default"
         type: ITEM
         item: "GRAVEL"
         buy-price: 0.0
         sell-price: 0.0
       quarts-pillar:
-        image: "https://i.imgur.com/XqQZQZq.png"
+        image: "default"
         type: ITEM
         item: "QUARTZ_PILLAR"
         buy-price: 0.0
         sell-price: 0.0
       netherrack:
-        image: "https://i.imgur.com/XqQZQZq.png"
+        image: "default"
         type: ITEM
         item: "NETHERRACK"
         buy-price: 0.0
         sell-price: 0.0
       nether-brick:
-        image: "https://i.imgur.com/XqQZQZq.png"
+        image: "default"
         type: ITEM
         item: "NETHER_BRICK"
         buy-price: 0.0
         sell-price: 0.0
       soul-sand:
-        image: "https://i.imgur.com/XqQZQZq.png"
+        image: "default"
         type: ITEM
         item: "SOUL_SAND"
         buy-price: 0.0
         sell-price: 0.0
       glowstone:
-        image: "https://i.imgur.com/XqQZQZq.png"
+        image: "default"
         type: ITEM
         item: "GLOWSTONE"
         buy-price: 0.0
         sell-price: 0.0
       ice:
-        image: "https://i.imgur.com/XqQZQZq.png"
+        image: "default"
         type: ITEM
         item: "ICE"
         buy-price: 0.0
         sell-price: 0.0
       packed-ice:
-        image: "https://i.imgur.com/XqQZQZq.png"
+        image: "default"
         type: ITEM
         item: "PACKED_ICE"
         buy-price: 0.0
         sell-price: 0.0
       end-stone:
-        image: "https://i.imgur.com/XqQZQZq.png"
+        image: "default"
         type: ITEM
         item: "END_STONE"
         buy-price: 0.0
         sell-price: 0.0
       beacon:
-        image: "https://i.imgur.com/XqQZQZq.png"
+        image: "default"
         type: ITEM
         item: "BEACON"
         buy-price: 0.0
         sell-price: 0.0
       sponge:
-        image: "https://i.imgur.com/XqQZQZq.png"
+        image: "default"
         type: ITEM
         item: "SPONGE"
         buy-price: 0.0
         sell-price: 0.0
       brick:
-        image: "https://i.imgur.com/XqQZQZq.png"
+        image: "default"
         type: ITEM
         item: "BRICKS"
         buy-price: 0.0
@@ -452,138 +446,526 @@ form:
     content: "Select which item you want to buy/sell."
     buttons:
       pig:
-        image: "https://i.imgur.com/XqQZQZq.png"
+        image: "default"
         type: ITEM
         item: "PIG_SPAWN_EGG"
         buy-price: 0.0
         sell-price: 0.0
       cow:
-        image: "https://i.imgur.com/XqQZQZq.png"
+        image: "default"
         type: ITEM
         item: "COW_SPAWN_EGG"
         buy-price: 0.0
         sell-price: 0.0
       chicken:
-        image: "https://i.imgur.com/XqQZQZq.png"
+        image: "default"
         type: ITEM
         item: "CHICKEN_SPAWN_EGG"
         buy-price: 0.0
         sell-price: 0.0
       squid:
-        image: "https://i.imgur.com/XqQZQZq.png"
+        image: "default"
         type: ITEM
         item: "SQUID_SPAWN_EGG"
         buy-price: 0.0
         sell-price: 0.0
       wolf:
-        image: "https://i.imgur.com/XqQZQZq.png"
+        image: "default"
         type: ITEM
         item: "WOLF_SPAWN_EGG"
         buy-price: 0.0
         sell-price: 0.0
       mooshroom:
-        image: "https://i.imgur.com/XqQZQZq.png"
+        image: "default"
         type: ITEM
         item: "MOOSHROOM_SPAWN_EGG"
         buy-price: 0.0
         sell-price: 0.0
       ocelot:
-        image: "https://i.imgur.com/XqQZQZq.png"
+        image: "default"
         type: ITEM
         item: "OCELOT_SPAWN_EGG"
         buy-price: 0.0
         sell-price: 0.0
       rabbit:
-        image: "https://i.imgur.com/XqQZQZq.png"
+        image: "default"
         type: ITEM
         item: "RABBIT_SPAWN_EGG"
         buy-price: 0.0
         sell-price: 0.0
       bat:
-        image: "https://i.imgur.com/XqQZQZq.png"
+        image: "default"
         type: ITEM
         item: "BAT_SPAWN_EGG"
         buy-price: 0.0
         sell-price: 0.0
       horse:
-        image: "https://i.imgur.com/XqQZQZq.png"
+        image: "default"
         type: ITEM
         item: "HORSE_SPAWN_EGG"
         buy-price: 0.0
         sell-price: 0.0
       zombie:
-        image: "https://i.imgur.com/XqQZQZq.png"
+        image: "default"
         type: ITEM
         item: "ZOMBIE_SPAWN_EGG"
         buy-price: 0.0
         sell-price: 0.0
       creeper:
-        image: "https://i.imgur.com/XqQZQZq.png"
+        image: "default"
         type: ITEM
         item: "CREEPER_SPAWN_EGG"
         buy-price: 0.0
         sell-price: 0.0
       skeleton:
-        image: "https://i.imgur.com/XqQZQZq.png"
+        image: "default"
         type: ITEM
         item: "SKELETON_SPAWN_EGG"
         buy-price: 0.0
         sell-price: 0.0
       spider:
-        image: "https://i.imgur.com/XqQZQZq.png"
+        image: "default"
         type: ITEM
         item: "SPIDER_SPAWN_EGG"
         buy-price: 0.0
         sell-price: 0.0
       zombie-pigman:
-        image: "https://i.imgur.com/XqQZQZq.png"
+        image: "default"
         type: ITEM
         item: "ZOMBIE_PIGMAN_SPAWN_EGG"
         buy-price: 0.0
         sell-price: 0.0
       slime:
-        image: "https://i.imgur.com/XqQZQZq.png"
+        image: "default"
         type: ITEM
         item: "SLIME_SPAWN_EGG"
         buy-price: 0.0
         sell-price: 0.0
       silverfish:
-        image: "https://i.imgur.com/XqQZQZq.png"
+        image: "default"
         type: ITEM
         item: "SILVERFISH_SPAWN_EGG"
         buy-price: 0.0
         sell-price: 0.0
       enderman:
-        image: "https://i.imgur.com/XqQZQZq.png"
+        image: "default"
         type: ITEM
         item: "ENDERMAN_SPAWN_EGG"
         buy-price: 0.0
         sell-price: 0.0
       cave-spider:
-        image: "https://i.imgur.com/XqQZQZq.png"
+        image: "default"
         type: ITEM
         item: "CAVE_SPIDER_SPAWN_EGG"
         buy-price: 0.0
         sell-price: 0.0
       blaze:
-        image: "https://i.imgur.com/XqQZQZq.png"
+        image: "default"
         type: ITEM
         item: "BLAZE_SPAWN_EGG"
         buy-price: 0.0
         sell-price: 0.0
       magma-cube:
-        image: "https://i.imgur.com/XqQZQZq.png"
+        image: "default"
         type: ITEM
         item: "MAGMA_CUBE_SPAWN_EGG"
+        buy-price: 0.0
+        sell-price: 0.0
+  Food:
+    title: "%item% shop"
+    content: "Select which item you want to buy/sell."
+    buttons:
+      apple:
+        image: "default"
+        type: ITEM
+        item: "APPLE"
+        buy-price: 0.0
+        sell-price: 0.0
+      bread:
+        image: "default"
+        type: ITEM
+        item: "BREAD"
+        buy-price: 0.0
+        sell-price: 0.0
+      cooked-porkchop:
+        image: "default"
+        type: ITEM
+        item: "COOKED_PORKCHOP"
+        buy-price: 0.0
+        sell-price: 0.0
+      cooked-beef:
+        image: "default"
+        type: ITEM
+        item: "COOKED_BEEF"
+        buy-price: 0.0
+        sell-price: 0.0
+      cooked-chicken:
+        image: "default"
+        type: ITEM
+        item: "COOKED_CHICKEN"
+        buy-price: 0.0
+        sell-price: 0.0
+      cooked-fish:
+        image: "default"
+        type: ITEM
+        item: "COOKED_FISH"
+        buy-price: 0.0
+        sell-price: 0.0
+      cookie:
+        image: "default"
+        type: ITEM
+        item: "COOKIE"
+        buy-price: 0.0
+        sell-price: 0.0
+      melon:
+        image: "default"
+        type: ITEM
+        item: "MELON"
+        buy-price: 0.0
+        sell-price: 0.0
+      pumpkin_pie:
+        image: "default"
+        type: ITEM
+        item: "PUMPKIN_PIE"
+        buy-price: 0.0
+        sell-price: 0.0
+      melon_slice:
+        image: "default"
+        type: ITEM
+        item: "MELON_SLICE"
+        buy-price: 0.0
+        sell-price: 0.0
+      pumpkin_slice:
+        image: "default"
+        type: ITEM
+        item: "PUMPKIN_SLICE"
+        buy-price: 0.0
+        sell-price: 0.0
+      raw-fish:
+        image: "default"
+        type: ITEM
+        item: "RAW_FISH"
+        buy-price: 0.0
+        sell-price: 0.0
+      raw-chicken:
+        image: "default"
+        type: ITEM
+        item: "RAW_CHICKEN"
+        buy-price: 0.0
+        sell-price: 0.0
+      raw-porkchop:
+        image: "default"
+        type: ITEM
+        item: "RAW_PORKCHOP"
+        buy-price: 0.0
+        sell-price: 0.0
+      raw-beef:
+        image: "default"
+        type: ITEM
+        item: "RAW_BEEF"
+        buy-price: 0.0
+        sell-price: 0.0
+  Tools:
+    title: "%item% shop"
+    content: "Select which item you want to buy/sell."
+    buttons:
+      stone_pickaxe:
+        image: "default"
+        type: ITEM
+        item: "STONE_PICKAXE"
+        buy-price: 0.0
+        sell-price: 0.0
+      stone_axe:
+        image: "default"
+        type: ITEM
+        item: "STONE_AXE"
+        buy-price: 0.0
+        sell-price: 0.0
+      stone_shovel:
+        image: "default"
+        type: ITEM
+        item: "STONE_SHOVEL"
+        buy-price: 0.0
+        sell-price: 0.0
+      stone_hoe:
+        image: "default"
+        type: ITEM
+        item: "STONE_HOE"
+        buy-price: 0.0
+        sell-price: 0.0
+      iron_pickaxe:
+        image: "default"
+        type: ITEM
+        item: "IRON_PICKAXE"
+        buy-price: 0.0
+        sell-price: 0.0
+      iron_axe:
+        image: "default"
+        type: ITEM
+        item: "IRON_AXE"
+        buy-price: 0.0
+        sell-price: 0.0
+      iron_shovel:
+        image: "default"
+        type: ITEM
+        item: "IRON_SHOVEL"
+        buy-price: 0.0
+        sell-price: 0.0
+      iron_hoe:
+        image: "default"
+        type: ITEM
+        item: "IRON_HOE"
+        buy-price: 0.0
+        sell-price: 0.0
+      golden_pickaxe:
+        image: "default"
+        type: ITEM
+        item: "GOLDEN_PICKAXE"
+        buy-price: 0.0
+        sell-price: 0.0
+      golden_axe:
+        image: "default"
+        type: ITEM
+        item: "GOLDEN_AXE"
+        buy-price: 0.0
+        sell-price: 0.0
+      golden_shovel:
+        image: "default"
+        type: ITEM
+        item: "GOLDEN_SHOVEL"
+        buy-price: 0.0
+        sell-price: 0.0
+      golden_hoe:
+        image: "default"
+        type: ITEM
+        item: "GOLDEN_HOE"
+        buy-price: 0.0
+        sell-price: 0.0
+      diamond_pickaxe:
+        image: "default"
+        type: ITEM
+        item: "DIAMOND_PICKAXE"
+        buy-price: 0.0
+        sell-price: 0.0
+      diamond_axe:
+        image: "default"
+        type: ITEM
+        item: "DIAMOND_AXE"
+        buy-price: 0.0
+        sell-price: 0.0
+      diamond_shovel:
+        image: "default"
+        type: ITEM
+        item: "DIAMOND_SHOVEL"
+        buy-price: 0.0
+        sell-price: 0.0
+      diamond_hoe:
+        image: "default"
+        type: ITEM
+        item: "DIAMOND_HOE"
+        buy-price: 0.0
+        sell-price: 0.0
+      netherite_pickaxe:
+        image: "default"
+        type: ITEM
+        item: "NETHERITE_PICKAXE"
+        buy-price: 0.0
+        sell-price: 0.0
+      netherite_axe:
+        image: "default"
+        type: ITEM
+        item: "NETHERITE_AXE"
+        buy-price: 0.0
+        sell-price: 0.0
+      netherite_shovel:
+        image: "default"
+        type: ITEM
+        item: "NETHERITE_SHOVEL"
+        buy-price: 0.0
+        sell-price: 0.0
+      netherite_hoe:
+        image: "default"
+        type: ITEM
+        item: "NETHERITE_HOE"
+        buy-price: 0.0
+        sell-price: 0.0
+  Weapons:
+    title: "%item% shop"
+    content: "Select which item you want to buy/sell."
+    buttons:
+      stone_sword:
+        image: "default"
+        type: ITEM
+        item: "STONE_SWORD"
+        buy-price: 0.0
+        sell-price: 0.0
+      iron_sword:
+        image: "default"
+        type: ITEM
+        item: "IRON_SWORD"
+        buy-price: 0.0
+        sell-price: 0.0
+      golden_sword:
+        image: "default"
+        type: ITEM
+        item: "GOLDEN_SWORD"
+        buy-price: 0.0
+        sell-price: 0.0
+      diamond_sword:
+        image: "default"
+        type: ITEM
+        item: "DIAMOND_SWORD"
+        buy-price: 0.0
+        sell-price: 0.0
+      netherite_sword:
+        image: "default"
+        type: ITEM
+        item: "NETHERITE_SWORD"
+        buy-price: 0.0
+        sell-price: 0.0
+      bow:
+        image: "default"
+        type: ITEM
+        item: "BOW"
+        buy-price: 0.0
+        sell-price: 0.0
+      arrow:
+        image: "default"
+        type: ITEM
+        item: "ARROW"
+        buy-price: 0.0
+        sell-price: 0.0
+  Armour:
+    title: "%item% shop"
+    content: "Select which item you want to buy/sell."
+    buttons:
+      leather_helmet:
+        image: "default"
+        type: ITEM
+        item: "LEATHER_HELMET"
+        buy-price: 0.0
+        sell-price: 0.0
+      leather_chestplate:
+        image: "default"
+        type: ITEM
+        item: "default"
+        buy-price: 0.0
+        sell-price: 0.0
+      leather_leggings:
+        image: "default"
+        type: ITEM
+        item: "LEATHER_LEGGINGS"
+        buy-price: 0.0
+        sell-price: 0.0
+      leather_boots:
+        image: "default"
+        type: ITEM
+        item: "LEATHER_BOOTS"
+        buy-price: 0.0
+        sell-price: 0.0
+      iron_helmet:
+        image: "default"
+        type: ITEM
+        item: "IRON_HELMET"
+        buy-price: 0.0
+        sell-price: 0.0
+      iron_chestplate:
+        image: "default"
+        type: ITEM
+        item: "IRON_CHESTPLATE"
+        buy-price: 0.0
+        sell-price: 0.0
+      iron_leggings:
+        image: "default"
+        type: ITEM
+        item: "IRON_LEGGINGS"
+        buy-price: 0.0
+        sell-price: 0.0
+      iron_boots:
+        image: "default"
+        type: ITEM
+        item: "IRON_BOOTS"
+        buy-price: 0.0
+        sell-price: 0.0
+      golden_helmet:
+        image: "default"
+        type: ITEM
+        item: "GOLDEN_HELMET"
+        buy-price: 0.0
+        sell-price: 0.0
+      golden_chestplate:
+        image: "default"
+        type: ITEM
+        item: "GOLDEN_CHESTPLATE"
+        buy-price: 0.0
+        sell-price: 0.0
+      golden_leggings:
+        image: "default"
+        type: ITEM
+        item: "GOLDEN_LEGGINGS"
+        buy-price: 0.0
+        sell-price: 0.0
+      golden_boots:
+        image: "default"
+        type: ITEM
+        item: "GOLDEN_BOOTS"
+        buy-price: 0.0
+        sell-price: 0.0
+      diamond_helmet:
+        image: "default"
+        type: ITEM
+        item: "DIAMOND_HELMET"
+        buy-price: 0.0
+        sell-price: 0.0
+      diamond_chestplate:
+        image: "default"
+        type: ITEM
+        item: "DIAMOND_CHESTPLATE"
+        buy-price: 0.0
+        sell-price: 0.0
+      diamond_leggings:
+        image: "default"
+        type: ITEM
+        item: "DIAMOND_LEGGINGS"
+        buy-price: 0.0
+        sell-price: 0.0
+      diamond_boots:
+        image: "default"
+        type: ITEM
+        item: "DIAMOND_BOOTS"
+        buy-price: 0.0
+        sell-price: 0.0
+      netherite_helmet:
+        image: "default"
+        type: ITEM
+        item: "NETHERITE_HELMET"
+        buy-price: 0.0
+        sell-price: 0.0
+      netherite_chestplate:
+        image: "default"
+        type: ITEM
+        item: "NETHERITE_CHESTPLATE"
+        buy-price: 0.0
+        sell-price: 0.0
+      netherite_leggings:
+        image: "default"
+        type: ITEM
+        item: "NETHERITE_LEGGINGS"
+        buy-price: 0.0
+        sell-price: 0.0
+      netherite_boots:
+        image: "default"
+        type: ITEM
+        item: "NETHERITE_BOOTS"
         buy-price: 0.0
         sell-price: 0.0
   Misc:
     title: "%item% shop"
     content: "Select which item you want to buy/sell."
     buttons:
-      compass:
+      spawn:
         label: "You can buy the spawn command for $%price% \n
-                the command will take you back to spawn"
+        the command will take you back to spawn"
         image: "https://i.imgur.com/XqQZQZq.png"
         type: COMMAND
         command: "spawn"

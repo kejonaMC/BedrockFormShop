@@ -23,11 +23,18 @@ public class ItemListForm {
         // Loop all buttons and add them to form.
         for (String button : buttons) {
             String imageLocation = config.getString("form."+ category +".buttons."+ button +".image");
+
+            String getItemName = config.getString("form."+ category +".buttons."+ button +".item");
             // Check if image is url or path.
             if (imageLocation != null) {
                 if (imageLocation.startsWith("http")) {
                     // Image is url.
                     form.button(button, FormImage.Type.URL, imageLocation);
+                }
+                if (imageLocation.equalsIgnoreCase("default")) {
+                    // Image is path.
+                    assert getItemName != null;
+                    form.button(button, FormImage.Type.URL, "https://raw.githubusercontent.com/Jens-Co/MinecraftItemImages/main/" + getItemName.toLowerCase() + ".png");
                 } else {
                     // Image is path.
                     form.button(button, FormImage.Type.PATH, imageLocation);

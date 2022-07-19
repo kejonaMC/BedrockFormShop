@@ -22,6 +22,7 @@ public class Placeholders {
     public static @NotNull String placeholder(String text, String item, double price, int amount) {
         String finalText = colorCode(text);
         finalText = finalText.replace("%item%", item)
+                .replace("%amount%", String.valueOf(amount))
                 .replace("%price%", String.valueOf(price * amount))
                 .replace("_", " ")
                 .toLowerCase(Locale.ROOT);

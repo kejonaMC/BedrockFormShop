@@ -27,6 +27,10 @@ public class MainMenuForm {
             // Check if image is url or path.
             if (imageLocation.startsWith("http")) {
                 form.button(button, FormImage.Type.URL, imageLocation);
+            }
+            if (imageLocation.startsWith("kejona")) {
+                // Image is path.
+                form.button(button, FormImage.Type.URL, "https://raw.githubusercontent.com/Jens-Co/MinecraftItemImages/main/" + imageLocation.replace("kejona/", ""));
             } else {
                 form.button(button, FormImage.Type.PATH, imageLocation);
             }
