@@ -18,14 +18,16 @@ public final class BedrockFormShop extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        // plugin startup logic
         INSTANCE = this;
+        // Create the logger.
         Logger logger = new JavaUtilLogger(this.getLogger());
+        // Create or load the config file.
         loadConfig();
+        // Check config version.
         if (getConfig().getInt("version") < 1) {
             logger.severe("Your config file is outdated, Please update/regenerate config by renaming your current config file to config.yml.old");
         }
-        // Register commands
+        // Register commands.
         Objects.requireNonNull(this.getCommand("shop")).setExecutor(new ShopCommand());
         // Check if there are hooks and if so register them.
         new VaultAPI();
@@ -33,7 +35,7 @@ public final class BedrockFormShop extends JavaPlugin {
     }
 
     /**
-     * Load config or create
+     * Load config or create.
      */
     private void loadConfig() {
         File configFile = new File(getDataFolder(), "config.yml");
@@ -48,13 +50,7 @@ public final class BedrockFormShop extends JavaPlugin {
             e.printStackTrace();
         }
     }
-    @Override
-    public void onDisable() {
-        // Plugin shutdown logic
-    }
-
     public static BedrockFormShop getInstance() {
         return INSTANCE;
     }
-
 }

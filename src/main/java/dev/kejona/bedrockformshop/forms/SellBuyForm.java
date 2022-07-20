@@ -1,5 +1,6 @@
 package dev.kejona.bedrockformshop.forms;
 
+import dev.kejona.bedrockformshop.BedrockFormShop;
 import dev.kejona.bedrockformshop.handlers.CommandHandler;
 import dev.kejona.bedrockformshop.handlers.ItemHandler;
 import dev.kejona.bedrockformshop.handlers.ShopType;
@@ -14,8 +15,9 @@ import org.jetbrains.annotations.NotNull;
 import java.util.*;
 
 public class SellBuyForm {
+    public FileConfiguration config = BedrockFormShop.getInstance().getConfig();
     // A form with item price and amount / command to buy or sell.
-    public void buysellForm(UUID uuid, String object, String clickedButton, String category, @NotNull String shopType, @NotNull FileConfiguration config) {
+    public void buysellForm(UUID uuid, String object, String clickedButton, String category, @NotNull String shopType) {
         // Item Prices.
         double buyPrice = config.getDouble("form." + category + ".buttons." + clickedButton + ".buy-price");
         double sellPrice = config.getDouble("form." + category + ".buttons." + clickedButton + ".sell-price");
@@ -64,13 +66,13 @@ public class SellBuyForm {
                     if (isPotion) {
                         dataPath = "form." + category + ".buttons." + clickedButton + ".potion-data";
                     }
-                    itemHandler.buyItem(uuid, object, buyPrice, getAmount, config, dataPath, isEnchantment, isPotion);
+                    itemHandler.buyItem(uuid, object, buyPrice, getAmount, dataPath, isEnchantment, isPotion);
                 }
             }
             // If shopType is command inputs do not exist.
             if (ShopType.COMMAND.name().equals(shopType)) {
                 CommandHandler commandHandler = new CommandHandler();
-                commandHandler.executeCommand(uuid, object, buyPrice, config);
+                commandHandler.executeCommand(uuid, object, buyPrice);
             }
         });
         // Build form and send to player.

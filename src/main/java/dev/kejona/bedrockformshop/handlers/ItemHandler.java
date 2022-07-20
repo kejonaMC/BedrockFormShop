@@ -18,8 +18,8 @@ import java.util.List;
 import java.util.UUID;
 
 public class ItemHandler {
-
-    public void buyItem(UUID uuid, String itemName, double price, int amount, FileConfiguration config, String dataPath, boolean isEnchantment, boolean isPotion) {
+    public FileConfiguration config = BedrockFormShop.getInstance().getConfig();
+    public void buyItem(UUID uuid, String itemName, double price, int amount, String dataPath, boolean isEnchantment, boolean isPotion) {
         // Get Player Instance.
         Player player = BedrockFormShop.getInstance().getServer().getPlayer(uuid);
         // Get Item from form.
@@ -49,19 +49,19 @@ public class ItemHandler {
         if (isPotion) {
             // Check if potion is a splash potion.
             boolean isSplash = config.getBoolean(dataPath + ".splash");
-            // Get potion type.
+            // Get and set potion type.
             if (isSplash) {
                 itemStack.setType(Material.SPLASH_POTION);
             }
             // Add all potion effects to the potion.
             PotionMeta potionmeta = (PotionMeta) itemStack.getItemMeta();
             PotionType potionType = PotionType.valueOf(config.getString(dataPath + ".type"));
-            // set potion data:
+            // set potion data.
             assert potionmeta != null;
             PotionData data = new PotionData(potionType, config.getBoolean(dataPath + ".extended"), config.getBoolean(dataPath + ".upgraded"));
             potionmeta.setBasePotionData(data);
             itemStack.setItemMeta(potionmeta);
-            // Add potion name to item
+            // Add potion name to item.
             itemName = potionType.name().toLowerCase() + " " + itemStack.getType();
         }
         // Check if player has enough money.
@@ -80,7 +80,6 @@ public class ItemHandler {
     }
 
     public void sellItem(UUID uuid, String ItemName, double price, int amount) {
-        FileConfiguration config = BedrockFormShop.getInstance().getConfig();
         // Get Player Instance.
         Player player = BedrockFormShop.getInstance().getServer().getPlayer(uuid);
         // Get Item from form.
@@ -106,9 +105,8 @@ public class ItemHandler {
                 fullinventory.setAmount(fullinventory.getAmount() - amount);
                 player.sendMessage(Placeholders.placeholder(config.getString("messages.item-sold"), ItemName, price, amount));
                 return;
-            }
-            // Player does not hav the right amount of items.
-            else if (fullinventory.getType() == Material.valueOf(ItemName) && fullinventory.getAmount() < amount) {
+                // Player does not have the right amount of items.
+            } else if (fullinventory.getType() == Material.valueOf(ItemName) && fullinventory.getAmount() < amount) {
                 player.sendMessage(Placeholders.placeholder(config.getString("messages.not-enough-items"), ItemName));
                 return;
             }

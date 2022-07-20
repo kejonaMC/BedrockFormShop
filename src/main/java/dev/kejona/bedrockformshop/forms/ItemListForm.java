@@ -1,18 +1,19 @@
 package dev.kejona.bedrockformshop.forms;
 
+import dev.kejona.bedrockformshop.BedrockFormShop;
 import dev.kejona.bedrockformshop.handlers.ShopType;
 import dev.kejona.bedrockformshop.utils.Placeholders;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.geysermc.cumulus.form.SimpleForm;
 import org.geysermc.cumulus.util.FormImage;
 import org.geysermc.floodgate.api.FloodgateApi;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.*;
 
 public class ItemListForm {
+    public FileConfiguration config = BedrockFormShop.getInstance().getConfig();
     // A form with all shop items as buttons.
-    public void itemList(UUID uuid, String category, @NotNull FileConfiguration config) {
+    public void itemList(UUID uuid, String category) {
         // Form Builder
         SimpleForm.Builder form = SimpleForm.builder()
         .title(Placeholders.placeholder(config.getString("form." + category + ".title"), category))
@@ -57,11 +58,11 @@ public class ItemListForm {
                     if (ShopType.ITEM == type || ShopType.ENCHANTMENT == type || ShopType.POTION == type) {
                         // Get item name from config.
                         String itemStackName = config.getString("form." + category + ".buttons." + clickedButton + ".item");
-                        sellbuy.buysellForm(uuid, itemStackName, clickedButton, category, shopType, config);
+                        sellbuy.buysellForm(uuid, itemStackName, clickedButton, category, shopType);
                     }
                     if (ShopType.COMMAND == type) {
                         String command = config.getString("form." + category + ".buttons." + clickedButton + ".command");
-                        sellbuy.buysellForm(uuid, command, clickedButton, category, shopType, config);
+                        sellbuy.buysellForm(uuid, command, clickedButton, category, shopType);
                     }
                 }
             }
