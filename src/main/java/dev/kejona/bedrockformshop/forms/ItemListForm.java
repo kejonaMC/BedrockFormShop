@@ -55,7 +55,8 @@ public class ItemListForm {
             // Loop all shop types and check if the clicked button is of that type.
             for (ShopType type : ShopType.values()) {
                 if (type.name().equals(shopType)) {
-                    if (ShopType.ITEM == type) {
+                    if (ShopType.ITEM == type || ShopType.ENCHANTMENT == type || ShopType.POTION == type) {
+                        // Get item name from config.
                         String itemStackName = config.getString("form." + category + ".buttons." + clickedButton + ".item");
                         sellbuy.buysellForm(uuid, itemStackName, clickedButton, category, shopType, config);
                     }

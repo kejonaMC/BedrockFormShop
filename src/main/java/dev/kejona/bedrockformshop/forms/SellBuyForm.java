@@ -23,7 +23,7 @@ public class SellBuyForm {
         CustomForm.Builder form = CustomForm.builder()
         .title(Placeholders.placeholder((config.getString("form.buy-sell.title")), object));
         // Check if config block is an item or command.
-        if (ShopType.ITEM.name().equals(shopType)) {
+        if (ShopType.ITEM.name().equals(shopType) || ShopType.ENCHANTMENT.name().equals(shopType) || ShopType.POTION.name().equals(shopType)) {
             form.toggle(Placeholders.colorCode(config.getString("form.buy-sell.buy-or-sell")), false);
             form.slider(Placeholders.colorCode(config.getString("form.buy-sell.slider")), 0, 100);
             form.label(Placeholders.placeholder(config.getString("form.buy-sell.label"), buyPrice, sellPrice));
@@ -40,7 +40,7 @@ public class SellBuyForm {
 
         form.validResultHandler(response -> {
             // If shopType is item get the input from slider.
-            if (ShopType.ITEM.name().equals(shopType)) {
+            if (ShopType.ITEM.name().equals(shopType) || ShopType.ENCHANTMENT.name().equals(shopType) || ShopType.POTION.name().equals(shopType)) {
                 ItemHandler itemHandler = new ItemHandler();
                 int getAmount = (int) response.asSlider(1);
 
@@ -53,7 +53,18 @@ public class SellBuyForm {
                     }
                     itemHandler.sellItem(uuid, object, sellPrice, getAmount);
                 } else {
-                    itemHandler.buyItem(uuid, object, buyPrice, getAmount, config);
+                    // Check for enchantments.
+                    boolean isEnchantment = ShopType.ENCHANTMENT.name().equals(shopType);
+                    boolean isPotion = ShopType.POTION.name().equals(shopType);
+                    String dataPath = null;
+
+                    if (isEnchantment) {
+                        dataPath = "form." + category + ".buttons." + clickedButton + ".enchantment";
+                    }
+                    if (isPotion) {
+                        dataPath = "form." + category + ".buttons." + clickedButton + ".potion-data";
+                    }
+                    itemHandler.buyItem(uuid, object, buyPrice, getAmount, config, dataPath, isEnchantment, isPotion);
                 }
             }
             // If shopType is command inputs do not exist.

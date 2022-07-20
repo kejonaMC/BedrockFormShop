@@ -959,6 +959,143 @@ form:
         item: "NETHERITE_BOOTS"
         buy-price: 0.0
         sell-price: 0.0
+  Enchantments:
+    title: "%item% shop"
+    content: "Select which item you want to buy/sell."
+    buttons:
+      protection:
+        image: "default"
+        type: ENCHANTMENT
+        item: "ENCHANTED_BOOK"
+        enchantment: "PROTECTION:1"
+        buy-price: 0.0
+        sell-price: 0.0
+      fire_protection:
+        image: "default"
+        type: ENCHANTMENT
+        item: "ENCHANTED_BOOK"
+        enchantment: "FIRE_PROTECTION:1"
+        buy-price: 0.0
+        sell-price: 0.0
+      feather_falling:
+        image: "default"
+        type: ENCHANTMENT
+        item: "ENCHANTED_BOOK"
+        enchantment: "FEATHER_FALLING:1"
+        buy-price: 0.0
+        sell-price: 0.0
+      blast_protection:
+        image: "default"
+        type: ENCHANTMENT
+        item: "ENCHANTED_BOOK"
+        enchantment: "BLAST_PROTECTION:1"
+        buy-price: 0.0
+        sell-price: 0.0
+      projectile_protection:
+        image: "default"
+        type: ENCHANTMENT
+        item: "ENCHANTED_BOOK"
+        enchantment: "PROJECTILE_PROTECTION:1"
+        buy-price: 0.0
+        sell-price: 0.0
+      thorns:
+        image: "default"
+        type: ENCHANTMENT
+        item: "ENCHANTED_BOOK"
+        enchantment: "THORNS:1"
+        buy-price: 0.0
+        sell-price: 0.0
+      looting:
+        image: "default"
+        type: ENCHANTMENT
+        item: "ENCHANTED_BOOK"
+        enchantment: "LOOTING:1"
+        buy-price: 0.0
+        sell-price: 0.0
+      unbreaking:
+        image: "default"
+        type: ENCHANTMENT
+        item: "ENCHANTED_BOOK"
+        enchantment: "UNBREAKING:1"
+        buy-price: 0.0
+        sell-price: 0.0
+      efficiency:
+        image: "default"
+        type: ENCHANTMENT
+        item: "ENCHANTED_BOOK"
+        enchantment: "EFFICIENCY:1"
+        buy-price: 0.0
+        sell-price: 0.0
+  Potions:
+    title: "%item% shop"
+    content: "Select which item you want to buy/sell."
+    buttons:
+      speed:
+        image: "default"
+        type: POTION
+        item: "POTION"
+        buy-price: 0.0
+        sell-price: 0.0
+        potion-data:
+          type: "SPEED"
+          splash: false
+          extended: true
+          upgraded: false
+      slowness:
+        image: "default"
+        type: POTION
+        item: "POTION"
+        buy-price: 0.0
+        sell-price: 0.0
+        potion-data:
+          type: "SLOWNESS"
+          splash: false
+          extended: true
+          upgraded: false
+      strength:
+        image: "default"
+        type: POTION
+        item: "POTION"
+        buy-price: 0.0
+        sell-price: 0.0
+        potion-data:
+          type: "STRENGTH"
+          splash: false
+          extended: true
+          upgraded: false
+      weakness:
+        image: "default"
+        type: POTION
+        item: "POTION"
+        buy-price: 0.0
+        sell-price: 0.0
+        potion-data:
+          type: "WEAKNESS"
+          splash: false
+          extended: true
+          upgraded: false
+      poison:
+        image: "default"
+        type: POTION
+        item: "POTION"
+        buy-price: 0.0
+        sell-price: 0.0
+        potion-data:
+          type: "POISON"
+          splash: false
+          extended: true
+          upgraded: false
+      regeneration:
+        image: "default"
+        type: POTION
+        item: "POTION"
+        buy-price: 0.0
+        sell-price: 0.0
+        potion-data:
+          type: "REGEN"
+          splash: false
+          extended: true
+          upgraded: false
   Misc:
     title: "%item% shop"
     content: "Select which item you want to buy/sell."
@@ -970,8 +1107,3 @@ form:
         type: COMMAND
         command: "spawn"
         buy-price: 0.0
-
-
-
-
-

@@ -3,9 +3,15 @@ package dev.kejona.bedrockformshop.handlers;
 import dev.kejona.bedrockformshop.BedrockFormShop;
 import dev.kejona.bedrockformshop.utils.Placeholders;
 import org.bukkit.Material;
+import org.bukkit.NamespacedKey;
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.EnchantmentStorageMeta;
+import org.bukkit.inventory.meta.PotionMeta;
+import org.bukkit.potion.PotionData;
+import org.bukkit.potion.PotionType;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,11 +19,47 @@ import java.util.UUID;
 
 public class ItemHandler {
 
-    public void buyItem(UUID uuid, String item, double price, int amount, FileConfiguration config) {
+    public void buyItem(UUID uuid, String item, double price, int amount, FileConfiguration config, String dataPath, boolean isEnchantment, boolean isPotion) {
         // Get Player Instance.
         Player player = BedrockFormShop.getInstance().getServer().getPlayer(uuid);
         // Get Item from form.
         ItemStack itemStack = new ItemStack(Material.valueOf(item));
+        // Check if item is enchanted.
+        if (isEnchantment) {
+            // Get level from enchantmentData with a split.
+            assert dataPath != null;
+            int level = Integer.parseInt(dataPath.split(":")[1]);
+            Enchantment enchantment = Enchantment.getByKey(NamespacedKey.minecraft(dataPath.replace(":" + level, "").toLowerCase()));
+            // Enchantments on Enchanted books needs to be in its item meta.
+            if (itemStack.getType() == Material.ENCHANTED_BOOK) {
+                EnchantmentStorageMeta meta = (EnchantmentStorageMeta)itemStack.getItemMeta();
+                assert meta != null;
+                assert enchantment != null;
+                meta.addStoredEnchant(enchantment, level, true);
+                itemStack.setItemMeta(meta);
+                // Enchantments on normal items needs to be in the item stack.
+            } else {
+                assert enchantment != null;
+                itemStack.addEnchantment(enchantment, level);
+            }
+            // Check if item is a potion.
+        }
+        if (isPotion) {
+            // Check if potion is a splash potion.
+            boolean isSplash = config.getBoolean(dataPath + ".splash");
+            // Get potion type.
+            if (isSplash) {
+                itemStack.setType(Material.SPLASH_POTION);
+            }
+            // Add all potion effects to the potion.
+            PotionMeta potionmeta = (PotionMeta) itemStack.getItemMeta();
+            PotionType potionType = PotionType.valueOf(config.getString(dataPath + ".type"));
+            // set potion data:
+            assert potionmeta != null;
+            PotionData data = new PotionData(potionType, config.getBoolean(dataPath + "extended"), config.getBoolean(dataPath + "upgraded"));
+            potionmeta.setBasePotionData(data);
+            itemStack.setItemMeta(potionmeta);
+        }
         // Check if player has enough money.
         if (VaultAPI.eco().getBalance(player) < price * amount) {
             assert player != null;

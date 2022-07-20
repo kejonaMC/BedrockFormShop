@@ -14,4 +14,16 @@ public enum ShopType {
             return "COMMAND";
         }
     },
+    ENCHANTMENT {
+        @Override
+        public String toString() {
+            return "ENCHANTMENT";
+        }
+    },
+    POTION {
+        @Override
+        public String toString() {
+            return "POTION";
+        }
+    },
 }
