@@ -26,10 +26,11 @@ public class ItemHandler {
         ItemStack itemStack = new ItemStack(Material.valueOf(item));
         // Check if item is enchanted.
         if (isEnchantment) {
+            String getEnchantment = config.getString(dataPath);
             // Get level from enchantmentData with a split.
-            assert dataPath != null;
-            int level = Integer.parseInt(dataPath.split(":")[1]);
-            Enchantment enchantment = Enchantment.getByKey(NamespacedKey.minecraft(dataPath.replace(":" + level, "").toLowerCase()));
+            assert getEnchantment != null;
+            int level = Integer.parseInt(getEnchantment.split(":")[1]);
+            Enchantment enchantment = Enchantment.getByKey(NamespacedKey.minecraft(getEnchantment.replace(":" + level, "").toLowerCase()));
             // Enchantments on Enchanted books needs to be in its item meta.
             if (itemStack.getType() == Material.ENCHANTED_BOOK) {
                 EnchantmentStorageMeta meta = (EnchantmentStorageMeta)itemStack.getItemMeta();
@@ -56,7 +57,7 @@ public class ItemHandler {
             PotionType potionType = PotionType.valueOf(config.getString(dataPath + ".type"));
             // set potion data:
             assert potionmeta != null;
-            PotionData data = new PotionData(potionType, config.getBoolean(dataPath + "extended"), config.getBoolean(dataPath + "upgraded"));
+            PotionData data = new PotionData(potionType, config.getBoolean(dataPath + ".extended"), config.getBoolean(dataPath + ".upgraded"));
             potionmeta.setBasePotionData(data);
             itemStack.setItemMeta(potionmeta);
         }
