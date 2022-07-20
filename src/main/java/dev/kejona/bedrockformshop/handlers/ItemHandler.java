@@ -19,11 +19,11 @@ import java.util.UUID;
 
 public class ItemHandler {
 
-    public void buyItem(UUID uuid, String item, double price, int amount, FileConfiguration config, String dataPath, boolean isEnchantment, boolean isPotion) {
+    public void buyItem(UUID uuid, String itemName, double price, int amount, FileConfiguration config, String dataPath, boolean isEnchantment, boolean isPotion) {
         // Get Player Instance.
         Player player = BedrockFormShop.getInstance().getServer().getPlayer(uuid);
         // Get Item from form.
-        ItemStack itemStack = new ItemStack(Material.valueOf(item));
+        ItemStack itemStack = new ItemStack(Material.valueOf(itemName));
         // Check if item is enchanted.
         if (isEnchantment) {
             String getEnchantment = config.getString(dataPath);
@@ -43,6 +43,7 @@ public class ItemHandler {
                 assert enchantment != null;
                 itemStack.addEnchantment(enchantment, level);
             }
+            itemName = itemStack.getType() + " " + getEnchantment.toLowerCase();
             // Check if item is a potion.
         }
         if (isPotion) {
@@ -60,6 +61,8 @@ public class ItemHandler {
             PotionData data = new PotionData(potionType, config.getBoolean(dataPath + ".extended"), config.getBoolean(dataPath + ".upgraded"));
             potionmeta.setBasePotionData(data);
             itemStack.setItemMeta(potionmeta);
+            // Add potion name to item
+            itemName = potionType.name().toLowerCase() + " " + itemStack.getType();
         }
         // Check if player has enough money.
         if (VaultAPI.eco().getBalance(player) < price * amount) {
@@ -73,10 +76,10 @@ public class ItemHandler {
         // Give item to player.
         itemStack.setAmount(amount);
         player.getInventory().addItem(itemStack);
-        player.sendMessage(Placeholders.placeholder(config.getString("messages.item-bought"), item, price, amount));
+        player.sendMessage(Placeholders.placeholder(config.getString("messages.item-bought"), itemName, price, amount));
     }
 
-    public void sellItem(UUID uuid, String item, double price, int amount) {
+    public void sellItem(UUID uuid, String ItemName, double price, int amount) {
         FileConfiguration config = BedrockFormShop.getInstance().getConfig();
         // Get Player Instance.
         Player player = BedrockFormShop.getInstance().getServer().getPlayer(uuid);
@@ -92,21 +95,21 @@ public class ItemHandler {
         ItemStack[] inv = list.toArray(new ItemStack[0]);
         for (ItemStack fullinventory : inv) {
             if (fullinventory == null) {
-                player.sendMessage(Placeholders.placeholder(config.getString("messages.no-items"), item));
+                player.sendMessage(Placeholders.placeholder(config.getString("messages.no-items"), ItemName));
                 return;
             }
             // Get item from itemname and has the correct amount of items.
-            if (fullinventory.getType() == Material.valueOf(item) && fullinventory.getAmount() >= amount) {
+            if (fullinventory.getType() == Material.valueOf(ItemName) && fullinventory.getAmount() >= amount) {
                 // Withdraw money from player
                 VaultAPI.eco().depositBalance(player, price * amount);
                 // Remove item from player.
                 fullinventory.setAmount(fullinventory.getAmount() - amount);
-                player.sendMessage(Placeholders.placeholder(config.getString("messages.item-sold"), item, price, amount));
+                player.sendMessage(Placeholders.placeholder(config.getString("messages.item-sold"), ItemName, price, amount));
                 return;
             }
             // Player does not hav the right amount of items.
-            else if (fullinventory.getType() == Material.valueOf(item) && fullinventory.getAmount() < amount) {
-                player.sendMessage(Placeholders.placeholder(config.getString("messages.not-enough-items"), item));
+            else if (fullinventory.getType() == Material.valueOf(ItemName) && fullinventory.getAmount() < amount) {
+                player.sendMessage(Placeholders.placeholder(config.getString("messages.not-enough-items"), ItemName));
                 return;
             }
         }

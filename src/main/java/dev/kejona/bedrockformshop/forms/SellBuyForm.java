@@ -28,7 +28,7 @@ public class SellBuyForm {
             form.slider(Placeholders.colorCode(config.getString("form.buy-sell.slider")), 0, 100);
             form.label(Placeholders.placeholder(config.getString("form.buy-sell.label"), buyPrice, sellPrice));
         }
-        if (shopType.equalsIgnoreCase("command")) {
+        if (ShopType.COMMAND.name().equals(shopType)) {
             form.label(Placeholders.placeholder(config.getString("form." + category + ".buttons." + clickedButton + ".label"), buyPrice, sellPrice));
         }
 

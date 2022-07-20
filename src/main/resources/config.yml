@@ -9,7 +9,7 @@ messages:
   no-items: "§cYou don't have any %item% to sell"
   item-bought: "§2You bought %amount% %item% for $%price%"
   item-sold: "§2You sold %amount% %item% for $%price%"
-  command-bought: "§2You bought %command% for $%price%"
+  command-bought: "§2You bought command:%command% for $%price%"
   reload-config: "§2Config is reloaded!"
 
 form:
@@ -1101,8 +1101,7 @@ form:
     content: "Select which item you want to buy/sell."
     buttons:
       spawn:
-        label: "You can buy the spawn command for $%price% \n
-        the command will take you back to spawn"
+        label: "You can buy the spawn command for $%buyprice% \nthe command will take you back to spawn"
         image: "https://i.imgur.com/XqQZQZq.png"
         type: COMMAND
         command: "spawn"
