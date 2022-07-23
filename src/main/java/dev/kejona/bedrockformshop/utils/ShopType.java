@@ -1,4 +1,4 @@
-package dev.kejona.bedrockformshop.handlers;
+package dev.kejona.bedrockformshop.utils;
 
 public enum ShopType {
 

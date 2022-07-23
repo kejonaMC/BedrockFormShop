@@ -9,13 +9,13 @@ import org.bukkit.plugin.RegisteredServiceProvider;
 public class VaultAPI {
 
     public Economy economy;
-
+    //
     public VaultAPI() {
         if (!initVault()) {
-            Logger.getLogger().severe("Vault not found! Disabling EcoDatabase!");
+            Logger.getLogger().severe("Vault not found!");
         }
     }
-
+    // Initialize Vault.
     private boolean initVault() {
         if (BedrockFormShop.getInstance().getServer().getPluginManager().getPlugin("Vault") == null) {
             return false;
@@ -27,19 +27,19 @@ public class VaultAPI {
 
         return economy != null;
     }
-
+    // Returns the balance of a player.
     public double getBalance(Player player) {
         return this.economy.getBalance(player);
     }
-
+    // Withdraws money from a player.
     public void withdrawBalance(Player player, double amount) {
         this.economy.withdrawPlayer(player, amount);
     }
-
+    // Deposits money to a player.
     public void depositBalance(Player player, double amount) {
         this.economy.depositPlayer(player, amount);
     }
-
+    // Instance
     public static VaultAPI eco() {
         return new VaultAPI();
     }

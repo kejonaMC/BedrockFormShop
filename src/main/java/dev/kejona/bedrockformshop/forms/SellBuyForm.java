@@ -3,7 +3,7 @@ package dev.kejona.bedrockformshop.forms;
 import dev.kejona.bedrockformshop.BedrockFormShop;
 import dev.kejona.bedrockformshop.handlers.CommandHandler;
 import dev.kejona.bedrockformshop.handlers.ItemHandler;
-import dev.kejona.bedrockformshop.handlers.ShopType;
+import dev.kejona.bedrockformshop.utils.ShopType;
 import dev.kejona.bedrockformshop.utils.Placeholders;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -15,6 +15,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.*;
 
 public class SellBuyForm {
+
     public FileConfiguration config = BedrockFormShop.getInstance().getConfig();
     // A form with item price and amount / command to buy or sell.
     public void buysellForm(UUID uuid, String object, String clickedButton, String category, @NotNull String shopType) {
@@ -45,7 +46,7 @@ public class SellBuyForm {
             if (ShopType.ITEM.name().equals(shopType) || ShopType.ENCHANTMENT.name().equals(shopType) || ShopType.POTION.name().equals(shopType)) {
                 ItemHandler itemHandler = new ItemHandler();
                 int getAmount = (int) response.asSlider(1);
-
+                // Form response
                 if (response.asToggle(0)) {
                     if (sellPrice == 0.0) {
                         Player player = Bukkit.getPlayer(uuid);
@@ -53,19 +54,22 @@ public class SellBuyForm {
                         player.sendMessage(Objects.requireNonNull(config.getString("messages.no-sell-price")));
                         return;
                     }
+                    // Sell item.
                     itemHandler.sellItem(uuid, object, sellPrice, getAmount);
                 } else {
                     // Check for enchantments.
                     boolean isEnchantment = ShopType.ENCHANTMENT.name().equals(shopType);
                     boolean isPotion = ShopType.POTION.name().equals(shopType);
                     String dataPath = null;
-
+                    // Check if item is an enchantment.
                     if (isEnchantment) {
                         dataPath = "form." + category + ".buttons." + clickedButton + ".enchantment";
                     }
+                    // Check if item is a potion.
                     if (isPotion) {
                         dataPath = "form." + category + ".buttons." + clickedButton + ".potion-data";
                     }
+                    // Its a normal item to buy
                     itemHandler.buyItem(uuid, object, buyPrice, getAmount, dataPath, isEnchantment, isPotion);
                 }
             }

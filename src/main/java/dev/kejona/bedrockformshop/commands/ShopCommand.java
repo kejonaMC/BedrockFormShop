@@ -3,6 +3,7 @@ package dev.kejona.bedrockformshop.commands;
 import dev.kejona.bedrockformshop.BedrockFormShop;
 import dev.kejona.bedrockformshop.forms.MainMenuForm;
 import dev.kejona.bedrockformshop.utils.FloodgateUser;
+import dev.kejona.bedrockformshop.utils.Permission;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -27,6 +28,13 @@ public class ShopCommand implements CommandExecutor {
             notFloodgatePlayer(sender);
             // If command is /shop reload, reload config.
         } else if (args[0].equalsIgnoreCase("reload")) {
+            if (sender instanceof Player) {
+                Player player = (Player) sender;
+                if (!Permission.RELOAD.checkPermission(player.getUniqueId())) {
+                    sender.sendMessage(ChatColor.RED + "You don't have permission to use this command.");
+                    return true;
+                }
+            }
             BedrockFormShop.getInstance().reloadConfig();
             sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Objects.requireNonNull(BedrockFormShop.getInstance().getConfig().getString("messages.reload-config"))));
         } else {

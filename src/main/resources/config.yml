@@ -5,6 +5,7 @@ version: 1
 messages:
   not-enough-money: "§cYou don't have enough money"
   not-enough-items: "§cYou don't have enough %item% to sell"
+  inventory-full: "§cYour inventory is full"
   no-sell-price: "§cYou cannot sell this item"
   no-items: "§cYou don't have any %item% to sell"
   item-bought: "§2You bought %amount% %item% for $%price%"
@@ -21,28 +22,40 @@ form:
     content: "Select which shop you want to buy/sell from"
     buttons:
       Ores:
+        permission: PLAYER
         image: "kejona/coal_ore.png"
       Items:
+        permission: PLAYER
         image: "kejona/bucket.png"
       Blocks:
+        permission: PLAYER
         image: "kejona/dirt.png"
       Food:
+        permission: PLAYER
         image: "kejona/apple.png"
       Tools:
+        permission: PLAYER
         image: "kejona/diamond_pickaxe.png"
       Weapons:
+        permission: PLAYER
         image: "kejona/diamond_sword.png"
       Armor:
+        permission: PLAYER
         image: "kejona/diamond_chestplate.png"
       Enchantments:
+        permission: PLAYER
         image: "kejona/enchanted_book.png"
       Potions:
+        permission: PLAYER
         image: "kejona/potion.png"
       SpawnEggs:
+        permission: ADMIN
         image: "kejona/chicken_spawn_egg.png"
       Misc:
+        permission: PLAYER
         image: "kejona/dispenser.png"
       Exit:
+        permission: PLAYER
         image: "kejona/barrier.png"
 
   #########################
@@ -62,48 +75,56 @@ form:
     content: "Select which item you want to buy/sell."
     buttons:
       coal-ore:
+        permission: PLAYER
         image: "default"
         type: ITEM
         item: "COAL_ORE"
         buy-price: 10.0
         sell-price: 5.0
       iron-ore:
+        permission: PLAYER
         image: "default"
         type: ITEM
         item: "IRON_ORE"
         buy-price: 20.0
         sell-price: 10.0
       redstone-ore:
+        permission: PLAYER
         image: "default"
         type: ITEM
         item: "REDSTONE_ORE"
         buy-price: 35.0
         sell-price: 10.0
       lapis-ore:
+        permission: PLAYER
         image: "default"
         type: ITEM
         item: "LAPIS_ORE"
         buy-price: 35.0
         sell-price: 10.0
       nether-quartz:
+        permission: PLAYER
         image: "default"
         type: ITEM
         item: "NETHER_QUARTZ_ORE"
         buy-price: 35.0
         sell-price: 10.0
       emerald-ore:
+        permission: PLAYER
         image: "default"
         type: ITEM
         item: "EMERALD_ORE"
         buy-price: 70.0
         sell-price: 35.0
       gold-ore:
+        permission: PLAYER
         image: "default"
         type: ITEM
         item: "GOLD_ORE"
         buy-price: 50.0
         sell-price: 25.0
       diamond-ore:
+        permission: PLAYER
         image: "default"
         type: ITEM
         item: "DIAMOND_ORE"
@@ -114,132 +135,154 @@ form:
     content: "Select which item you want to buy/sell."
     buttons:
       bone:
+        permission: PLAYER
         image: "default"
         type: ITEM
         item: "BONE"
         buy-price: 0.0
         sell-price: 0.0
       bucket:
+        permission: PLAYER
         image: "default"
         type: ITEM
         item: "BUCKET"
         buy-price: 0.0
         sell-price: 0.0
       white-wool:
+        permission: PLAYER
         image: "default"
         type: ITEM
         item: "WHITE_WOOL"
         buy-price: 0.0
         sell-price: 0.0
       orange-wool:
+        permission: PLAYER
         image: "default"
         type: ITEM
         item: "ORANGE_WOOL"
         buy-price: 0.0
         sell-price: 0.0
       magenta-wool:
+        permission: PLAYER
         image: "default"
         type: ITEM
         item: "MAGENTA_WOOL"
         buy-price: 0.0
         sell-price: 0.0
       light-blue-wool:
+        permission: PLAYER
         image: "default"
         type: ITEM
         item: "LIGHT_BLUE_WOOL"
         buy-price: 0.0
         sell-price: 0.0
       yellow-wool:
+        permission: PLAYER
         image: "default"
         type: ITEM
         item: "YELLOW_WOOL"
         buy-price: 0.0
         sell-price: 0.0
       lime-wool:
+        permission: PLAYER
         image: "default"
         type: ITEM
         item: "LIME_WOOL"
         buy-price: 0.0
         sell-price: 0.0
       pink-wool:
+        permission: PLAYER
         image: "default"
         type: ITEM
         item: "PINK_WOOL"
         buy-price: 0.0
         sell-price: 0.0
       gray-wool:
+        permission: PLAYER
         image: "default"
         type: ITEM
         item: "GRAY_WOOL"
         buy-price: 0.0
         sell-price: 0.0
       light-gray-wool:
+        permission: PLAYER
         image: "default"
         type: ITEM
         item: "LIGHT_GRAY_WOOL"
         buy-price: 0.0
         sell-price: 0.0
       cyan-wool:
+        permission: PLAYER
         image: "default"
         type: ITEM
         item: "CYAN_WOOL"
         buy-price: 0.0
         sell-price: 0.0
       oak-sapling:
+        permission: PLAYER
         image: "default"
         type: ITEM
         item: "OAK_SAPLING"
         buy-price: 0.0
         sell-price: 0.0
       spruce-sapling:
+        permission: PLAYER
         image: "default"
         type: ITEM
         item: "SPRUCE_SAPLING"
         buy-price: 0.0
         sell-price: 0.0
       birch-sapling:
+        permission: PLAYER
         image: "default"
         type: ITEM
         item: "BIRCH_SAPLING"
         buy-price: 0.0
         sell-price: 0.0
       jungle-sapling:
+        permission: PLAYER
         image: "default"
         type: ITEM
         item: "JUNGLE_SAPLING"
         buy-price: 0.0
         sell-price: 0.0
       acacia-sapling:
+        permission: PLAYER
         image: "default"
         type: ITEM
         item: "ACACIA_SAPLING"
         buy-price: 0.0
         sell-price: 0.0
       dark-oak-sapling:
+        permission: PLAYER
         image: "default"
         type: ITEM
         item: "DARK_OAK_SAPLING"
         buy-price: 0.0
         sell-price: 0.0
       pumpkin-seed:
+        permission: PLAYER
         image: "default"
         type: ITEM
         item: "PUMPKIN_SEEDS"
         buy-price: 0.0
         sell-price: 0.0
       melon-seed:
+        permission: PLAYER
         image: "default"
         type: ITEM
         item: "MELON_SEEDS"
         buy-price: 0.0
         sell-price: 0.0
       beetroot-seed:
+        permission: PLAYER
         image: "default"
         type: ITEM
         item: "BEETROOT_SEEDS"
         buy-price: 0.0
         sell-price: 0.0
       cactus-seed:
+        permission: PLAYER
         image: "default"
         type: ITEM
         item: "CACTUS_SEEDS"
@@ -250,192 +293,224 @@ form:
     content: "Select which item you want to buy/sell."
     buttons:
       stone-brick:
+        permission: PLAYER
         image: "default"
         type: ITEM
         item: "STONE-BRICKS"
         buy-price: 0.0
         sell-price: 0.0
       mossy-stone-brick:
+        permission: PLAYER
         image: "default"
         type: ITEM
         item: "MOSSY_STONE_BRICKS"
         buy-price: 0.0
         sell-price: 0.0
       cracked-stone-brick:
+        permission: PLAYER
         image: "default"
         type: ITEM
         item: "CRACKED_STONE_BRICKS"
         buy-price: 0.0
         sell-price: 0.0
       chiseled-stone-brick:
+        permission: PLAYER
         image: "default"
         type: ITEM
         item: "CHISELED_STONE_BRICKS"
         buy-price: 0.0
         sell-price: 0.0
       stone:
+        permission: PLAYER
         image: "default"
         type: ITEM
         item: "STONE"
         buy-price: 0.0
         sell-price: 0.0
       cobblestone:
+        permission: PLAYER
         image: "default"
         type: ITEM
         item: "COBBLESTONE"
         buy-price: 0.0
         sell-price: 0.0
       mossy-cobblestone:
+        permission: PLAYER
         image: "default"
         type: ITEM
         item: "MOSSY_COBBLESTONE"
         buy-price: 0.0
         sell-price: 0.0
       grass-block:
+        permission: PLAYER
         image: "default"
         type: ITEM
         item: "GRASS-BLOCK"
         buy-price: 0.0
         sell-price: 0.0
       dirt:
+        permission: PLAYER
         image: "default"
         type: ITEM
         item: "DIRT"
         buy-price: 0.0
         sell-price: 0.0
       oak-log:
+        permission: PLAYER
         image: "default"
         type: ITEM
         item: "OAK_LOG"
         buy-price: 0.0
         sell-price: 0.0
       spruce-log:
+        permission: PLAYER
         image: "default"
         type: ITEM
         item: "SPRUCE_LOG"
         buy-price: 0.0
         sell-price: 0.0
       birch-log:
+        permission: PLAYER
         image: "default"
         type: ITEM
         item: "BIRCH_LOG"
         buy-price: 0.0
         sell-price: 0.0
       jungle-log:
+        permission: PLAYER
         image: "default"
         type: ITEM
         item: "JUNGLE_LOG"
         buy-price: 0.0
         sell-price: 0.0
       acacia-log:
+        permission: PLAYER
         image: "default"
         type: ITEM
         item: "ACACIA_LOG"
         buy-price: 0.0
         sell-price: 0.0
       dark-oak-log:
+        permission: PLAYER
         image: "default"
         type: ITEM
         item: "DARK_OAK_LOG"
         buy-price: 0.0
         sell-price: 0.0
       obsidian:
+        permission: PLAYER
         image: "default"
         type: ITEM
         item: "OBSIDIAN"
         buy-price: 500.0
         sell-price: 0.0
       sand-stone:
+        permission: PLAYER
         image: "default"
         type: ITEM
         item: "SANDSTONE"
         buy-price: 0.0
         sell-price: 0.0
       sand:
+        permission: PLAYER
         image: "default"
         type: ITEM
         item: "SAND"
         buy-price: 0.0
         sell-price: 0.0
       red-sand:
+        permission: PLAYER
         image: "default"
         type: ITEM
         item: "RED_SAND"
         buy-price: 0.0
         sell-price: 0.0
       glass:
+        permission: PLAYER
         image: "default"
         type: ITEM
         item: "GLASS"
         buy-price: 0.0
         sell-price: 0.0
       gravel:
+        permission: PLAYER
         image: "default"
         type: ITEM
         item: "GRAVEL"
         buy-price: 0.0
         sell-price: 0.0
       quarts-pillar:
+        permission: PLAYER
         image: "default"
         type: ITEM
         item: "QUARTZ_PILLAR"
         buy-price: 0.0
         sell-price: 0.0
       netherrack:
+        permission: PLAYER
         image: "default"
         type: ITEM
         item: "NETHERRACK"
         buy-price: 0.0
         sell-price: 0.0
       nether-brick:
+        permission: PLAYER
         image: "default"
         type: ITEM
         item: "NETHER_BRICK"
         buy-price: 0.0
         sell-price: 0.0
       soul-sand:
+        permission: PLAYER
         image: "default"
         type: ITEM
         item: "SOUL_SAND"
         buy-price: 0.0
         sell-price: 0.0
       glowstone:
+        permission: PLAYER
         image: "default"
         type: ITEM
         item: "GLOWSTONE"
         buy-price: 0.0
         sell-price: 0.0
       ice:
+        permission: PLAYER
         image: "default"
         type: ITEM
         item: "ICE"
         buy-price: 0.0
         sell-price: 0.0
       packed-ice:
+        permission: PLAYER
         image: "default"
         type: ITEM
         item: "PACKED_ICE"
         buy-price: 0.0
         sell-price: 0.0
       end-stone:
+        permission: PLAYER
         image: "default"
         type: ITEM
         item: "END_STONE"
         buy-price: 0.0
         sell-price: 0.0
       beacon:
+        permission: PLAYER
         image: "default"
         type: ITEM
         item: "BEACON"
         buy-price: 0.0
         sell-price: 0.0
       sponge:
+        permission: PLAYER
         image: "default"
         type: ITEM
         item: "SPONGE"
         buy-price: 0.0
         sell-price: 0.0
       brick:
+        permission: PLAYER
         image: "default"
         type: ITEM
         item: "BRICKS"
@@ -452,120 +527,140 @@ form:
         buy-price: 0.0
         sell-price: 0.0
       cow:
+        permission: PLAYER
         image: "default"
         type: ITEM
         item: "COW_SPAWN_EGG"
         buy-price: 0.0
         sell-price: 0.0
       chicken:
+        permission: PLAYER
         image: "default"
         type: ITEM
         item: "CHICKEN_SPAWN_EGG"
         buy-price: 0.0
         sell-price: 0.0
       squid:
+        permission: PLAYER
         image: "default"
         type: ITEM
         item: "SQUID_SPAWN_EGG"
         buy-price: 0.0
         sell-price: 0.0
       wolf:
+        permission: PLAYER
         image: "default"
         type: ITEM
         item: "WOLF_SPAWN_EGG"
         buy-price: 0.0
         sell-price: 0.0
       mooshroom:
+        permission: PLAYER
         image: "default"
         type: ITEM
         item: "MOOSHROOM_SPAWN_EGG"
         buy-price: 0.0
         sell-price: 0.0
       ocelot:
+        permission: PLAYER
         image: "default"
         type: ITEM
         item: "OCELOT_SPAWN_EGG"
         buy-price: 0.0
         sell-price: 0.0
       rabbit:
+        permission: PLAYER
         image: "default"
         type: ITEM
         item: "RABBIT_SPAWN_EGG"
         buy-price: 0.0
         sell-price: 0.0
       bat:
+        permission: PLAYER
         image: "default"
         type: ITEM
         item: "BAT_SPAWN_EGG"
         buy-price: 0.0
         sell-price: 0.0
       horse:
+        permission: PLAYER
         image: "default"
         type: ITEM
         item: "HORSE_SPAWN_EGG"
         buy-price: 0.0
         sell-price: 0.0
       zombie:
+        permission: PLAYER
         image: "default"
         type: ITEM
         item: "ZOMBIE_SPAWN_EGG"
         buy-price: 0.0
         sell-price: 0.0
       creeper:
+        permission: PLAYER
         image: "default"
         type: ITEM
         item: "CREEPER_SPAWN_EGG"
         buy-price: 0.0
         sell-price: 0.0
       skeleton:
+        permission: PLAYER
         image: "default"
         type: ITEM
         item: "SKELETON_SPAWN_EGG"
         buy-price: 0.0
         sell-price: 0.0
       spider:
+        permission: PLAYER
         image: "default"
         type: ITEM
         item: "SPIDER_SPAWN_EGG"
         buy-price: 0.0
         sell-price: 0.0
       zombie-pigman:
+        permission: PLAYER
         image: "default"
         type: ITEM
         item: "ZOMBIE_PIGMAN_SPAWN_EGG"
         buy-price: 0.0
         sell-price: 0.0
       slime:
+        permission: PLAYER
         image: "default"
         type: ITEM
         item: "SLIME_SPAWN_EGG"
         buy-price: 0.0
         sell-price: 0.0
       silverfish:
+        permission: PLAYER
         image: "default"
         type: ITEM
         item: "SILVERFISH_SPAWN_EGG"
         buy-price: 0.0
         sell-price: 0.0
       enderman:
+        permission: PLAYER
         image: "default"
         type: ITEM
         item: "ENDERMAN_SPAWN_EGG"
         buy-price: 0.0
         sell-price: 0.0
       cave-spider:
+        permission: PLAYER
         image: "default"
         type: ITEM
         item: "CAVE_SPIDER_SPAWN_EGG"
         buy-price: 0.0
         sell-price: 0.0
       blaze:
+        permission: PLAYER
         image: "default"
         type: ITEM
         item: "BLAZE_SPAWN_EGG"
         buy-price: 0.0
         sell-price: 0.0
       magma-cube:
+        permission: PLAYER
         image: "default"
         type: ITEM
         item: "MAGMA_CUBE_SPAWN_EGG"
@@ -576,90 +671,105 @@ form:
     content: "Select which item you want to buy/sell."
     buttons:
       apple:
+        permission: PLAYER
         image: "default"
         type: ITEM
         item: "APPLE"
         buy-price: 0.0
         sell-price: 0.0
       bread:
+        permission: PLAYER
         image: "default"
         type: ITEM
         item: "BREAD"
         buy-price: 0.0
         sell-price: 0.0
       cooked-porkchop:
+        permission: PLAYER
         image: "default"
         type: ITEM
         item: "COOKED_PORKCHOP"
         buy-price: 0.0
         sell-price: 0.0
       cooked-beef:
+        permission: PLAYER
         image: "default"
         type: ITEM
         item: "COOKED_BEEF"
         buy-price: 0.0
         sell-price: 0.0
       cooked-chicken:
+        permission: PLAYER
         image: "default"
         type: ITEM
         item: "COOKED_CHICKEN"
         buy-price: 0.0
         sell-price: 0.0
       cooked-fish:
+        permission: PLAYER
         image: "default"
         type: ITEM
         item: "COOKED_FISH"
         buy-price: 0.0
         sell-price: 0.0
       cookie:
+        permission: PLAYER
         image: "default"
         type: ITEM
         item: "COOKIE"
         buy-price: 0.0
         sell-price: 0.0
       melon:
+        permission: PLAYER
         image: "default"
         type: ITEM
         item: "MELON"
         buy-price: 0.0
         sell-price: 0.0
       pumpkin_pie:
+        permission: PLAYER
         image: "default"
         type: ITEM
         item: "PUMPKIN_PIE"
         buy-price: 0.0
         sell-price: 0.0
       melon_slice:
+        permission: PLAYER
         image: "default"
         type: ITEM
         item: "MELON_SLICE"
         buy-price: 0.0
         sell-price: 0.0
       pumpkin_slice:
+        permission: PLAYER
         image: "default"
         type: ITEM
         item: "PUMPKIN_SLICE"
         buy-price: 0.0
         sell-price: 0.0
       raw-fish:
+        permission: PLAYER
         image: "default"
         type: ITEM
         item: "RAW_FISH"
         buy-price: 0.0
         sell-price: 0.0
       raw-chicken:
+        permission: PLAYER
         image: "default"
         type: ITEM
         item: "RAW_CHICKEN"
         buy-price: 0.0
         sell-price: 0.0
       raw-porkchop:
+        permission: PLAYER
         image: "default"
         type: ITEM
         item: "RAW_PORKCHOP"
         buy-price: 0.0
         sell-price: 0.0
       raw-beef:
+        permission: PLAYER
         image: "default"
         type: ITEM
         item: "RAW_BEEF"
@@ -670,120 +780,140 @@ form:
     content: "Select which item you want to buy/sell."
     buttons:
       stone_pickaxe:
+        permission: PLAYER
         image: "default"
         type: ITEM
         item: "STONE_PICKAXE"
         buy-price: 0.0
         sell-price: 0.0
       stone_axe:
+        permission: PLAYER
         image: "default"
         type: ITEM
         item: "STONE_AXE"
         buy-price: 0.0
         sell-price: 0.0
       stone_shovel:
+        permission: PLAYER
         image: "default"
         type: ITEM
         item: "STONE_SHOVEL"
         buy-price: 0.0
         sell-price: 0.0
       stone_hoe:
+        permission: PLAYER
         image: "default"
         type: ITEM
         item: "STONE_HOE"
         buy-price: 0.0
         sell-price: 0.0
       iron_pickaxe:
+        permission: PLAYER
         image: "default"
         type: ITEM
         item: "IRON_PICKAXE"
         buy-price: 0.0
         sell-price: 0.0
       iron_axe:
+        permission: PLAYER
         image: "default"
         type: ITEM
         item: "IRON_AXE"
         buy-price: 0.0
         sell-price: 0.0
       iron_shovel:
+        permission: PLAYER
         image: "default"
         type: ITEM
         item: "IRON_SHOVEL"
         buy-price: 0.0
         sell-price: 0.0
       iron_hoe:
+        permission: PLAYER
         image: "default"
         type: ITEM
         item: "IRON_HOE"
         buy-price: 0.0
         sell-price: 0.0
       golden_pickaxe:
+        permission: PLAYER
         image: "default"
         type: ITEM
         item: "GOLDEN_PICKAXE"
         buy-price: 0.0
         sell-price: 0.0
       golden_axe:
+        permission: PLAYER
         image: "default"
         type: ITEM
         item: "GOLDEN_AXE"
         buy-price: 0.0
         sell-price: 0.0
       golden_shovel:
+        permission: PLAYER
         image: "default"
         type: ITEM
         item: "GOLDEN_SHOVEL"
         buy-price: 0.0
         sell-price: 0.0
       golden_hoe:
+        permission: PLAYER
         image: "default"
         type: ITEM
         item: "GOLDEN_HOE"
         buy-price: 0.0
         sell-price: 0.0
       diamond_pickaxe:
+        permission: PLAYER
         image: "default"
         type: ITEM
         item: "DIAMOND_PICKAXE"
         buy-price: 0.0
         sell-price: 0.0
       diamond_axe:
+        permission: PLAYER
         image: "default"
         type: ITEM
         item: "DIAMOND_AXE"
         buy-price: 0.0
         sell-price: 0.0
       diamond_shovel:
+        permission: PLAYER
         image: "default"
         type: ITEM
         item: "DIAMOND_SHOVEL"
         buy-price: 0.0
         sell-price: 0.0
       diamond_hoe:
+        permission: PLAYER
         image: "default"
         type: ITEM
         item: "DIAMOND_HOE"
         buy-price: 0.0
         sell-price: 0.0
       netherite_pickaxe:
+        permission: PLAYER
         image: "default"
         type: ITEM
         item: "NETHERITE_PICKAXE"
         buy-price: 0.0
         sell-price: 0.0
       netherite_axe:
+        permission: PLAYER
         image: "default"
         type: ITEM
         item: "NETHERITE_AXE"
         buy-price: 0.0
         sell-price: 0.0
       netherite_shovel:
+        permission: PLAYER
         image: "default"
         type: ITEM
         item: "NETHERITE_SHOVEL"
         buy-price: 0.0
         sell-price: 0.0
       netherite_hoe:
+        permission: PLAYER
         image: "default"
         type: ITEM
         item: "NETHERITE_HOE"
@@ -794,42 +924,49 @@ form:
     content: "Select which item you want to buy/sell."
     buttons:
       stone_sword:
+        permission: PLAYER
         image: "default"
         type: ITEM
         item: "STONE_SWORD"
         buy-price: 0.0
         sell-price: 0.0
       iron_sword:
+        permission: PLAYER
         image: "default"
         type: ITEM
         item: "IRON_SWORD"
         buy-price: 0.0
         sell-price: 0.0
       golden_sword:
+        permission: PLAYER
         image: "default"
         type: ITEM
         item: "GOLDEN_SWORD"
         buy-price: 0.0
         sell-price: 0.0
       diamond_sword:
+        permission: PLAYER
         image: "default"
         type: ITEM
         item: "DIAMOND_SWORD"
         buy-price: 0.0
         sell-price: 0.0
       netherite_sword:
+        permission: PLAYER
         image: "default"
         type: ITEM
         item: "NETHERITE_SWORD"
         buy-price: 0.0
         sell-price: 0.0
       bow:
+        permission: PLAYER
         image: "default"
         type: ITEM
         item: "BOW"
         buy-price: 0.0
         sell-price: 0.0
       arrow:
+        permission: PLAYER
         image: "default"
         type: ITEM
         item: "ARROW"
@@ -840,120 +977,140 @@ form:
     content: "Select which item you want to buy/sell."
     buttons:
       leather_helmet:
+        permission: PLAYER
         image: "default"
         type: ITEM
         item: "LEATHER_HELMET"
         buy-price: 0.0
         sell-price: 0.0
       leather_chestplate:
+        permission: PLAYER
         image: "default"
         type: ITEM
         item: "default"
         buy-price: 0.0
         sell-price: 0.0
       leather_leggings:
+        permission: PLAYER
         image: "default"
         type: ITEM
         item: "LEATHER_LEGGINGS"
         buy-price: 0.0
         sell-price: 0.0
       leather_boots:
+        permission: PLAYER
         image: "default"
         type: ITEM
         item: "LEATHER_BOOTS"
         buy-price: 0.0
         sell-price: 0.0
       iron_helmet:
+        permission: PLAYER
         image: "default"
         type: ITEM
         item: "IRON_HELMET"
         buy-price: 0.0
         sell-price: 0.0
       iron_chestplate:
+        permission: PLAYER
         image: "default"
         type: ITEM
         item: "IRON_CHESTPLATE"
         buy-price: 0.0
         sell-price: 0.0
       iron_leggings:
+        permission: PLAYER
         image: "default"
         type: ITEM
         item: "IRON_LEGGINGS"
         buy-price: 0.0
         sell-price: 0.0
       iron_boots:
+        permission: PLAYER
         image: "default"
         type: ITEM
         item: "IRON_BOOTS"
         buy-price: 0.0
         sell-price: 0.0
       golden_helmet:
+        permission: PLAYER
         image: "default"
         type: ITEM
         item: "GOLDEN_HELMET"
         buy-price: 0.0
         sell-price: 0.0
       golden_chestplate:
+        permission: PLAYER
         image: "default"
         type: ITEM
         item: "GOLDEN_CHESTPLATE"
         buy-price: 0.0
         sell-price: 0.0
       golden_leggings:
+        permission: PLAYER
         image: "default"
         type: ITEM
         item: "GOLDEN_LEGGINGS"
         buy-price: 0.0
         sell-price: 0.0
       golden_boots:
+        permission: PLAYER
         image: "default"
         type: ITEM
         item: "GOLDEN_BOOTS"
         buy-price: 0.0
         sell-price: 0.0
       diamond_helmet:
+        permission: PLAYER
         image: "default"
         type: ITEM
         item: "DIAMOND_HELMET"
         buy-price: 0.0
         sell-price: 0.0
       diamond_chestplate:
+        permission: PLAYER
         image: "default"
         type: ITEM
         item: "DIAMOND_CHESTPLATE"
         buy-price: 0.0
         sell-price: 0.0
       diamond_leggings:
+        permission: PLAYER
         image: "default"
         type: ITEM
         item: "DIAMOND_LEGGINGS"
         buy-price: 0.0
         sell-price: 0.0
       diamond_boots:
+        permission: PLAYER
         image: "default"
         type: ITEM
         item: "DIAMOND_BOOTS"
         buy-price: 0.0
         sell-price: 0.0
       netherite_helmet:
+        permission: PLAYER
         image: "default"
         type: ITEM
         item: "NETHERITE_HELMET"
         buy-price: 0.0
         sell-price: 0.0
       netherite_chestplate:
+        permission: PLAYER
         image: "default"
         type: ITEM
         item: "NETHERITE_CHESTPLATE"
         buy-price: 0.0
         sell-price: 0.0
       netherite_leggings:
+        permission: PLAYER
         image: "default"
         type: ITEM
         item: "NETHERITE_LEGGINGS"
         buy-price: 0.0
         sell-price: 0.0
       netherite_boots:
+        permission: PLAYER
         image: "default"
         type: ITEM
         item: "NETHERITE_BOOTS"
@@ -964,6 +1121,7 @@ form:
     content: "Select which item you want to buy/sell."
     buttons:
       protection:
+        permission: PLAYER
         image: "default"
         type: ENCHANTMENT
         item: "ENCHANTED_BOOK"
@@ -971,6 +1129,7 @@ form:
         buy-price: 0.0
         sell-price: 0.0
       fire_protection:
+        permission: PLAYER
         image: "default"
         type: ENCHANTMENT
         item: "ENCHANTED_BOOK"
@@ -978,6 +1137,7 @@ form:
         buy-price: 0.0
         sell-price: 0.0
       feather_falling:
+        permission: PLAYER
         image: "default"
         type: ENCHANTMENT
         item: "ENCHANTED_BOOK"
@@ -985,6 +1145,7 @@ form:
         buy-price: 0.0
         sell-price: 0.0
       blast_protection:
+        permission: PLAYER
         image: "default"
         type: ENCHANTMENT
         item: "ENCHANTED_BOOK"
@@ -992,6 +1153,7 @@ form:
         buy-price: 0.0
         sell-price: 0.0
       projectile_protection:
+        permission: PLAYER
         image: "default"
         type: ENCHANTMENT
         item: "ENCHANTED_BOOK"
@@ -999,6 +1161,7 @@ form:
         buy-price: 0.0
         sell-price: 0.0
       thorns:
+        permission: PLAYER
         image: "default"
         type: ENCHANTMENT
         item: "ENCHANTED_BOOK"
@@ -1006,6 +1169,7 @@ form:
         buy-price: 0.0
         sell-price: 0.0
       looting:
+        permission: PLAYER
         image: "default"
         type: ENCHANTMENT
         item: "ENCHANTED_BOOK"
@@ -1013,6 +1177,7 @@ form:
         buy-price: 0.0
         sell-price: 0.0
       unbreaking:
+        permission: PLAYER
         image: "default"
         type: ENCHANTMENT
         item: "ENCHANTED_BOOK"
@@ -1020,6 +1185,7 @@ form:
         buy-price: 0.0
         sell-price: 0.0
       efficiency:
+        permission: PLAYER
         image: "default"
         type: ENCHANTMENT
         item: "ENCHANTED_BOOK"
@@ -1031,6 +1197,7 @@ form:
     content: "Select which item you want to buy/sell."
     buttons:
       speed:
+        permission: PLAYER
         image: "default"
         type: POTION
         item: "POTION"
@@ -1042,6 +1209,7 @@ form:
           extended: true
           upgraded: false
       slowness:
+        permission: PLAYER
         image: "default"
         type: POTION
         item: "POTION"
@@ -1053,6 +1221,7 @@ form:
           extended: true
           upgraded: false
       strength:
+        permission: PLAYER
         image: "default"
         type: POTION
         item: "POTION"
@@ -1064,6 +1233,7 @@ form:
           extended: true
           upgraded: false
       weakness:
+        permission: PLAYER
         image: "default"
         type: POTION
         item: "POTION"
@@ -1075,6 +1245,7 @@ form:
           extended: true
           upgraded: false
       poison:
+        permission: PLAYER
         image: "default"
         type: POTION
         item: "POTION"
@@ -1086,6 +1257,7 @@ form:
           extended: true
           upgraded: false
       regeneration:
+        permission: PLAYER
         image: "default"
         type: POTION
         item: "POTION"
@@ -1101,6 +1273,7 @@ form:
     content: "Select which item you want to buy/sell."
     buttons:
       spawn:
+        permission: PLAYER
         label: "You can buy the spawn command for $%buyprice% \nthe command will take you back to spawn"
         image: "https://i.imgur.com/XqQZQZq.png"
         type: COMMAND

@@ -11,6 +11,7 @@ import org.bukkit.potion.PotionData;
 import org.bukkit.potion.PotionType;
 
 public class ItemEffects {
+
     public static FileConfiguration config = BedrockFormShop.getInstance().getConfig();
     /**
      * Adds an enchantment to meta data
