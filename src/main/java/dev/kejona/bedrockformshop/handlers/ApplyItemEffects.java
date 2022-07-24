@@ -10,7 +10,7 @@ import org.bukkit.inventory.meta.PotionMeta;
 import org.bukkit.potion.PotionData;
 import org.bukkit.potion.PotionType;
 
-public class ItemEffects {
+public class ApplyItemEffects {
 
     public static FileConfiguration config = BedrockFormShop.getInstance().getConfig();
     /**

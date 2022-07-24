@@ -11,7 +11,7 @@ import java.util.Locale;
 
 public class Placeholders {
 
-    public static @NotNull String placeholder(String text, String item) {
+    public static @NotNull String set(String text, String item) {
         String finalText = colorCode(text);
         finalText = finalText.replace("%item%", item)
                 .replace("_", " ")
@@ -19,7 +19,7 @@ public class Placeholders {
         return finalText;
     }
 
-    public static @NotNull String placeholder(String text, String item, double price, int amount) {
+    public static @NotNull String set(String text, String item, double price, int amount) {
         String finalText = colorCode(text);
         finalText = finalText.replace("%item%", item)
                 .replace("%amount%", String.valueOf(amount))
@@ -29,7 +29,7 @@ public class Placeholders {
         return finalText;
     }
 
-    public static @NotNull String placeholder(String text, String command, double price) {
+    public static @NotNull String set(String text, String command, double price) {
         String finalText = colorCode(text);
         finalText = finalText.replace("%price%", String.valueOf(price)
                 .replace("%command%", command)
@@ -37,7 +37,7 @@ public class Placeholders {
         return finalText;
     }
 
-    public static @NotNull String placeholder(String text, double buyPrice, double sellPrice) {
+    public static @NotNull String set(String text, double buyPrice, double sellPrice) {
         String finalText = colorCode(text);
         finalText = finalText.replace("%buyprice%", String.valueOf(buyPrice))
                 .replace("%sellprice%", noPrice(sellPrice))
@@ -46,7 +46,7 @@ public class Placeholders {
         return finalText;
     }
 
-    public static @NotNull String placeholder(String text, @NotNull Player player) {
+    public static @NotNull String set(String text, @NotNull Player player) {
         String finalText = colorCode(text);
         finalText = finalText.replace("%playername%", player.getDisplayName())
                 .toLowerCase(Locale.ROOT);

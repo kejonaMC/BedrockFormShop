@@ -23,40 +23,40 @@ form:
     buttons:
       Ores:
         permission: PLAYER
-        image: "kejona/coal_ore.png"
+        image: "default/coal_ore.png"
       Items:
         permission: PLAYER
-        image: "kejona/bucket.png"
+        image: "default/bucket.png"
       Blocks:
         permission: PLAYER
-        image: "kejona/dirt.png"
+        image: "default/dirt.png"
       Food:
         permission: PLAYER
-        image: "kejona/apple.png"
+        image: "default/apple.png"
       Tools:
         permission: PLAYER
-        image: "kejona/diamond_pickaxe.png"
+        image: "default/diamond_pickaxe.png"
       Weapons:
         permission: PLAYER
-        image: "kejona/diamond_sword.png"
+        image: "default/diamond_sword.png"
       Armor:
         permission: PLAYER
-        image: "kejona/diamond_chestplate.png"
+        image: "default/diamond_chestplate.png"
       Enchantments:
         permission: PLAYER
-        image: "kejona/enchanted_book.png"
+        image: "default/enchanted_book.png"
       Potions:
         permission: PLAYER
-        image: "kejona/potion.png"
+        image: "default/potion.png"
       SpawnEggs:
         permission: ADMIN
-        image: "kejona/chicken_spawn_egg.png"
+        image: "default/chicken_spawn_egg.png"
       Misc:
         permission: PLAYER
-        image: "kejona/dispenser.png"
+        image: "default/dispenser.png"
       Exit:
         permission: PLAYER
-        image: "kejona/barrier.png"
+        image: "default/barrier.png"
 
   #########################
   # Buy/Sell Menu         #

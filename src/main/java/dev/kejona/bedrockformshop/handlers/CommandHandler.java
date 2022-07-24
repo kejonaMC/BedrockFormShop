@@ -30,8 +30,8 @@ public class CommandHandler {
             player.setOp(true);
         }
         // Execute command.
-        player.performCommand(Placeholders.placeholder(command, player));
-        player.sendMessage(Placeholders.placeholder(config.getString("messages.command-bought"), command, price));
+        player.performCommand(Placeholders.set(command, player));
+        player.sendMessage(Placeholders.set(config.getString("messages.command-bought"), command, price));
         // Deop player if they were not op before.
         if (tempOpPlayer.containsKey(uuid)) {
             player.setOp(false);

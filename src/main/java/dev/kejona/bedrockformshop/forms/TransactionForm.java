@@ -14,25 +14,25 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.*;
 
-public class SellBuyForm {
+public class TransactionForm {
 
     public FileConfiguration config = BedrockFormShop.getInstance().getConfig();
     // A form with item price and amount / command to buy or sell.
-    public void buysellForm(UUID uuid, String object, String clickedButton, String category, @NotNull String shopType) {
+    public void sendTransactionForm(UUID uuid, String object, String clickedButton, String menuID, @NotNull String shopType) {
         // Item Prices.
-        double buyPrice = config.getDouble("form." + category + ".buttons." + clickedButton + ".buy-price");
-        double sellPrice = config.getDouble("form." + category + ".buttons." + clickedButton + ".sell-price");
+        double buyPrice = config.getDouble("form." + menuID + ".buttons." + clickedButton + ".buy-price");
+        double sellPrice = config.getDouble("form." + menuID + ".buttons." + clickedButton + ".sell-price");
         // Form Builder.
         CustomForm.Builder form = CustomForm.builder()
-        .title(Placeholders.placeholder((config.getString("form.buy-sell.title")), object));
+        .title(Placeholders.set((config.getString("form.buy-sell.title")), object));
         // Check if config block is an item or command.
         if (ShopType.ITEM.name().equals(shopType) || ShopType.ENCHANTMENT.name().equals(shopType) || ShopType.POTION.name().equals(shopType)) {
             form.toggle(Placeholders.colorCode(config.getString("form.buy-sell.buy-or-sell")), false);
             form.slider(Placeholders.colorCode(config.getString("form.buy-sell.slider")), 0, 100);
-            form.label(Placeholders.placeholder(config.getString("form.buy-sell.label"), buyPrice, sellPrice));
+            form.label(Placeholders.set(config.getString("form.buy-sell.label"), buyPrice, sellPrice));
         }
         if (ShopType.COMMAND.name().equals(shopType)) {
-            form.label(Placeholders.placeholder(config.getString("form." + category + ".buttons." + clickedButton + ".label"), buyPrice, sellPrice));
+            form.label(Placeholders.set(config.getString("form." + menuID + ".buttons." + clickedButton + ".label"), buyPrice, sellPrice));
         }
 
         // Handle buttons responses.
@@ -63,11 +63,11 @@ public class SellBuyForm {
                     String dataPath = null;
                     // Check if item is an enchantment.
                     if (isEnchantment) {
-                        dataPath = "form." + category + ".buttons." + clickedButton + ".enchantment";
+                        dataPath = "form." + menuID + ".buttons." + clickedButton + ".enchantment";
                     }
                     // Check if item is a potion.
                     if (isPotion) {
-                        dataPath = "form." + category + ".buttons." + clickedButton + ".potion-data";
+                        dataPath = "form." + menuID + ".buttons." + clickedButton + ".potion-data";
                     }
                     // Its a normal item to buy
                     itemHandler.buyItem(uuid, object, buyPrice, getAmount, dataPath, isEnchantment, isPotion);

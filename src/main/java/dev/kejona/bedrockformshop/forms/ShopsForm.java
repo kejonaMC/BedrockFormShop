@@ -9,11 +9,11 @@ import org.geysermc.floodgate.api.FloodgateApi;
 
 import java.util.*;
 
-public class MainMenuForm {
+public class ShopsForm {
 
     public FileConfiguration config = BedrockFormShop.getInstance().getConfig();
     // A form with shop categories as buttons.
-    public void mainMenu(UUID uuid) {
+    public void sendShopsForm(UUID uuid) {
         // Form Builder
         SimpleForm.Builder form = SimpleForm.builder()
         .title(Objects.requireNonNull(config.getString("form.menu.title")))
@@ -22,7 +22,7 @@ public class MainMenuForm {
         // Get all Buttons in config.
         Set<String> listButtons = Objects.requireNonNull(config.getConfigurationSection("form.menu.buttons")).getKeys(false);
         List<String> buttons = new ArrayList<>(listButtons);
-        List<String> disabledButtons = new ArrayList<>();
+        List<String> noPermButtons = new ArrayList<>();
 
         for (String button : buttons) {
             // Check if player has permission to this button. if not button will not be generated.
@@ -35,18 +35,18 @@ public class MainMenuForm {
                     form.button(button, FormImage.Type.URL, imageLocation);
                 }
                 // If location is kejona we use the images from our github repo
-                if (imageLocation.startsWith("kejona")) {
+                if (imageLocation.startsWith("default")) {
                     // Image is path.
-                    form.button(button, FormImage.Type.URL, "https://raw.githubusercontent.com/Jens-Co/MinecraftItemImages/main/" + imageLocation.replace("kejona/", ""));
+                    form.button(button, FormImage.Type.URL, "https://raw.githubusercontent.com/Jens-Co/MinecraftItemImages/main/" + imageLocation.replace("default/", ""));
                 } else {
                     form.button(button, FormImage.Type.PATH, imageLocation);
                 }
             } else {
-                disabledButtons.add(button);
+                noPermButtons.add(button);
             }
         }
         // Remove buttons that player does not have access to.
-        buttons.removeAll(disabledButtons);
+        buttons.removeAll(noPermButtons);
 
         // Handle buttons responses.
         form.closedOrInvalidResultHandler(response -> {
@@ -56,8 +56,8 @@ public class MainMenuForm {
 
         form.validResultHandler(response -> {
             // Send itemlist to player.
-            ItemListForm itemList = new ItemListForm();
-            itemList.itemList(uuid, buttons.get(response.clickedButtonId()));
+            ItemListForm itemListForm = new ItemListForm();
+            itemListForm.sendItemListForm(uuid, buttons.get(response.clickedButtonId()));
         });
         // Build form and send to player.
         FloodgateApi.getInstance().sendForm(uuid, form.build());

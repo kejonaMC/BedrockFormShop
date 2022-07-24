@@ -1,7 +1,7 @@
 package dev.kejona.bedrockformshop.commands;
 
 import dev.kejona.bedrockformshop.BedrockFormShop;
-import dev.kejona.bedrockformshop.forms.MainMenuForm;
+import dev.kejona.bedrockformshop.forms.ShopsForm;
 import dev.kejona.bedrockformshop.utils.FloodgateUser;
 import dev.kejona.bedrockformshop.utils.Permission;
 import org.bukkit.ChatColor;
@@ -20,8 +20,8 @@ public class ShopCommand implements CommandExecutor {
             if (sender instanceof Player) {
                 Player player = (Player) sender;
                 if (FloodgateUser.isFloodgatePlayer(player.getUniqueId())) {
-                    MainMenuForm mainMenuForm = new MainMenuForm();
-                    mainMenuForm.mainMenu(player.getUniqueId());
+                    ShopsForm mainMenuForm = new ShopsForm();
+                    mainMenuForm.sendShopsForm(player.getUniqueId());
                     return true;
                 }
             }
