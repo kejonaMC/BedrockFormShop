@@ -521,6 +521,7 @@ form:
     content: "Select which item you want to buy/sell."
     buttons:
       pig:
+        permission: PLAYER
         image: "default"
         type: ITEM
         item: "PIG_SPAWN_EGG"
