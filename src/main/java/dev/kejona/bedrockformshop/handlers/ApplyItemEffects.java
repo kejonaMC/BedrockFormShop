@@ -2,13 +2,18 @@ package dev.kejona.bedrockformshop.handlers;
 
 import dev.kejona.bedrockformshop.BedrockFormShop;
 import org.bukkit.Material;
+import org.bukkit.block.CreatureSpawner;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.enchantments.Enchantment;
+import org.bukkit.entity.EntityType;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.BlockStateMeta;
 import org.bukkit.inventory.meta.EnchantmentStorageMeta;
 import org.bukkit.inventory.meta.PotionMeta;
 import org.bukkit.potion.PotionData;
 import org.bukkit.potion.PotionType;
+
+import java.util.Objects;
 
 public class ApplyItemEffects {
 
@@ -51,5 +56,21 @@ public class ApplyItemEffects {
         potionmeta.setBasePotionData(data);
 
         return potionmeta;
+    }
+    /**
+     * Adds a mob to the spawner
+     * @param dataPath the path to the mob type
+     * @param itemstack the item to add the mob type to
+     * @return returns spawner with set type and blockstate
+     */
+    public static BlockStateMeta addMobToBlock (String dataPath, ItemStack itemstack) {
+        // Get meta from block.
+        BlockStateMeta bsm = (BlockStateMeta) itemstack.getItemMeta();
+        // Set mob type.
+        CreatureSpawner cs = (CreatureSpawner) Objects.requireNonNull(bsm).getBlockState();
+        cs.setSpawnedType(EntityType.valueOf(config.getString(dataPath + ".mob-type")));
+        bsm.setDisplayName(config.getString(dataPath + ".mob-type"));
+        bsm.setBlockState(cs);
+        return bsm;
     }
 }

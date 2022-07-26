@@ -26,7 +26,7 @@ public class TransactionForm {
         CustomForm.Builder form = CustomForm.builder()
         .title(Placeholders.set((config.getString("form.buy-sell.title")), object));
         // Check if config block is an item or command.
-        if (ShopType.ITEM.name().equals(shopType) || ShopType.ENCHANTMENT.name().equals(shopType) || ShopType.POTION.name().equals(shopType)) {
+        if (ShopType.ITEM.name().equals(shopType) || ShopType.ENCHANTMENT.name().equals(shopType) || ShopType.POTION.name().equals(shopType) || ShopType.SPAWNER.name().equals(shopType)) {
             form.toggle(Placeholders.colorCode(config.getString("form.buy-sell.buy-or-sell")), false);
             form.slider(Placeholders.colorCode(config.getString("form.buy-sell.slider")), 0, 100);
             form.label(Placeholders.set(config.getString("form.buy-sell.label"), buyPrice, sellPrice));
@@ -43,7 +43,7 @@ public class TransactionForm {
 
         form.validResultHandler(response -> {
             // If shopType is item get the input from slider.
-            if (ShopType.ITEM.name().equals(shopType) || ShopType.ENCHANTMENT.name().equals(shopType) || ShopType.POTION.name().equals(shopType)) {
+            if (ShopType.ITEM.name().equals(shopType) || ShopType.ENCHANTMENT.name().equals(shopType) || ShopType.POTION.name().equals(shopType) || ShopType.SPAWNER.name().equals(shopType)) {
                 ItemHandler itemHandler = new ItemHandler();
                 int getAmount = (int) response.asSlider(1);
                 // Form response
@@ -60,6 +60,8 @@ public class TransactionForm {
                     // Check for enchantments.
                     boolean isEnchantment = ShopType.ENCHANTMENT.name().equals(shopType);
                     boolean isPotion = ShopType.POTION.name().equals(shopType);
+                    boolean isSpawner = ShopType.SPAWNER.name().equals(shopType);
+
                     String dataPath = null;
                     // Check if item is an enchantment.
                     if (isEnchantment) {
@@ -69,8 +71,12 @@ public class TransactionForm {
                     if (isPotion) {
                         dataPath = "form." + menuID + ".buttons." + clickedButton + ".potion-data";
                     }
+                    // Check if item is a spawner.
+                    if (isSpawner) {
+                        dataPath = "form." + menuID + ".buttons." + clickedButton;
+                    }
                     // Its a normal item to buy
-                    itemHandler.buyItem(uuid, object, buyPrice, getAmount, dataPath, isEnchantment, isPotion);
+                    itemHandler.buyItem(uuid, object, buyPrice, getAmount, dataPath, isEnchantment, isPotion, isSpawner);
                 }
             }
             // If shopType is command inputs do not exist.

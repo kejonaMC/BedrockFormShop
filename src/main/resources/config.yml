@@ -48,7 +48,7 @@ form:
       Potions:
         permission: PLAYER
         image: "default/potion.png"
-      SpawnEggs:
+      Spawners:
         permission: ADMIN
         image: "default/chicken_spawn_egg.png"
       Misc:
@@ -516,7 +516,7 @@ form:
         item: "BRICKS"
         buy-price: 0.0
         sell-price: 0.0
-  SpawnEggs:
+  Spawners:
     title: "%item% shop"
     content: "Select which item you want to buy/sell."
     buttons:
@@ -665,6 +665,54 @@ form:
         image: "default"
         type: ITEM
         item: "MAGMA_CUBE_SPAWN_EGG"
+        buy-price: 0.0
+        sell-price: 0.0
+      pig-spawner:
+        permission: PLAYER
+        image: "default"
+        type: SPAWNER
+        item: "SPAWNER"
+        mob-type: "PIG"
+        buy-price: 0.0
+        sell-price: 0.0
+      cow-spawner:
+        permission: PLAYER
+        image: "default"
+        type: SPAWNER
+        item: "SPAWNER"
+        mob-type: "COW"
+        buy-price: 0.0
+        sell-price: 0.0
+      chicken-spawner:
+        permission: PLAYER
+        image: "default"
+        type: SPAWNER
+        item: "SPAWNER"
+        mob-type: "CHICKEN"
+        buy-price: 0.0
+        sell-price: 0.0
+      squid-spawner:
+        permission: PLAYER
+        image: "default"
+        type: SPAWNER
+        item: "SPAWNER"
+        mob-type: "SQUID"
+        buy-price: 0.0
+        sell-price: 0.0
+      wolf-spawner:
+        permission: PLAYER
+        image: "default"
+        type: SPAWNER
+        item: "SPAWNER"
+        mob-type: "WOLF"
+        buy-price: 0.0
+        sell-price: 0.0
+      mooshroom-spawner:
+        permission: PLAYER
+        image: "default"
+        type: SPAWNER
+        item: "SPAWNER"
+        mob-type: "MOOSHROOM"
         buy-price: 0.0
         sell-price: 0.0
   Food:

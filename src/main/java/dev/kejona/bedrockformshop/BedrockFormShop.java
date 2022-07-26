@@ -2,6 +2,7 @@ package dev.kejona.bedrockformshop;
 
 import dev.kejona.bedrockformshop.commands.ShopCommand;
 import dev.kejona.bedrockformshop.handlers.VaultAPI;
+import dev.kejona.bedrockformshop.listeners.PlacedSpawner;
 import dev.kejona.bedrockformshop.logger.JavaUtilLogger;
 import dev.kejona.bedrockformshop.logger.Logger;
 import org.bukkit.configuration.InvalidConfigurationException;
@@ -29,6 +30,8 @@ public final class BedrockFormShop extends JavaPlugin {
         }
         // Register commands.
         Objects.requireNonNull(this.getCommand("shop")).setExecutor(new ShopCommand());
+        // Spawners blockstate needs to be changed when placed
+        getServer().getPluginManager().registerEvents(new PlacedSpawner(), this);
         // Check if there are hooks and if so register them.
         new VaultAPI();
         logger.info("BedrockFormShop enabled!");

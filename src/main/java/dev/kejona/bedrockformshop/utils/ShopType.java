@@ -26,4 +26,10 @@ public enum ShopType {
             return "POTION";
         }
     },
+    SPAWNER {
+        @Override
+        public String toString() {
+            return "SPAWNER";
+        }
+    }
 }

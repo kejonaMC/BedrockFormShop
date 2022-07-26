@@ -66,7 +66,7 @@ public class ItemListForm {
             for (ShopType type : ShopType.values()) {
                 if (type.name().equals(shopType)) {
                     // Check shop types
-                    if (ShopType.ITEM == type || ShopType.ENCHANTMENT == type || ShopType.POTION == type) {
+                    if (ShopType.ITEM == type || ShopType.ENCHANTMENT == type || ShopType.POTION == type || ShopType.SPAWNER == type) {
                         // Get item name from config.
                         String itemStackName = config.getString("form." + menuID + ".buttons." + clickedButton + ".item");
                         transaction.sendTransactionForm(uuid, itemStackName, clickedButton, menuID, shopType);

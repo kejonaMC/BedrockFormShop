@@ -17,7 +17,7 @@ import java.util.UUID;
 public class ItemHandler {
 
     public FileConfiguration config = BedrockFormShop.getInstance().getConfig();
-    public void buyItem(UUID uuid, String itemName, double price, int amount, String dataPath, boolean isEnchantment, boolean isPotion) {
+    public void buyItem(UUID uuid, String itemName, double price, int amount, String dataPath, boolean isEnchantment, boolean isPotion, boolean isSpawner) {
         // Get Player Instance.
         Player player = BedrockFormShop.getInstance().getServer().getPlayer(uuid);
         // Check if player has enough space in inventory.
@@ -50,6 +50,12 @@ public class ItemHandler {
             itemStack.setItemMeta(ApplyItemEffects.addPotionEffect(dataPath, itemStack));
             // Add potion name to item.
             itemName = Objects.requireNonNull(config.getString(dataPath + ".type")).toLowerCase() + " " + itemStack.getType().name().toLowerCase();
+        }
+        // Check if item is a spawner.
+        if (isSpawner) {
+            itemStack.setItemMeta(ApplyItemEffects.addMobToBlock(dataPath, itemStack));
+            // Add spawner name to item.
+            itemName = Objects.requireNonNull(config.getString(dataPath + ".mob-type")).toLowerCase() + " " + itemStack.getType().name().toLowerCase();
         }
         // Check if player has enough money.
         if (VaultAPI.eco().getBalance(player) < price * amount) {
