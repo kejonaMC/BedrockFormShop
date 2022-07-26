@@ -4,7 +4,7 @@ main: dev.kejona.bedrockformshop.BedrockFormShop
 api-version: 1.19
 softdepend:
   - Vault
-depend: [ floodgate, vault ]
+depend: [ floodgate, Vault ]
 authors: [ kejonaMC ]
 commands:
   shop:

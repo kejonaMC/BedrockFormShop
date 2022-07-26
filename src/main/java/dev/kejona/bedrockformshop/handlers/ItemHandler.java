@@ -1,6 +1,7 @@
 package dev.kejona.bedrockformshop.handlers;
 
 import dev.kejona.bedrockformshop.BedrockFormShop;
+import dev.kejona.bedrockformshop.logger.Logger;
 import dev.kejona.bedrockformshop.utils.Placeholders;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
@@ -27,7 +28,13 @@ public class ItemHandler {
             return;
         }
         // Get Item name from config.
-        ItemStack itemStack = new ItemStack(Material.valueOf(itemName));
+        ItemStack itemStack;
+        try {
+            itemStack = new ItemStack(Material.valueOf(itemName));
+        } catch (IllegalArgumentException e) {
+            Logger.getLogger().severe("Item: " + itemName + " is not a valid item.");
+            return;
+        }
         // Check if item is enchanted.
         if (isEnchantment) {
             // Get enchantment name from config
@@ -35,13 +42,19 @@ public class ItemHandler {
             // Get level from enchantmentData with a split.
             assert getEnchantment != null;
             int level = Integer.parseInt(getEnchantment.split(":")[1]);
-            Enchantment enchantment = Enchantment.getByKey(NamespacedKey.minecraft(getEnchantment.replace(":" + level, "").toLowerCase()));
-            if (itemStack.getType() == Material.ENCHANTED_BOOK) {
-                itemStack.setItemMeta(ApplyItemEffects.addEnchantmentToBook(enchantment, level, itemStack));
-            } else {
-                // Add enchantment to normal items.
-                assert enchantment != null;
-                itemStack.addEnchantment(enchantment, level);
+
+            try {
+                Enchantment enchantment = Enchantment.getByKey(NamespacedKey.minecraft(getEnchantment.replace(":" + level, "").toLowerCase()));
+                if (itemStack.getType() == Material.ENCHANTED_BOOK) {
+                    itemStack.setItemMeta(ApplyItemEffects.addEnchantmentToBook(enchantment, level, itemStack));
+                } else {
+                    // Add enchantment to normal items.
+                    assert enchantment != null;
+                    itemStack.addEnchantment(enchantment, level);
+                }
+            } catch (Exception e) {
+                Logger.getLogger().severe("Enchantment: " + getEnchantment + " is not a valid enchantment.");
+                return;
             }
             itemName = itemStack.getType().name().toLowerCase() + " " + getEnchantment.toLowerCase();
         }
