@@ -4,11 +4,28 @@ main: dev.kejona.bedrockformshop.BedrockFormShop
 api-version: 1.19
 softdepend:
   - Vault
-depend: [ floodgate ]
+depend: [ floodgate, vault ]
 authors: [ kejonaMC ]
 commands:
   shop:
     description: Open Shop
-    permission: formshop.shop
+    permission: bedrockformshop.openshop
     default: true
     aliases: /shop
+permissions:
+  bedrockformshop.openshop:
+    description: "Open Shop"
+    default: true
+  bedrockformshop.playermenu:
+    description: "Display Player Buttons"
+    default: true
+  bedrockformshop.adminmenu:
+    description: "Display Admin Buttons"
+    default: op
+  bedrockformshop.reload:
+    description: "Reload Config"
+    default: op
+  bedrockformshop.*:
+    description: "Give all permissions"
+    default: op
+
