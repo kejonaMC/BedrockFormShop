@@ -32,6 +32,8 @@ DEFAULT -> "default" Which will render the java 3D image from the item, in this 
 URL -> "https://google.com/myepicimage.png" Images can be loaded from an external url. <br />
 PATH -> "textures/blocks/dirt.png" This is the path option, this will render images from the bedrock vanilla cient which are 2D <br />
 
+`buy-price:` Buy price per item.<br />
+`sell-price:` Sell price per item. when this option is 0.0 players wont be able to sell this item!
 
 ### ITEM type example:
 
@@ -50,9 +52,6 @@ in case you want to buy or sell a normal item the type has to be set on ITEM.
 you can also enchant normal items "tools and armour" to add enchantments see; ENCHANTMENT type example.
 
 `item:` Is the material name, see https://www.digminecraft.com/lists/item_id_list_pc_1_9.php for a full list of item names. Be aware that item names has to be uppercase!
-
-`buy-price:` Buy price per item.<br />
-`sell-price:` Sell price per item. when this option is 0.0 players wont be able to sell this item!
 
 ### ENCHANTMENT type example:
 

@@ -79,57 +79,57 @@ form:
         image: "default"
         type: ITEM
         item: "COAL_ORE"
-        buy-price: 10.0
-        sell-price: 5.0
+        buy-price: 0.0
+        sell-price: 0.0
       iron-ore:
         permission: PLAYER
         image: "default"
         type: ITEM
         item: "IRON_ORE"
-        buy-price: 20.0
-        sell-price: 10.0
+        buy-price: 0.0
+        sell-price: 0.0
       redstone-ore:
         permission: PLAYER
         image: "default"
         type: ITEM
         item: "REDSTONE_ORE"
-        buy-price: 35.0
-        sell-price: 10.0
+        buy-price: 0.0
+        sell-price: 0.0
       lapis-ore:
         permission: PLAYER
         image: "default"
         type: ITEM
         item: "LAPIS_ORE"
-        buy-price: 35.0
-        sell-price: 10.0
+        buy-price: 0.0
+        sell-price: 0.0
       nether-quartz:
         permission: PLAYER
         image: "default"
         type: ITEM
         item: "NETHER_QUARTZ_ORE"
-        buy-price: 35.0
-        sell-price: 10.0
+        buy-price: 0.0
+        sell-price: 0.0
       emerald-ore:
         permission: PLAYER
         image: "default"
         type: ITEM
         item: "EMERALD_ORE"
-        buy-price: 70.0
-        sell-price: 35.0
+        buy-price: 0.0
+        sell-price: 0.0
       gold-ore:
         permission: PLAYER
         image: "default"
         type: ITEM
         item: "GOLD_ORE"
-        buy-price: 50.0
-        sell-price: 25.0
+        buy-price: 0.0
+        sell-price: 0.0
       diamond-ore:
         permission: PLAYER
         image: "default"
         type: ITEM
         item: "DIAMOND_ORE"
-        buy-price: 100.0
-        sell-price: 50.0
+        buy-price: 0.0
+        sell-price: 0.0
   Items:
     title: "%item% shop"
     content: "Select which item you want to buy/sell."
@@ -281,13 +281,6 @@ form:
         item: "BEETROOT_SEEDS"
         buy-price: 0.0
         sell-price: 0.0
-      cactus-seed:
-        permission: PLAYER
-        image: "default"
-        type: ITEM
-        item: "CACTUS_SEEDS"
-        buy-price: 0.0
-        sell-price: 0.0
   Blocks:
     title: "%item% shop"
     content: "Select which item you want to buy/sell."
@@ -296,7 +289,7 @@ form:
         permission: PLAYER
         image: "default"
         type: ITEM
-        item: "STONE-BRICKS"
+        item: "BRICKS"
         buy-price: 0.0
         sell-price: 0.0
       mossy-stone-brick:
@@ -509,13 +502,6 @@ form:
         item: "SPONGE"
         buy-price: 0.0
         sell-price: 0.0
-      brick:
-        permission: PLAYER
-        image: "default"
-        type: ITEM
-        item: "BRICKS"
-        buy-price: 0.0
-        sell-price: 0.0
   Spawners:
     title: "%item% shop"
     content: "Select which item you want to buy/sell."
@@ -616,13 +602,6 @@ form:
         image: "default"
         type: ITEM
         item: "SPIDER_SPAWN_EGG"
-        buy-price: 0.0
-        sell-price: 0.0
-      zombie-pigman:
-        permission: PLAYER
-        image: "default"
-        type: ITEM
-        item: "ZOMBIE_PIGMAN_SPAWN_EGG"
         buy-price: 0.0
         sell-price: 0.0
       slime:
@@ -754,13 +733,6 @@ form:
         item: "COOKED_CHICKEN"
         buy-price: 0.0
         sell-price: 0.0
-      cooked-fish:
-        permission: PLAYER
-        image: "default"
-        type: ITEM
-        item: "COOKED_FISH"
-        buy-price: 0.0
-        sell-price: 0.0
       cookie:
         permission: PLAYER
         image: "default"
@@ -794,34 +766,6 @@ form:
         image: "default"
         type: ITEM
         item: "PUMPKIN_SLICE"
-        buy-price: 0.0
-        sell-price: 0.0
-      raw-fish:
-        permission: PLAYER
-        image: "default"
-        type: ITEM
-        item: "RAW_FISH"
-        buy-price: 0.0
-        sell-price: 0.0
-      raw-chicken:
-        permission: PLAYER
-        image: "default"
-        type: ITEM
-        item: "RAW_CHICKEN"
-        buy-price: 0.0
-        sell-price: 0.0
-      raw-porkchop:
-        permission: PLAYER
-        image: "default"
-        type: ITEM
-        item: "RAW_PORKCHOP"
-        buy-price: 0.0
-        sell-price: 0.0
-      raw-beef:
-        permission: PLAYER
-        image: "default"
-        type: ITEM
-        item: "RAW_BEEF"
         buy-price: 0.0
         sell-price: 0.0
   Tools:
