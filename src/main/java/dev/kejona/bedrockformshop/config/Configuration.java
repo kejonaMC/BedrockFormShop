@@ -11,8 +11,8 @@ public class Configuration {
 
     public static FileConfiguration config = BedrockFormShop.getInstance().getConfig();
 
-    public static String getMessages(String data) {
-        return config.getString("messages." + data);
+    public static String getMessages(String message) {
+        return config.getString("messages." + message);
     }
 
     public static Set<String> getButtons(String menuID) {
@@ -25,9 +25,5 @@ public class Configuration {
 
     public static ConfigurationSection getMenuData(String menuID) {
         return config.getConfigurationSection("form." + menuID);
-    }
-
-    public static String getButtonData(String menuID, String button, String data) {
-        return config.getString("form." + menuID + ".buttons." + button + "." + data);
     }
 }

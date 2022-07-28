@@ -65,7 +65,7 @@ public class ItemListForm {
                         transaction.sendTransactionForm(uuid, itemStackName, clickedButton, menuID, shopType);
                     }
                     if (ShopType.COMMAND == type) {
-                        String command = Configuration.getButtonData(menuID, clickedButton, "command");
+                        String command = SECTION.getString("command");
                         transaction.sendTransactionForm(uuid, command, clickedButton, menuID, shopType);
                     }
                 }
