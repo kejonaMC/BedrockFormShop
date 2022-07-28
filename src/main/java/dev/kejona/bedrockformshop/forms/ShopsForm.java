@@ -1,8 +1,8 @@
 package dev.kejona.bedrockformshop.forms;
 
-import dev.kejona.bedrockformshop.BedrockFormShop;
+import dev.kejona.bedrockformshop.config.Configuration;
 import dev.kejona.bedrockformshop.utils.Permission;
-import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.configuration.ConfigurationSection;
 import org.geysermc.cumulus.form.SimpleForm;
 import org.geysermc.cumulus.util.FormImage;
 import org.geysermc.floodgate.api.FloodgateApi;
@@ -10,27 +10,26 @@ import org.geysermc.floodgate.api.FloodgateApi;
 import java.util.*;
 
 public class ShopsForm {
-
-    public FileConfiguration config = BedrockFormShop.getInstance().getConfig();
+    public ConfigurationSection SECTION;
     // A form with shop categories as buttons.
     public void sendShopsForm(UUID uuid) {
+        SECTION = Configuration.getMenuData("menu");
         // Form Builder
         SimpleForm.Builder form = SimpleForm.builder()
-        .title(Objects.requireNonNull(config.getString("form.menu.title")))
-        .content(Objects.requireNonNull(config.getString("form.menu.content")));
-
+        .title(Objects.requireNonNull(SECTION.getString("title")))
+        .content(Objects.requireNonNull(SECTION.getString("content")));
         // Get all Buttons in config.
-        Set<String> listButtons = Objects.requireNonNull(config.getConfigurationSection("form.menu.buttons")).getKeys(false);
-        List<String> buttons = new ArrayList<>(listButtons);
+        List<String> buttons = new ArrayList<>(Configuration.getButtons("menu"));
         List<String> noPermButtons = new ArrayList<>();
 
         for (String button : buttons) {
+            SECTION = Configuration.getButtonData("menu", button);
             // Check if player has permission to this button. if not button will not be generated.
-            String getPerm = config.getString("form.menu.buttons." + button + ".permission");
-
-            if (Permission.valueOf(getPerm).checkPermission(uuid)) {
-                String imageLocation = Objects.requireNonNull(config.getString("form.menu.buttons." + button + ".image"));
+            if (Permission.valueOf(SECTION.getString("permission")).checkPermission(uuid)) {
+                String imageLocation = SECTION.getString("image");
                 // Check if image is url or path.
+
+                assert imageLocation != null;
                 if (imageLocation.startsWith("http")) {
                     form.button(button, FormImage.Type.URL, imageLocation);
                 }

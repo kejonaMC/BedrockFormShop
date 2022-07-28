@@ -1,12 +1,12 @@
 package dev.kejona.bedrockformshop.forms;
 
-import dev.kejona.bedrockformshop.BedrockFormShop;
+import dev.kejona.bedrockformshop.config.Configuration;
 import dev.kejona.bedrockformshop.handlers.CommandHandler;
 import dev.kejona.bedrockformshop.handlers.ItemHandler;
 import dev.kejona.bedrockformshop.utils.ShopType;
 import dev.kejona.bedrockformshop.utils.Placeholders;
 import org.bukkit.Bukkit;
-import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
 import org.geysermc.cumulus.form.CustomForm;
 import org.geysermc.floodgate.api.FloodgateApi;
@@ -15,31 +15,27 @@ import org.jetbrains.annotations.NotNull;
 import java.util.*;
 
 public class TransactionForm {
-
-    public FileConfiguration config = BedrockFormShop.getInstance().getConfig();
+    public ConfigurationSection SECTION;
     // A form with item price and amount / command to buy or sell.
     public void sendTransactionForm(UUID uuid, String object, String clickedButton, String menuID, @NotNull String shopType) {
+        SECTION = Configuration.getButtonData(menuID, clickedButton);
         // Item Prices.
-        double buyPrice = config.getDouble("form." + menuID + ".buttons." + clickedButton + ".buy-price");
-        double sellPrice = config.getDouble("form." + menuID + ".buttons." + clickedButton + ".sell-price");
+        double buyPrice = SECTION.getDouble("buy-price");
+        double sellPrice = SECTION.getDouble("sell-price");
+        SECTION = Configuration.getMenuData("buy-sell");
         // Form Builder.
         CustomForm.Builder form = CustomForm.builder()
-        .title(Placeholders.set((config.getString("form.buy-sell.title")), object));
+        .title(Placeholders.set((SECTION.getString("title")), object));
         // Check if config block is an item or command.
         if (ShopType.ITEM.name().equals(shopType) || ShopType.ENCHANTMENT.name().equals(shopType) || ShopType.POTION.name().equals(shopType) || ShopType.SPAWNER.name().equals(shopType)) {
-            form.toggle(Placeholders.colorCode(config.getString("form.buy-sell.buy-or-sell")), false);
-            form.slider(Placeholders.colorCode(config.getString("form.buy-sell.slider")), 0, 100);
-            form.label(Placeholders.set(config.getString("form.buy-sell.label"), buyPrice, sellPrice));
-        }
-        if (ShopType.COMMAND.name().equals(shopType)) {
-            form.label(Placeholders.set(config.getString("form." + menuID + ".buttons." + clickedButton + ".label"), buyPrice, sellPrice));
+            form.toggle(Placeholders.colorCode(SECTION.getString("buy-or-sell")), false);
+            form.slider(Placeholders.colorCode(SECTION.getString("slider")), 0, 100);
+            form.label(Placeholders.set(SECTION.getString("label"), buyPrice, sellPrice));
         }
 
-        // Handle buttons responses.
-        form.closedOrInvalidResultHandler(response -> {
-            response.isClosed();
-            response.isInvalid();
-        });
+        if (ShopType.COMMAND.name().equals(shopType)) {
+            form.label(Placeholders.set(SECTION.getString("label"), buyPrice, sellPrice));
+        }
 
         form.validResultHandler(response -> {
             // If shopType is item get the input from slider.
@@ -51,7 +47,7 @@ public class TransactionForm {
                     if (sellPrice == 0.0) {
                         Player player = Bukkit.getPlayer(uuid);
                         assert player != null;
-                        player.sendMessage(Objects.requireNonNull(config.getString("messages.no-sell-price")));
+                        player.sendMessage(Configuration.getMessages("no-sell-price"));
                         return;
                     }
                     // Sell item.

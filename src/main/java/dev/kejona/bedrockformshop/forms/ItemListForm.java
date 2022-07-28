@@ -1,10 +1,10 @@
 package dev.kejona.bedrockformshop.forms;
 
-import dev.kejona.bedrockformshop.BedrockFormShop;
+import dev.kejona.bedrockformshop.config.Configuration;
 import dev.kejona.bedrockformshop.utils.ShopType;
 import dev.kejona.bedrockformshop.utils.Permission;
 import dev.kejona.bedrockformshop.utils.Placeholders;
-import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.configuration.ConfigurationSection;
 import org.geysermc.cumulus.form.SimpleForm;
 import org.geysermc.cumulus.util.FormImage;
 import org.geysermc.floodgate.api.FloodgateApi;
@@ -12,26 +12,24 @@ import org.geysermc.floodgate.api.FloodgateApi;
 import java.util.*;
 
 public class ItemListForm {
-
-    public FileConfiguration config = BedrockFormShop.getInstance().getConfig();
+    public ConfigurationSection SECTION;
     // A form with all shop items as buttons.
     public void sendItemListForm(UUID uuid, String menuID) {
+        SECTION = Configuration.getMenuData(menuID);
         // Form Builder
         SimpleForm.Builder form = SimpleForm.builder()
-        .title(Placeholders.set(config.getString("form." + menuID + ".title"), menuID))
-        .content(Placeholders.set(config.getString("form." + menuID + ".content"), menuID));
+        .title(Placeholders.set(SECTION.getString("title"), menuID))
+        .content(Placeholders.set(SECTION.getString("content"), menuID));
         // Get all Buttons in config.
-        Set<String> listButtons = Objects.requireNonNull(config.getConfigurationSection("form." + menuID + ".buttons")).getKeys(false);
-        List<String> buttons = new ArrayList<>(listButtons);
+        List<String> buttons = new ArrayList<>(Configuration.getButtons(menuID));
         List<String> noPermButtons = new ArrayList<>();
         // Loop all buttons and add them to form.
         for (String button : buttons) {
+            SECTION = Configuration.getButtonData(menuID, button);
             // Check if player has permission to this button. if not button will not be generated.
-            String getPerm = config.getString("form." + menuID + ".buttons." + button + ".permission");
-
-            if (Permission.valueOf(getPerm).checkPermission(uuid)) {
-                String imageLocation = config.getString("form." + menuID + ".buttons." + button + ".image");
-                String getItemName = config.getString("form." + menuID + ".buttons." + button + ".item");
+            if (Permission.valueOf(SECTION.getString("permission")).checkPermission(uuid)) {
+                String imageLocation = SECTION.getString("image");
+                String getItemName = SECTION.getString("item");
                 // Check if image is url or path.
                 if (imageLocation != null) {
                     // Image default will get images from our github repo.
@@ -51,16 +49,11 @@ public class ItemListForm {
                 buttons.removeAll(noPermButtons);
             }
         }
-
-        // Handle buttons responses.
-        form.closedOrInvalidResultHandler(response -> {
-            response.isClosed();
-            response.isInvalid();
-        });
         // response is valid
         form.validResultHandler(response -> {
             String clickedButton = buttons.get(response.clickedButtonId());
-            String shopType = config.getString("form." + menuID + ".buttons." + clickedButton + ".type");
+            SECTION = Configuration.getButtonData(menuID, clickedButton);
+            String shopType = SECTION.getString("type");
             TransactionForm transaction = new TransactionForm();
             // Loop all shop types and check if the clicked button is of that type.
             for (ShopType type : ShopType.values()) {
@@ -68,11 +61,11 @@ public class ItemListForm {
                     // Check shop types
                     if (ShopType.ITEM == type || ShopType.ENCHANTMENT == type || ShopType.POTION == type || ShopType.SPAWNER == type) {
                         // Get item name from config.
-                        String itemStackName = config.getString("form." + menuID + ".buttons." + clickedButton + ".item");
+                        String itemStackName = SECTION.getString("item");
                         transaction.sendTransactionForm(uuid, itemStackName, clickedButton, menuID, shopType);
                     }
                     if (ShopType.COMMAND == type) {
-                        String command = config.getString("form." + menuID + ".buttons." + clickedButton + ".command");
+                        String command = Configuration.getButtonData(menuID, clickedButton, "command");
                         transaction.sendTransactionForm(uuid, command, clickedButton, menuID, shopType);
                     }
                 }
