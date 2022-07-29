@@ -1,8 +1,7 @@
 package dev.kejona.bedrockformshop.utils;
 
-import dev.kejona.bedrockformshop.BedrockFormShop;
+import dev.kejona.bedrockformshop.config.Configuration;
 import org.bukkit.ChatColor;
-import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
@@ -59,11 +58,10 @@ public class Placeholders {
     }
 
     public static @NotNull String noPrice(double sellPrice) {
-        FileConfiguration config = BedrockFormShop.getInstance().getConfig();
         String sellValue = String.valueOf(sellPrice);
         // If price is 0 then item is not sell-able.
         if (sellPrice == 0.0) {
-            sellValue = config.getString("messages.no-sell-price");
+            sellValue = Configuration.getMessages("no-sell-price");
         }
 
         assert sellValue != null;

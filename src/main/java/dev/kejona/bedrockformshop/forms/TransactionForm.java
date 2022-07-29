@@ -53,26 +53,9 @@ public class TransactionForm {
                     // Sell item.
                     itemHandler.sellItem(uuid, object, sellPrice, getAmount);
                 } else {
-                    // Check for enchantments.
-                    boolean isEnchantment = ShopType.ENCHANTMENT.name().equals(shopType);
-                    boolean isPotion = ShopType.POTION.name().equals(shopType);
-                    boolean isSpawner = ShopType.SPAWNER.name().equals(shopType);
-
-                    String dataPath = null;
-                    // Check if item is an enchantment.
-                    if (isEnchantment) {
-                        dataPath = "form." + menuID + ".buttons." + clickedButton + ".enchantment";
-                    }
-                    // Check if item is a potion.
-                    if (isPotion) {
-                        dataPath = "form." + menuID + ".buttons." + clickedButton + ".potion-data";
-                    }
-                    // Check if item is a spawner.
-                    if (isSpawner) {
-                        dataPath = "form." + menuID + ".buttons." + clickedButton;
-                    }
+                    SECTION = Configuration.getButtonData(menuID, clickedButton);
                     // Its a normal item to buy
-                    itemHandler.buyItem(uuid, object, buyPrice, getAmount, dataPath, isEnchantment, isPotion, isSpawner);
+                    itemHandler.buyItem(uuid, object, buyPrice, getAmount, SECTION, shopType);
                 }
             }
             // If shopType is command inputs do not exist.
