@@ -52,6 +52,10 @@ publishing {
     }
 }
 
+tasks.jar {
+    archiveFileName.set("BedrockFormShop.jar")
+}
+
 tasks.withType<JavaCompile>() {
     options.encoding = "UTF-8"
 }
