@@ -1,3 +1,5 @@
+# Do not change version!
+version: 1
 # Messages. placeholders: %item%, %amount%, %price%, %command%
 messages:
   not-enough-money: "§cYou don't have enough money"

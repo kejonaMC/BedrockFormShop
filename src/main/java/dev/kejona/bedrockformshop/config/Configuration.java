@@ -1,5 +1,6 @@
 package dev.kejona.bedrockformshop.config;
 
+import dev.kejona.bedrockformshop.logger.Logger;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -21,6 +22,7 @@ public class Configuration {
      * Load config or create.
      */
     public void createFiles(Plugin plugin) {
+        Logger logger = Logger.getLogger();
         File configFile = new File(plugin.getDataFolder(), "config.yml");
 
         if (!configFile.exists()) {
@@ -31,7 +33,11 @@ public class Configuration {
         try {
             config.load(configFile);
         } catch (IOException | InvalidConfigurationException e) {
-            e.printStackTrace();
+            logger.severe("Could not load config.yml" + e.getMessage());
+        }
+        // Check if the config is up-to-date.
+        if (config.getInt("version") > 1 ) {
+            logger.warn("Your config is outdated. Please update it.");
         }
     }
 
