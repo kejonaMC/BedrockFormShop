@@ -4,6 +4,7 @@ import dev.kejona.bedrockformshop.BedrockFormShop;
 import dev.kejona.bedrockformshop.config.Configuration;
 import dev.kejona.bedrockformshop.logger.Logger;
 import dev.kejona.bedrockformshop.utils.Placeholders;
+import dev.kejona.bedrockformshop.utils.ShopData;
 import dev.kejona.bedrockformshop.utils.ShopType;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
@@ -12,12 +13,11 @@ import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.UUID;
+import java.io.IOException;
+import java.util.*;
 
 public class ItemHandler {
+    Logger logger = Logger.getLogger();
     public void buyItem(UUID uuid, String itemName, double price, int amount, ConfigurationSection SECTION, String shopType) {
         boolean isEnchantment = ShopType.ENCHANTMENT.name().equals(shopType);
         boolean isPotion = ShopType.POTION.name().equals(shopType);
@@ -83,10 +83,15 @@ public class ItemHandler {
         // Give item to player.
         itemStack.setAmount(amount);
         player.getInventory().addItem(itemStack);
+        try {
+            new ShopData(player.getName(), price, amount, itemName);
+        } catch (IOException e) {
+            logger.severe("Could not save shop data." + e.getMessage());
+        }
         player.sendMessage(Placeholders.set(Configuration.getMessages("item-bought"), itemName, price, amount));
     }
 
-    public void sellItem(UUID uuid, String ItemName, double price, int amount) {
+    public void sellItem(UUID uuid, String itemName, double price, int amount) {
         // Get Player Instance.
         Player player = BedrockFormShop.getInstance().getServer().getPlayer(uuid);
         // Get Item from form.
@@ -101,20 +106,25 @@ public class ItemHandler {
         ItemStack[] inv = list.toArray(new ItemStack[0]);
         for (ItemStack fullinventory : inv) {
             if (fullinventory == null) {
-                player.sendMessage(Placeholders.set(Configuration.getMessages("no-items"), ItemName));
+                player.sendMessage(Placeholders.set(Configuration.getMessages("no-items"), itemName));
                 return;
             }
             // Get item from itemname and has the correct amount of items.
-            if (fullinventory.getType() == Material.valueOf(ItemName) && fullinventory.getAmount() >= amount) {
+            if (fullinventory.getType() == Material.valueOf(itemName) && fullinventory.getAmount() >= amount) {
                 // Withdraw money from player
                 VaultAPI.eco().depositBalance(player, price * amount);
                 // Remove item from player.
                 fullinventory.setAmount(fullinventory.getAmount() - amount);
-                player.sendMessage(Placeholders.set(Configuration.getMessages("item-sold"), ItemName, price, amount));
+                try {
+                    new ShopData(player.getName(), price, amount, itemName);
+                } catch (IOException e) {
+                    logger.severe("Could not save shop data." + e.getMessage());
+                }
+                player.sendMessage(Placeholders.set(Configuration.getMessages("item-sold"), itemName, price, amount));
                 return;
                 // Player does not have the right amount of items.
-            } else if (fullinventory.getType() == Material.valueOf(ItemName) && fullinventory.getAmount() < amount) {
-                player.sendMessage(Placeholders.set(Configuration.getMessages("not-enough-items"), ItemName));
+            } else if (fullinventory.getType() == Material.valueOf(itemName) && fullinventory.getAmount() < amount) {
+                player.sendMessage(Placeholders.set(Configuration.getMessages("not-enough-items"), itemName));
                 return;
             }
         }

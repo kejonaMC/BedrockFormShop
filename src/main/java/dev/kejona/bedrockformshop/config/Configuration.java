@@ -1,10 +1,10 @@
 package dev.kejona.bedrockformshop.config;
 
-import dev.kejona.bedrockformshop.BedrockFormShop;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.plugin.Plugin;
 
 import java.io.File;
 import java.io.IOException;
@@ -12,8 +12,28 @@ import java.util.Objects;
 import java.util.Set;
 
 public class Configuration {
+    private static FileConfiguration config;
 
-    public static FileConfiguration config = BedrockFormShop.getInstance().getConfig();
+    public Configuration(Plugin plugin) {
+        createFiles(plugin);
+    }
+    /**
+     * Load config or create.
+     */
+    public void createFiles(Plugin plugin) {
+        File configFile = new File(plugin.getDataFolder(), "config.yml");
+
+        if (!configFile.exists()) {
+            configFile.getParentFile().mkdirs();
+            plugin.saveResource("config.yml", false);
+        }
+        config = new YamlConfiguration();
+        try {
+            config.load(configFile);
+        } catch (IOException | InvalidConfigurationException e) {
+            e.printStackTrace();
+        }
+    }
 
     public static String getMessages(String message) {
         return config.getString("messages." + message);

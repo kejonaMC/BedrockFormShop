@@ -1,6 +1,3 @@
-# do not change version number!
-version: 1
-
 # Messages. placeholders: %item%, %amount%, %price%, %command%
 messages:
   not-enough-money: "§cYou don't have enough money"
