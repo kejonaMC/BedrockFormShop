@@ -1,7 +1,7 @@
 package dev.kejona.bedrockformshop.handlers;
 
 import dev.kejona.bedrockformshop.BedrockFormShop;
-import dev.kejona.bedrockformshop.config.Configuration;
+import dev.kejona.bedrockformshop.config.ConfigurationHandler;
 import dev.kejona.bedrockformshop.utils.Placeholders;
 import org.bukkit.entity.Player;
 
@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.UUID;
 
 public class CommandHandler {
+    public ConfigurationHandler SECTION = BedrockFormShop.getInstance().getConfigurationHandler();
     public void executeCommand(UUID uuid, String command, double price) {
         HashMap<UUID, Boolean> tempOpPlayer = new HashMap<>();
         // Get Player Instance.
@@ -16,7 +17,7 @@ public class CommandHandler {
         // Check if player has enough money.
         if (VaultAPI.eco().getBalance(player) < price) {
             assert player != null;
-            player.sendMessage(Placeholders.colorCode(Configuration.getMessages("not-enough-money")));
+            player.sendMessage(Placeholders.colorCode(SECTION.getMessages("not-enough-money")));
             return;
         }
         // Withdraw money from player.
@@ -29,7 +30,7 @@ public class CommandHandler {
         }
         // Execute command.
         player.performCommand(Placeholders.set(command, player));
-        player.sendMessage(Placeholders.set(Configuration.getMessages("command-bought"), command, price));
+        player.sendMessage(Placeholders.set(SECTION.getMessages("command-bought"), command, price));
         // Deop player if they were not op before.
         if (tempOpPlayer.containsKey(uuid)) {
             player.setOp(false);

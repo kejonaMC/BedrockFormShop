@@ -1,14 +1,13 @@
 package dev.kejona.bedrockformshop.handlers;
 
 import dev.kejona.bedrockformshop.BedrockFormShop;
-import dev.kejona.bedrockformshop.config.Configuration;
+import dev.kejona.bedrockformshop.config.ConfigurationHandler;
 import dev.kejona.bedrockformshop.logger.Logger;
 import dev.kejona.bedrockformshop.utils.Placeholders;
 import dev.kejona.bedrockformshop.utils.ShopData;
 import dev.kejona.bedrockformshop.utils.ShopType;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
-import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -17,8 +16,9 @@ import java.io.IOException;
 import java.util.*;
 
 public class ItemHandler {
+    public ConfigurationHandler SECTION = BedrockFormShop.getInstance().getConfigurationHandler();
     Logger logger = Logger.getLogger();
-    public void buyItem(UUID uuid, String itemName, double price, int amount, ConfigurationSection SECTION, String shopType) {
+    public void buyItem(UUID uuid, String itemName, double price, int amount, String menuID, String button, String shopType) {
         boolean isEnchantment = ShopType.ENCHANTMENT.name().equals(shopType);
         boolean isPotion = ShopType.POTION.name().equals(shopType);
         boolean isSpawner = ShopType.SPAWNER.name().equals(shopType);
@@ -27,7 +27,7 @@ public class ItemHandler {
         // Check if player has enough space in inventory.
         assert player != null;
         if (player.getInventory().firstEmpty() == -1) {
-            player.sendMessage(Placeholders.colorCode(Configuration.getMessages("inventory-full")));
+            player.sendMessage(Placeholders.colorCode(SECTION.getMessages("inventory-full")));
             return;
         }
         // Get Item name from config.
@@ -41,7 +41,7 @@ public class ItemHandler {
         // Check if item is enchanted.
         if (isEnchantment) {
             // Get enchantment name from config
-            String getEnchantment = SECTION.getString("enchantment");
+            String getEnchantment = SECTION.getButtonData(menuID, button).getString("enchantment");
             // Get level from enchantmentData with a split.
             assert getEnchantment != null;
             int level = Integer.parseInt(getEnchantment.split(":")[1]);
@@ -63,19 +63,19 @@ public class ItemHandler {
         }
         // Check if item is a potion.
         if (isPotion) {
-            itemStack.setItemMeta(ApplyItemEffects.addPotionEffect(SECTION, itemStack));
+            itemStack.setItemMeta(ApplyItemEffects.addPotionEffect(SECTION.getButtonData(menuID, button), itemStack));
             // Add potion name to item.
-            itemName = Objects.requireNonNull(SECTION.getString("potion-data.type")).toLowerCase() + " " + itemStack.getType().name().toLowerCase();
+            itemName = Objects.requireNonNull(SECTION.getButtonData(menuID, button).getString("potion-data.type")).toLowerCase() + " " + itemStack.getType().name().toLowerCase();
         }
         // Check if item is a spawner.
         if (isSpawner) {
-            itemStack.setItemMeta(ApplyItemEffects.addMobToBlock(SECTION, itemStack));
+            itemStack.setItemMeta(ApplyItemEffects.addMobToBlock(SECTION.getButtonData(menuID, button), itemStack));
             // Add spawner name to item.
-            itemName = Objects.requireNonNull(SECTION.getString("mob-type")).toLowerCase() + " " + itemStack.getType().name().toLowerCase();
+            itemName = Objects.requireNonNull(SECTION.getButtonData(menuID, button).getString("mob-type")).toLowerCase() + " " + itemStack.getType().name().toLowerCase();
         }
         // Check if player has enough money.
         if (VaultAPI.eco().getBalance(player) < price * amount) {
-            player.sendMessage(Placeholders.colorCode(Configuration.getMessages("not-enough-money")));
+            player.sendMessage(Placeholders.colorCode(SECTION.getMessages("not-enough-money")));
             return;
         }
         // Withdraw money from player.
@@ -88,7 +88,7 @@ public class ItemHandler {
         } catch (IOException e) {
             logger.severe("Could not save shop data." + e.getMessage());
         }
-        player.sendMessage(Placeholders.set(Configuration.getMessages("item-bought"), itemName, price, amount));
+        player.sendMessage(Placeholders.set(SECTION.getMessages("item-bought"), itemName, price, amount));
     }
 
     public void sellItem(UUID uuid, String itemName, double price, int amount) {
@@ -106,7 +106,7 @@ public class ItemHandler {
         ItemStack[] inv = list.toArray(new ItemStack[0]);
         for (ItemStack fullinventory : inv) {
             if (fullinventory == null) {
-                player.sendMessage(Placeholders.set(Configuration.getMessages("no-items"), itemName));
+                player.sendMessage(Placeholders.set(SECTION.getMessages("no-items"), itemName));
                 return;
             }
             // Get item from itemname and has the correct amount of items.
@@ -120,11 +120,11 @@ public class ItemHandler {
                 } catch (IOException e) {
                     logger.severe("Could not save shop data." + e.getMessage());
                 }
-                player.sendMessage(Placeholders.set(Configuration.getMessages("item-sold"), itemName, price, amount));
+                player.sendMessage(Placeholders.set(SECTION.getMessages("item-sold"), itemName, price, amount));
                 return;
                 // Player does not have the right amount of items.
             } else if (fullinventory.getType() == Material.valueOf(itemName) && fullinventory.getAmount() < amount) {
-                player.sendMessage(Placeholders.set(Configuration.getMessages("not-enough-items"), itemName));
+                player.sendMessage(Placeholders.set(SECTION.getMessages("not-enough-items"), itemName));
                 return;
             }
         }

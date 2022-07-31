@@ -1,8 +1,8 @@
 package dev.kejona.bedrockformshop.forms;
 
-import dev.kejona.bedrockformshop.config.Configuration;
+import dev.kejona.bedrockformshop.BedrockFormShop;
+import dev.kejona.bedrockformshop.config.ConfigurationHandler;
 import dev.kejona.bedrockformshop.utils.Permission;
-import org.bukkit.configuration.ConfigurationSection;
 import org.geysermc.cumulus.form.SimpleForm;
 import org.geysermc.cumulus.util.FormImage;
 import org.geysermc.floodgate.api.FloodgateApi;
@@ -10,23 +10,21 @@ import org.geysermc.floodgate.api.FloodgateApi;
 import java.util.*;
 
 public class ShopsForm {
-    public ConfigurationSection SECTION;
+    public ConfigurationHandler SECTION = BedrockFormShop.getInstance().getConfigurationHandler();
     // A form with shop categories as buttons.
     public void sendShopsForm(UUID uuid) {
-        SECTION = Configuration.getMenuData("menu");
         // Form Builder
         SimpleForm.Builder form = SimpleForm.builder()
-        .title(Objects.requireNonNull(SECTION.getString("title")))
-        .content(Objects.requireNonNull(SECTION.getString("content")));
+        .title(Objects.requireNonNull(SECTION.getMenuData("menu").getString("title")))
+        .content(Objects.requireNonNull(SECTION.getMenuData("menu").getString("content")));
         // Get all Buttons in config.
-        List<String> buttons = new ArrayList<>(Configuration.getButtons("menu"));
+        List<String> buttons = new ArrayList<>(SECTION.getButtons("menu"));
         List<String> noPermButtons = new ArrayList<>();
 
         for (String button : buttons) {
-            SECTION = Configuration.getButtonData("menu", button);
             // Check if player has permission to this button. if not button will not be generated.
-            if (Permission.valueOf(SECTION.getString("permission")).checkPermission(uuid)) {
-                String imageLocation = SECTION.getString("image");
+            if (Permission.valueOf(SECTION.getButtonData("menu", button).getString("permission")).checkPermission(uuid)) {
+                String imageLocation = SECTION.getButtonData("menu", button).getString("image");
                 // Check if image is url or path.
 
                 assert imageLocation != null;

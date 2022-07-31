@@ -1,6 +1,7 @@
 package dev.kejona.bedrockformshop.utils;
 
-import dev.kejona.bedrockformshop.config.Configuration;
+import dev.kejona.bedrockformshop.BedrockFormShop;
+import dev.kejona.bedrockformshop.config.ConfigurationHandler;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.Contract;
@@ -9,7 +10,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Locale;
 
 public class Placeholders {
-
+    public static ConfigurationHandler SECTION = BedrockFormShop.getInstance().getConfigurationHandler();
     public static @NotNull String set(String text, String item) {
         String finalText = colorCode(text);
         finalText = finalText.replace("%item%", item)
@@ -61,7 +62,7 @@ public class Placeholders {
         String sellValue = String.valueOf(sellPrice);
         // If price is 0 then item is not sell-able.
         if (sellPrice == 0.0) {
-            sellValue = Configuration.getMessages("no-sell-price");
+            sellValue = SECTION.getMessages("no-sell-price");
         }
 
         assert sellValue != null;
