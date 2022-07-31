@@ -12,6 +12,7 @@ import org.bukkit.inventory.meta.EnchantmentStorageMeta;
 import org.bukkit.inventory.meta.PotionMeta;
 import org.bukkit.potion.PotionData;
 import org.bukkit.potion.PotionType;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Objects;
 
@@ -23,7 +24,7 @@ public class ApplyItemEffects {
      * @param itemstack the item to add the enchantment to
      * @return returns enchantment meta to add to item
      */
-    public static EnchantmentStorageMeta addEnchantmentToBook(Enchantment enchantment, int level, ItemStack itemstack) {
+    public static @NotNull EnchantmentStorageMeta addEnchantmentToBook(Enchantment enchantment, int level, @NotNull ItemStack itemstack) {
         // Enchantments on Enchanted books needs to be in its item meta.
         EnchantmentStorageMeta meta = (EnchantmentStorageMeta) itemstack.getItemMeta();
         assert meta != null;
@@ -38,7 +39,7 @@ public class ApplyItemEffects {
      * @param itemstack the item to add the enchantment to
      * @return returns potion meta to add to item
      */
-    public static PotionMeta addPotionEffect(ConfigurationSection SECTION, ItemStack itemstack) {
+    public static PotionMeta addPotionEffect(@NotNull ConfigurationSection SECTION, ItemStack itemstack) {
         // Check if potion is a splash potion.
         boolean isSplash = SECTION.getBoolean("potion-data.splash");
         // Get and set potion type.
@@ -67,7 +68,7 @@ public class ApplyItemEffects {
      * @param itemstack the item to add the mob type to
      * @return returns spawner with set type and blockstate
      */
-    public static BlockStateMeta addMobToBlock (ConfigurationSection SECTION, ItemStack itemstack) {
+    public static @NotNull BlockStateMeta addMobToBlock (@NotNull ConfigurationSection SECTION, @NotNull ItemStack itemstack) {
         // Get meta from block.
         BlockStateMeta bsm = (BlockStateMeta) itemstack.getItemMeta();
         // Set mob type.
