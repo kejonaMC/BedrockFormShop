@@ -3,6 +3,7 @@ package dev.kejona.bedrockformshop;
 import dev.kejona.bedrockformshop.commands.ShopCommand;
 import dev.kejona.bedrockformshop.config.ConfigurationHandler;
 import dev.kejona.bedrockformshop.handlers.VaultAPI;
+import dev.kejona.bedrockformshop.listeners.CommandInterceptor;
 import dev.kejona.bedrockformshop.listeners.PlacedSpawner;
 import dev.kejona.bedrockformshop.logger.JavaUtilLogger;
 import dev.kejona.bedrockformshop.logger.Logger;
@@ -37,6 +38,12 @@ public final class BedrockFormShop extends JavaPlugin {
         Objects.requireNonNull(this.getCommand("shop")).setExecutor(new ShopCommand());
         // Register event for Spawners block-state update.
         getServer().getPluginManager().registerEvents(new PlacedSpawner(), this);
+
+        if (getConfig().getBoolean("command-override")) {
+            logger.info("Command override enabled. /shop command will be overridden by BedrockFormShop.");
+            getServer().getPluginManager().registerEvents(new CommandInterceptor(), this);
+        }
+
         logger.info("BedrockFormShop enabled!");
     }
 

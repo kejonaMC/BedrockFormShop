@@ -5,6 +5,8 @@ import dev.kejona.bedrockformshop.logger.Logger;
 import net.milkbowl.vault.economy.Economy;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.RegisteredServiceProvider;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
 
 public class VaultAPI {
 
@@ -40,7 +42,8 @@ public class VaultAPI {
         this.economy.depositPlayer(player, amount);
     }
     // Instance
-    public static VaultAPI eco() {
+    @Contract(" -> new")
+    public static @NotNull VaultAPI eco() {
         return new VaultAPI();
     }
 
