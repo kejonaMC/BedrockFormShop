@@ -40,7 +40,6 @@ public class ItemHandler {
         String type = SECTION.getButtonData(menuID, button).getString("type");
         switch (ShopType.valueOf(type)) {
 
-
             case SPAWNER -> {
                 itemStack.setItemMeta(ApplyItemEffects.addMobToBlock(SECTION.getButtonData(menuID, button), itemStack));
                 // Add spawner name to item.
