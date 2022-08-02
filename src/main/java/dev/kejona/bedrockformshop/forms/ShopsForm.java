@@ -31,7 +31,7 @@ public class ShopsForm {
                 if (imageLocation.startsWith("http")) {
                     form.button(button, FormImage.Type.URL, imageLocation);
                 }
-                // If location is kejona we use the images from our github repo
+                // If location is kejona we use the images from our GitHub repo
                 if (imageLocation.startsWith("default")) {
                     // Image is path.
                     form.button(button, FormImage.Type.URL, "https://raw.githubusercontent.com/Jens-Co/MinecraftItemImages/main/" + imageLocation.replace("default/", ""));
@@ -44,12 +44,6 @@ public class ShopsForm {
         }
         // Remove buttons that player does not have access to.
         buttons.removeAll(noPermButtons);
-
-        // Handle buttons responses.
-        form.closedOrInvalidResultHandler(response -> {
-            response.isClosed();
-            response.isInvalid();
-        });
 
         form.validResultHandler(response -> {
             // Send itemlist to player.

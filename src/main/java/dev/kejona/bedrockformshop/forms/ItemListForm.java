@@ -50,25 +50,28 @@ public class ItemListForm {
         }
         // response is valid
         form.validResultHandler(response -> {
+
             String clickedButton = buttons.get(response.clickedButtonId());
-            String shopType = SECTION.getButtonData(menuID, clickedButton).getString("type");
+            String type = SECTION.getButtonData(menuID, clickedButton).getString("type");
+            assert type != null;
+
             TransactionForm transaction = new TransactionForm();
             // Loop all shop types and check if the clicked button is of that type.
-            for (ShopType type : ShopType.values()) {
-                if (type.name().equals(shopType)) {
-                    // Check shop types
-                    if (ShopType.ITEM == type || ShopType.ENCHANTMENT == type || ShopType.POTION == type || ShopType.SPAWNER == type) {
-                        // Get item name from config.
-                        String itemStackName = SECTION.getButtonData(menuID, clickedButton).getString("item");
-                        transaction.sendTransactionForm(uuid, itemStackName, clickedButton, menuID, shopType);
-                    }
-                    if (ShopType.COMMAND == type) {
-                        String command = SECTION.getButtonData(menuID, clickedButton).getString("command");
-                        transaction.sendTransactionForm(uuid, command, clickedButton, menuID, shopType);
-                    }
+
+            // Check shop type
+            switch (ShopType.valueOf(type)) {
+                case ITEM, ENCHANTMENT, POTION, SPAWNER -> {
+                    String itemStackName = SECTION.getButtonData(menuID, clickedButton).getString("item");
+                    transaction.sendTransactionForm(uuid, itemStackName, clickedButton, menuID, type, false);
+                }
+                case COMMAND -> {
+                    String command = SECTION.getButtonData(menuID, clickedButton).getString("command");
+                    transaction.sendTransactionForm(uuid, command, clickedButton, menuID, type, true);
                 }
             }
+
         });
+
         // Build form and send to player.
         FloodgateApi.getInstance().sendForm(uuid, form.build());
     }

@@ -5,7 +5,6 @@ import dev.kejona.bedrockformshop.config.ConfigurationHandler;
 import dev.kejona.bedrockformshop.logger.Logger;
 import dev.kejona.bedrockformshop.utils.Placeholders;
 import dev.kejona.bedrockformshop.utils.ShopData;
-import dev.kejona.bedrockformshop.utils.ShopType;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.enchantments.Enchantment;
@@ -19,9 +18,9 @@ public class ItemHandler {
     public ConfigurationHandler SECTION = BedrockFormShop.getInstance().getConfigurationHandler();
     Logger logger = Logger.getLogger();
     public void buyItem(UUID uuid, String itemName, double price, int amount, String menuID, String button, String shopType) {
-        boolean isEnchantment = ShopType.ENCHANTMENT.name().equals(shopType);
-        boolean isPotion = ShopType.POTION.name().equals(shopType);
-        boolean isSpawner = ShopType.SPAWNER.name().equals(shopType);
+        boolean isEnchantment = shopType.equals("ENCHANTMENT");
+        boolean isPotion = shopType.equals("POTION");
+        boolean isSpawner = shopType.equals("SPAWNER");
         // Get Player Instance.
         Player player = BedrockFormShop.getInstance().getServer().getPlayer(uuid);
         // Check if player has enough space in inventory.
