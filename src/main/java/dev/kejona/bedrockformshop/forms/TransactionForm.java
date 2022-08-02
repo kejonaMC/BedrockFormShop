@@ -15,7 +15,7 @@ import java.util.*;
 public class TransactionForm {
     public ConfigurationHandler SECTION = BedrockFormShop.getInstance().getConfigurationHandler();
     // A form with item price and amount / command to buy or sell.
-    public void sendTransactionForm(UUID uuid, String object, String clickedButton, String menuID, String shopType, boolean isCommand) {
+    public void sendTransactionForm(UUID uuid, String object, String clickedButton, String menuID, boolean isCommand) {
         // Item Prices.
         double buyPrice = SECTION.getButtonData(menuID, clickedButton).getDouble("buy-price");
         double sellPrice = SECTION.getButtonData(menuID, clickedButton).getDouble("sell-price");
@@ -49,7 +49,7 @@ public class TransactionForm {
                     itemHandler.sellItem(uuid, object, sellPrice, getAmount);
                 } else {
                     // It's a normal item to buy
-                    itemHandler.buyItem(uuid, object, buyPrice, getAmount, menuID, clickedButton, shopType);
+                    itemHandler.buyItem(uuid, object, buyPrice, getAmount, menuID, clickedButton);
                 }
             }
             // If shopType is command inputs do not exist.

@@ -11,7 +11,7 @@ messages:
   no-items: "§cYou don't have any %item% to sell"
   item-bought: "§2You bought %amount% %item% for $%price%"
   item-sold: "§2You sold %amount% %item% for $%price%"
-  command-bought: "§2You bought command:%command% for $%price%"
+  command-bought: "§2You bought command %command% for $%price%"
   reload-config: "§2Config is reloaded!"
 
 form:
@@ -1269,7 +1269,7 @@ form:
       spawn:
         permission: PLAYER
         label: "You can buy the spawn command for $%buyprice% \nthe command will take you back to spawn"
-        image: "https://i.imgur.com/XqQZQZq.png"
+        image: "https://www.askideas.com/wp-content/uploads/2016/11/Funny-Animal-Dog-Face-Picure.jpg"
         type: COMMAND
         command: "spawn"
         buy-price: 0.0

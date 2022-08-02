@@ -2,6 +2,7 @@ package dev.kejona.bedrockformshop.forms;
 
 import dev.kejona.bedrockformshop.BedrockFormShop;
 import dev.kejona.bedrockformshop.config.ConfigurationHandler;
+import dev.kejona.bedrockformshop.logger.Logger;
 import dev.kejona.bedrockformshop.utils.ShopType;
 import dev.kejona.bedrockformshop.utils.Permission;
 import dev.kejona.bedrockformshop.utils.Placeholders;
@@ -13,6 +14,7 @@ import java.util.*;
 
 public class ItemListForm {
     public ConfigurationHandler SECTION = BedrockFormShop.getInstance().getConfigurationHandler();
+    Logger logger = Logger.getLogger();
     // A form with all shop items as buttons.
     public void sendItemListForm(UUID uuid, String menuID) {
         SECTION.getMenuData(menuID);
@@ -50,24 +52,23 @@ public class ItemListForm {
         }
         // response is valid
         form.validResultHandler(response -> {
-
             String clickedButton = buttons.get(response.clickedButtonId());
-            String type = SECTION.getButtonData(menuID, clickedButton).getString("type");
-            assert type != null;
 
             TransactionForm transaction = new TransactionForm();
-            // Loop all shop types and check if the clicked button is of that type.
-
             // Check shop type
-            switch (ShopType.valueOf(type)) {
+            switch (ShopType.valueOf(SECTION.getButtonData(menuID, clickedButton).getString("type"))) {
+
                 case ITEM, ENCHANTMENT, POTION, SPAWNER -> {
                     String itemStackName = SECTION.getButtonData(menuID, clickedButton).getString("item");
-                    transaction.sendTransactionForm(uuid, itemStackName, clickedButton, menuID, type, false);
+                    transaction.sendTransactionForm(uuid, itemStackName, clickedButton, menuID, false);
                 }
+
                 case COMMAND -> {
                     String command = SECTION.getButtonData(menuID, clickedButton).getString("command");
-                    transaction.sendTransactionForm(uuid, command, clickedButton, menuID, type, true);
+                    transaction.sendTransactionForm(uuid, command, clickedButton, menuID, true);
                 }
+                // default gets triggered if no type is set or not matched.
+                default -> logger.severe("ShopType: " + ShopType.valueOf(SECTION.getButtonData(menuID, clickedButton).getString("type")) + " is not a valid type!");
             }
         });
 
