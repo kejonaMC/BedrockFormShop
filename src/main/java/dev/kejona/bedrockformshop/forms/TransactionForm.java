@@ -57,7 +57,6 @@ public class TransactionForm {
                 CommandHandler commandHandler = new CommandHandler();
                 commandHandler.executeCommand(uuid, object, buyPrice);
             }
-
         });
 
         // Build form and send to player.

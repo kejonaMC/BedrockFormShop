@@ -69,7 +69,6 @@ public class ItemListForm {
                     transaction.sendTransactionForm(uuid, command, clickedButton, menuID, type, true);
                 }
             }
-
         });
 
         // Build form and send to player.
