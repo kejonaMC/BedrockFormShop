@@ -18,8 +18,8 @@ import java.util.*;
 public class ItemHandler {
     public ConfigurationHandler SECTION = BedrockFormShop.getInstance().getConfigurationHandler();
     Logger logger = Logger.getLogger();
-    public void buyItem(UUID uuid, String itemName, double price, int amount, String menuID, String button) {
 
+    public void buyItem(UUID uuid, String itemName, double price, int amount, String menuID, String button) {
         // Get Player Instance.
         Player player = BedrockFormShop.getInstance().getServer().getPlayer(uuid);
         // Check if player has enough space in inventory.
@@ -85,11 +85,13 @@ public class ItemHandler {
         // Give item to player.
         itemStack.setAmount(amount);
         player.getInventory().addItem(itemStack);
+
         try {
             new ShopData(player.getName(), price, amount, itemName);
         } catch (IOException e) {
             logger.severe("Could not save shop data." + e.getMessage());
         }
+
         player.sendMessage(Placeholders.set(SECTION.getMessages("item-bought"), itemName, price, amount));
     }
 

@@ -14,6 +14,7 @@ import java.util.*;
 
 public class TransactionForm {
     public ConfigurationHandler SECTION = BedrockFormShop.getInstance().getConfigurationHandler();
+
     // A form with item price and amount / command to buy or sell.
     public void sendTransactionForm(UUID uuid, String object, String clickedButton, String menuID, boolean isCommand) {
         // Item Prices.
@@ -25,11 +26,11 @@ public class TransactionForm {
         // Check if config block is an item or command.
         if (!isCommand) {
                 form.toggle(Placeholders.colorCode(SECTION.getMenuData("buy-sell").getString("buy-or-sell")), false);
-                form.slider(Placeholders.colorCode(SECTION.getMenuData("buy-sell").getString("slider")), 0, 100);
+                form.slider(Placeholders.colorCode(SECTION.getMenuData("buy-sell").getString("slider")), 1, 64);
                 form.label(Placeholders.set(SECTION.getMenuData("buy-sell").getString("label"), buyPrice, sellPrice));
             }
             else {
-                form.label(Placeholders.set(SECTION.getMenuData("buy-sell").getString("label"), buyPrice, sellPrice));
+                form.label(Placeholders.set(SECTION.getButtonData(menuID, clickedButton).getString("label"), buyPrice, sellPrice));
         }
 
         form.validResultHandler(response -> {

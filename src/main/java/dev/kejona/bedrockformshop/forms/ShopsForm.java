@@ -11,6 +11,7 @@ import java.util.*;
 
 public class ShopsForm {
     public ConfigurationHandler SECTION = BedrockFormShop.getInstance().getConfigurationHandler();
+
     // A form with shop categories as buttons.
     public void sendShopsForm(UUID uuid) {
         // Form Builder
@@ -31,7 +32,7 @@ public class ShopsForm {
                 if (imageLocation.startsWith("http")) {
                     form.button(button, FormImage.Type.URL, imageLocation);
                 }
-                // If location is kejona we use the images from our GitHub repo
+                // If location is default we use the images from our GitHub repo
                 if (imageLocation.startsWith("default")) {
                     // Image is path.
                     form.button(button, FormImage.Type.URL, "https://raw.githubusercontent.com/Jens-Co/MinecraftItemImages/main/" + imageLocation.replace("default/", ""));

@@ -12,6 +12,7 @@ import java.util.Locale;
 public class Placeholders {
     public static ConfigurationHandler SECTION = BedrockFormShop.getInstance().getConfigurationHandler();
     public static @NotNull String set(String text, String item) {
+
         String finalText = colorCode(text);
         finalText = finalText.replace("%item%", item)
                 .replace("_", " ")
@@ -20,6 +21,7 @@ public class Placeholders {
     }
 
     public static @NotNull String set(String text, String item, double price, int amount) {
+
         String finalText = colorCode(text);
         finalText = finalText.replace("%item%", item)
                 .replace("%amount%", String.valueOf(amount))
@@ -30,6 +32,7 @@ public class Placeholders {
     }
 
     public static @NotNull String set(String text, String command, double price) {
+
         String finalText = colorCode(text);
         finalText = finalText.replace("%price%", String.valueOf(price)
                 .replace("%command%", command)
@@ -38,15 +41,17 @@ public class Placeholders {
     }
 
     public static @NotNull String set(String text, double buyPrice, double sellPrice) {
+
         String finalText = colorCode(text);
-        finalText = finalText.replace("%buyprice%", String.valueOf(buyPrice))
-                .replace("%sellprice%", noPrice(sellPrice))
+        finalText = finalText.replace("%buyprice%", noBuyPrice(buyPrice))
+                .replace("%sellprice%", noSellPrice(sellPrice))
                 .replace("_", " ")
                 .toLowerCase(Locale.ROOT);
         return finalText;
     }
 
     public static @NotNull String set(String text, @NotNull Player player) {
+
         String finalText = colorCode(text);
         finalText = finalText.replace("%playername%", player.getDisplayName())
                 .toLowerCase(Locale.ROOT);
@@ -55,10 +60,12 @@ public class Placeholders {
 
     @Contract("_ -> new")
     public static @NotNull String colorCode(String text) {
+
         return ChatColor.translateAlternateColorCodes('&', text);
     }
 
-    public static @NotNull String noPrice(double sellPrice) {
+    public static @NotNull String noSellPrice(double sellPrice) {
+
         String sellValue = String.valueOf(sellPrice);
         // If price is 0 then item is not sell-able.
         if (sellPrice == 0.0) {
@@ -67,5 +74,17 @@ public class Placeholders {
 
         assert sellValue != null;
         return sellValue;
+    }
+
+    public static @NotNull String noBuyPrice(double buyPrice) {
+
+        String buyValue = String.valueOf(buyPrice);
+        // If price is 0 then item is not sell-able.
+        if (buyPrice == 0.0) {
+            buyValue = SECTION.getMessages("no-buy-price");
+        }
+
+        assert buyValue != null;
+        return buyValue;
     }
 }

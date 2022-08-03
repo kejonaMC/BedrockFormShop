@@ -15,6 +15,7 @@ import java.util.*;
 public class ItemListForm {
     public ConfigurationHandler SECTION = BedrockFormShop.getInstance().getConfigurationHandler();
     Logger logger = Logger.getLogger();
+
     // A form with all shop items as buttons.
     public void sendItemListForm(UUID uuid, String menuID) {
         SECTION.getMenuData(menuID);
@@ -37,13 +38,13 @@ public class ItemListForm {
                     if (imageLocation.equalsIgnoreCase("default")) {
                         // Image is path.
                         assert getItemName != null;
-                        form.button(button, FormImage.Type.URL, "https://raw.githubusercontent.com/Jens-Co/MinecraftItemImages/main/" + getItemName.toLowerCase() + ".png");
+                        form.button(button.replace("_", " "), FormImage.Type.URL, "https://raw.githubusercontent.com/Jens-Co/MinecraftItemImages/main/" + getItemName.toLowerCase() + ".png");
                     } else if (imageLocation.startsWith("http")) {
                         // Image is url.
-                        form.button(button, FormImage.Type.URL, imageLocation);
+                        form.button(button.replace("_", " "), FormImage.Type.URL, imageLocation);
                     } else {
                         // Image is path.
-                        form.button(button, FormImage.Type.PATH, imageLocation);
+                        form.button(button.replace("_", " "), FormImage.Type.PATH, imageLocation);
                     }
                 }
             } else {
