@@ -33,7 +33,6 @@ public class ItemListForm {
             if (Permission.valueOf(SECTION.getButtonData(menuID, button).getString("permission")).checkPermission(uuid)) {
                 String imageLocation = SECTION.getButtonData(menuID, button).getString("image");
                 String getItemName = SECTION.getButtonData(menuID, button).getString("item");
-
                 // set image to button.
                 FormImage image = ButtonImage.createFormImage(imageLocation, getItemName);
                 form.button(button.replace("_", " "), image);
