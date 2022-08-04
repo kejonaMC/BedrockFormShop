@@ -13,6 +13,7 @@ public class ShopData {
     private final int amount;
 
     public ShopData(String playername, double price, int amount, String item) throws IOException {
+
         this.folder = BedrockFormShop.getInstance().getDataFolder();
         this.playername = playername;
         this.price = price;
@@ -24,6 +25,7 @@ public class ShopData {
 
     //Write the transactions' data to the transactions.txt file.
     public void writeData () throws IOException {
+
         File transactionFile = new File(folder, "transactions.txt");
         FileWriter writeTransaction = new FileWriter(transactionFile, true);
         BufferedWriter bw = new BufferedWriter(writeTransaction);

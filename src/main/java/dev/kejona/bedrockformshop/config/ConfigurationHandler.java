@@ -21,16 +21,16 @@ public class ConfigurationHandler implements ConfigurationInterface {
 
     @Override
     public Set<String> getButtons(String menuID) {
-        return Objects.requireNonNull(config.getConfigurationSection("form." + menuID + ".buttons")).getKeys(false);
+        return Objects.requireNonNull(config.getConfigurationSection(menuID + ".buttons")).getKeys(false);
     }
 
     @Override
     public ConfigurationSection getButtonData(String menuID, String buttonID) {
-        return config.getConfigurationSection("form." + menuID + ".buttons." + buttonID);
+        return config.getConfigurationSection(menuID + ".buttons." + buttonID);
     }
 
     @Override
     public ConfigurationSection getMenuData(String menuID) {
-        return config.getConfigurationSection("form." + menuID);
+        return config.getConfigurationSection(menuID);
     }
 }

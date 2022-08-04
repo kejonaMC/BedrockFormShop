@@ -19,6 +19,7 @@ import java.util.Objects;
 public final class BedrockFormShop extends JavaPlugin {
     private static BedrockFormShop INSTANCE;
     private ConfigurationHandler configurationHandler;
+
     @Override
     public void onEnable() {
         INSTANCE = this;
@@ -58,7 +59,9 @@ public final class BedrockFormShop extends JavaPlugin {
             configFile.getParentFile().mkdirs();
             this.saveResource("config.yml", false);
         }
+
         FileConfiguration config = new YamlConfiguration();
+
         try {
             config.load(configFile);
         } catch (IOException | InvalidConfigurationException e) {
@@ -69,6 +72,7 @@ public final class BedrockFormShop extends JavaPlugin {
             logger.warn("Your config is outdated. Please update it.");
         }
     }
+
     public static BedrockFormShop getInstance() {
         return INSTANCE;
     }
