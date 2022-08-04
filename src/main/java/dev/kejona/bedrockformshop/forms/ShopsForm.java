@@ -2,6 +2,7 @@ package dev.kejona.bedrockformshop.forms;
 
 import dev.kejona.bedrockformshop.BedrockFormShop;
 import dev.kejona.bedrockformshop.config.ConfigurationHandler;
+import dev.kejona.bedrockformshop.utils.ButtonImage;
 import dev.kejona.bedrockformshop.utils.Permission;
 import org.geysermc.cumulus.form.SimpleForm;
 import org.geysermc.cumulus.util.FormImage;
@@ -26,19 +27,11 @@ public class ShopsForm {
             // Check if player has permission to this button. if not button will not be generated.
             if (Permission.valueOf(SECTION.getButtonData("menu", button).getString("permission")).checkPermission(uuid)) {
                 String imageLocation = SECTION.getButtonData("menu", button).getString("image");
-                // Check if image is url or path.
-
+                // set image to button.
                 assert imageLocation != null;
-                if (imageLocation.startsWith("http")) {
-                    form.button(button, FormImage.Type.URL, imageLocation);
-                }
-                // If location is default we use the images from our GitHub repo
-                if (imageLocation.startsWith("default")) {
-                    // Image is path.
-                    form.button(button, FormImage.Type.URL, "https://raw.githubusercontent.com/Jens-Co/MinecraftItemImages/main/" + imageLocation.replace("default/", ""));
-                } else {
-                    form.button(button, FormImage.Type.PATH, imageLocation);
-                }
+                FormImage image = ButtonImage.createFormImage(imageLocation, imageLocation);
+                form.button(button.replace("_", " "), image);
+
             } else {
                 noPermButtons.add(button);
             }

@@ -2,6 +2,7 @@ package dev.kejona.bedrockformshop.forms;
 
 import dev.kejona.bedrockformshop.BedrockFormShop;
 import dev.kejona.bedrockformshop.config.ConfigurationHandler;
+import dev.kejona.bedrockformshop.utils.ButtonImage;
 import dev.kejona.bedrockformshop.logger.Logger;
 import dev.kejona.bedrockformshop.utils.ShopType;
 import dev.kejona.bedrockformshop.utils.Permission;
@@ -32,21 +33,11 @@ public class ItemListForm {
             if (Permission.valueOf(SECTION.getButtonData(menuID, button).getString("permission")).checkPermission(uuid)) {
                 String imageLocation = SECTION.getButtonData(menuID, button).getString("image");
                 String getItemName = SECTION.getButtonData(menuID, button).getString("item");
-                // Check if image is url or path.
-                if (imageLocation != null) {
-                    // Image default will get images from our github repo.
-                    if (imageLocation.equalsIgnoreCase("default")) {
-                        // Image is path.
-                        assert getItemName != null;
-                        form.button(button.replace("_", " "), FormImage.Type.URL, "https://raw.githubusercontent.com/Jens-Co/MinecraftItemImages/main/" + getItemName.toLowerCase() + ".png");
-                    } else if (imageLocation.startsWith("http")) {
-                        // Image is url.
-                        form.button(button.replace("_", " "), FormImage.Type.URL, imageLocation);
-                    } else {
-                        // Image is path.
-                        form.button(button.replace("_", " "), FormImage.Type.PATH, imageLocation);
-                    }
-                }
+
+                // set image to button.
+                FormImage image = ButtonImage.createFormImage(imageLocation, getItemName);
+                form.button(button.replace("_", " "), image);
+
             } else {
                 buttons.removeAll(noPermButtons);
             }
