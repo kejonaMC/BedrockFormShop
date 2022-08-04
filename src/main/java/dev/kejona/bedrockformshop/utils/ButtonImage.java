@@ -14,7 +14,7 @@ public class ButtonImage {
             if (data.startsWith("default")) {
                 type = FormImage.Type.URL;
                 assert extraData != null;
-                return FormImage.of(type, "https://raw.githubusercontent.com/Jens-Co/MinecraftItemImages/main/" +  extraData.toLowerCase().replace("default/", ""));
+                return FormImage.of(type, "https://raw.githubusercontent.com/Jens-Co/MinecraftItemImages/main/" +  extraData.toLowerCase().replace("default/", "") + ".png");
             }
             if (data.startsWith("http")) {
                 type = FormImage.Type.URL;

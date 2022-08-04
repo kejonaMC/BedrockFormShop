@@ -25,40 +25,40 @@ menu:
   buttons:
     Ores:
       permission: PLAYER
-      image: "default/coal_ore.png"
+      image: "default/coal_ore"
     Items:
       permission: PLAYER
-      image: "default/bucket.png"
+      image: "default/bucket"
     Blocks:
       permission: PLAYER
-      image: "default/dirt.png"
+      image: "default/dirt"
     Food:
       permission: PLAYER
-      image: "default/apple.png"
+      image: "default/apple"
     Tools:
       permission: PLAYER
-      image: "default/diamond_pickaxe.png"
+      image: "default/diamond_pickaxe"
     Weapons:
       permission: PLAYER
-      image: "default/diamond_sword.png"
+      image: "default/diamond_sword"
     Armor:
       permission: PLAYER
-      image: "default/diamond_chestplate.png"
+      image: "default/diamond_chestplate"
     Enchantments:
       permission: PLAYER
-      image: "default/enchanted_book.png"
+      image: "default/enchanted_book"
     Potions:
       permission: PLAYER
-      image: "default/potion.png"
+      image: "default/potion"
     Spawners:
       permission: ADMIN
-      image: "default/chicken_spawn_egg.png"
+      image: "default/chicken_spawn_egg"
     Misc:
       permission: PLAYER
-      image: "default/dispenser.png"
+      image: "default/dispenser"
     Exit:
       permission: PLAYER
-      image: "default/barrier.png"
+      image: "default/barrier"
 
 #########################
 # Buy/Sell Menu         #
