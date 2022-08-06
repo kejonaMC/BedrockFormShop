@@ -16,7 +16,7 @@ import java.io.IOException;
 import java.util.*;
 
 public class ItemHandler {
-    public ConfigurationHandler SECTION = BedrockFormShop.getInstance().getConfigurationHandler();
+    private final ConfigurationHandler SECTION = BedrockFormShop.getInstance().getSECTION();
     Logger logger = Logger.getLogger();
 
     public void buyItem(UUID uuid, String itemName, double price, int amount, String menuID, String button) {

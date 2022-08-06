@@ -1,7 +1,12 @@
 # Do not change version!
 version: 1
 # If you already have a shop plugin that has /shop the command will be overridden by BedrockFormShop
-command-override: false
+command-override:
+  enable: false
+  commands:
+    - /shop
+    - /buy
+    - /sell
 # Messages. placeholders: %item%, %amount%, %price%, %command%
 messages:
   not-enough-money: "§cYou don't have enough money."

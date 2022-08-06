@@ -33,4 +33,14 @@ public class ConfigurationHandler implements ConfigurationInterface {
     public ConfigurationSection getMenuData(String menuID) {
         return config.getConfigurationSection(menuID);
     }
+
+    @Override
+    public ConfigurationSection getCommandOverrides() {
+        return config.getConfigurationSection("command-override");
+    }
+
+    @Override
+    public int getVersion() {
+        return config.getInt("version");
+    }
 }

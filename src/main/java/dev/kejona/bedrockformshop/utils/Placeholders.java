@@ -10,7 +10,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Locale;
 
 public class Placeholders {
-    public static ConfigurationHandler SECTION = BedrockFormShop.getInstance().getConfigurationHandler();
+    private static final ConfigurationHandler SECTION = BedrockFormShop.getInstance().getSECTION();
     public static @NotNull String set(String text, String item) {
 
         String finalText = colorCode(text);

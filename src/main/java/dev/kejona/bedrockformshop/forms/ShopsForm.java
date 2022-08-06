@@ -11,7 +11,7 @@ import org.geysermc.floodgate.api.FloodgateApi;
 import java.util.*;
 
 public class ShopsForm {
-    public ConfigurationHandler SECTION = BedrockFormShop.getInstance().getConfigurationHandler();
+    private final ConfigurationHandler SECTION = BedrockFormShop.getInstance().getSECTION();
 
     // A form with shop categories as buttons.
     public void sendShopsForm(UUID uuid) {

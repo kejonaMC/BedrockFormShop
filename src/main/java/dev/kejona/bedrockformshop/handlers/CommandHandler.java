@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.util.UUID;
 
 public class CommandHandler {
-    public ConfigurationHandler SECTION = BedrockFormShop.getInstance().getConfigurationHandler();
+    private final ConfigurationHandler SECTION = BedrockFormShop.getInstance().getSECTION();
     public void executeCommand(UUID uuid, String command, double price) {
         HashMap<UUID, Boolean> tempOpPlayer = new HashMap<>();
         // Get Player Instance.

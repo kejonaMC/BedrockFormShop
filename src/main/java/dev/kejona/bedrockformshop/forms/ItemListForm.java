@@ -14,7 +14,7 @@ import org.geysermc.floodgate.api.FloodgateApi;
 import java.util.*;
 
 public class ItemListForm {
-    public ConfigurationHandler SECTION = BedrockFormShop.getInstance().getConfigurationHandler();
+    private final ConfigurationHandler SECTION = BedrockFormShop.getInstance().getSECTION();
     Logger logger = Logger.getLogger();
 
     // A form with all shop items as buttons.

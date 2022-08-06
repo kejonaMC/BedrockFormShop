@@ -13,7 +13,7 @@ import org.geysermc.floodgate.api.FloodgateApi;
 import java.util.*;
 
 public class TransactionForm {
-    public ConfigurationHandler SECTION = BedrockFormShop.getInstance().getConfigurationHandler();
+    private final ConfigurationHandler SECTION = BedrockFormShop.getInstance().getSECTION();
 
     // A form with item price and amount / command to buy or sell.
     public void sendTransactionForm(UUID uuid, String object, String clickedButton, String menuID, boolean isCommand) {

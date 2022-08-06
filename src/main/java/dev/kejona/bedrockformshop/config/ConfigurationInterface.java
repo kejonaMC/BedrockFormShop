@@ -6,6 +6,8 @@ import java.util.Set;
 
 public interface ConfigurationInterface {
 
+    int getVersion();
+
     String getMessages(String message);
 
     Set<String> getButtons(String menuID);
@@ -13,4 +15,6 @@ public interface ConfigurationInterface {
     ConfigurationSection getButtonData(String menuID, String buttonID);
 
     ConfigurationSection getMenuData(String menuID);
+
+    ConfigurationSection getCommandOverrides();
 }
