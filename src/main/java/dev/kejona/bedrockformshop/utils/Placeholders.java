@@ -8,7 +8,6 @@ import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
 import java.math.BigDecimal;
-import java.util.Locale;
 
 public class Placeholders {
     private static final ConfigurationHandler SECTION = BedrockFormShop.getInstance().getSECTION();
