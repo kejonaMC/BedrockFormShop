@@ -1,7 +1,7 @@
 name: BedrockFormShop
 version: '${project.version}'
 main: dev.kejona.bedrockformshop.BedrockFormShop
-api-version: 1.19
+api-version: 1.15
 depend: [ floodgate, Vault ]
 authors: [ kejonaMC ]
 commands:

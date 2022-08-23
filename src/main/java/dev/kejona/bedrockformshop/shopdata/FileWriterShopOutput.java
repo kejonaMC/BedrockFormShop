@@ -4,16 +4,17 @@ import dev.kejona.bedrockformshop.BedrockFormShop;
 import org.bukkit.Material;
 
 import java.io.*;
+import java.math.BigDecimal;
 import java.util.Date;
 
 public class FileWriterShopOutput {
     private final File folder;
     private final Material item;
     private final String playername;
-    private final double price;
+    private final BigDecimal price;
     private final int amount;
 
-    public FileWriterShopOutput(String playername, double price, int amount, Material item) throws IOException {
+    public FileWriterShopOutput(String playername, BigDecimal price, int amount, Material item) throws IOException {
 
         this.folder = BedrockFormShop.getInstance().getDataFolder();
         this.playername = playername;

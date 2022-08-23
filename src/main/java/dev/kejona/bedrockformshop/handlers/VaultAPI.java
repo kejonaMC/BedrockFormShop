@@ -8,6 +8,8 @@ import org.bukkit.plugin.RegisteredServiceProvider;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
+import java.math.BigDecimal;
+
 public class VaultAPI {
 
     public Economy economy;
@@ -30,16 +32,16 @@ public class VaultAPI {
         return economy != null;
     }
     // Returns the balance of a player.
-    public double getBalance(Player player) {
-        return this.economy.getBalance(player);
+    public BigDecimal getBalance(Player player) {
+        return BigDecimal.valueOf(this.economy.getBalance(player));
     }
     // Withdraws money from a player.
-    public void withdrawBalance(Player player, double amount) {
-        this.economy.withdrawPlayer(player, amount);
+    public void withdrawBalance(Player player, BigDecimal amount) {
+        this.economy.withdrawPlayer(player, amount.doubleValue());
     }
     // Deposits money to a player.
-    public void depositBalance(Player player, double amount) {
-        this.economy.depositPlayer(player, amount);
+    public void depositBalance(Player player, BigDecimal amount) {
+        this.economy.depositPlayer(player, amount.doubleValue());
     }
     // Instance
     @Contract(" -> new")

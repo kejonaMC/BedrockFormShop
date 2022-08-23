@@ -7,6 +7,7 @@ import org.bukkit.entity.Player;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
+import java.math.BigDecimal;
 import java.util.Locale;
 
 public class Placeholders {
@@ -15,46 +16,43 @@ public class Placeholders {
 
         String finalText = colorCode(text);
         finalText = finalText.replace("%item%", item)
-                .replace("_", " ")
-                .toLowerCase(Locale.ROOT);
+                .replace("_", " ");
         return finalText;
     }
 
-    public static @NotNull String set(String text, String item, double price, int amount) {
+    public static @NotNull String set(String text, String item, BigDecimal price, int amount) {
 
         String finalText = colorCode(text);
         finalText = finalText.replace("%item%", item)
                 .replace("%amount%", String.valueOf(amount))
-                .replace("%price%", String.valueOf(price * amount))
+                .replace("%price%", String.valueOf(price.multiply(BigDecimal.valueOf(amount))))
                 .replace("_", " ")
                 .toLowerCase(Locale.ROOT);
         return finalText;
     }
 
-    public static @NotNull String set(String text, String command, double price) {
+    public static @NotNull String set(String text, String command, BigDecimal price) {
 
         String finalText = colorCode(text);
-        finalText = finalText.replace("%price%", String.valueOf(price)
+        finalText = finalText.replace("%price%", String.valueOf(price))
                 .replace("%command%", command)
-                .toLowerCase(Locale.ROOT));
+                .toLowerCase(Locale.ROOT);
         return finalText;
     }
 
-    public static @NotNull String set(String text, double buyPrice, double sellPrice) {
+    public static @NotNull String set(String text, BigDecimal buyPrice, BigDecimal sellPrice) {
 
         String finalText = colorCode(text);
         finalText = finalText.replace("%buyprice%", noBuyPrice(buyPrice))
                 .replace("%sellprice%", noSellPrice(sellPrice))
-                .replace("_", " ")
-                .toLowerCase(Locale.ROOT);
+                .replace("_", " ");
         return finalText;
     }
 
     public static @NotNull String set(String text, @NotNull Player player) {
 
         String finalText = colorCode(text);
-        finalText = finalText.replace("%playername%", player.getDisplayName())
-                .toLowerCase(Locale.ROOT);
+        finalText = finalText.replace("%playername%", player.getDisplayName());
         return finalText;
     }
 
@@ -64,11 +62,11 @@ public class Placeholders {
         return ChatColor.translateAlternateColorCodes('&', text);
     }
 
-    public static @NotNull String noSellPrice(double sellPrice) {
+    public static @NotNull String noSellPrice(BigDecimal sellPrice) {
 
         String sellValue = String.valueOf(sellPrice);
         // If price is 0 then item is not sell-able.
-        if (sellPrice == 0.0) {
+        if (sellPrice == null || sellPrice.doubleValue() == 0.0 || sellPrice.intValue() == 0) {
             sellValue = SECTION.getMessages("no-sell-price");
         }
 
@@ -76,15 +74,19 @@ public class Placeholders {
         return sellValue;
     }
 
-    public static @NotNull String noBuyPrice(double buyPrice) {
+    public static @NotNull String noBuyPrice(BigDecimal buyPrice) {
 
         String buyValue = String.valueOf(buyPrice);
         // If price is 0 then item is not sell-able.
-        if (buyPrice == 0.0) {
+        if (buyPrice == null) {
             buyValue = SECTION.getMessages("no-buy-price");
+            return buyValue;
+        } else {
+            if (buyPrice.doubleValue() == 0.0 || buyPrice.intValue() == 0) {
+                buyValue = SECTION.getMessages("no-price-set");
+                return buyValue;
+            }
         }
-
-        assert buyValue != null;
         return buyValue;
     }
 }
