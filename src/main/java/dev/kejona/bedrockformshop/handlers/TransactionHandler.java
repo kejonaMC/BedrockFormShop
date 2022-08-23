@@ -77,14 +77,15 @@ public class TransactionHandler extends ShopData {
     public void sellItem() {
         // Get Player Instance.
         Player player = BedrockFormShop.getInstance().getServer().getPlayer(uuid);
-        // Check if shop is disabled
-        if (sellPrice == null) {
+        // Check if shop is disabled and is not set on 0
+        if (sellPrice == null ||sellPrice.doubleValue() == 0.0 || sellPrice.intValue() == 0) {
             assert player != null;
             player.sendMessage(Placeholders.colorCode(SECTION.getMessages("no-sell-price")));
             return;
         }
         // Get an itemstack list from all items in player inventory.
         List<ItemStack> list = new ArrayList<>();
+        assert player != null;
         for (ItemStack i : player.getInventory().getContents()) {
             if (i != null)
                 list.add(i);
