@@ -26,8 +26,7 @@ public class Placeholders {
         finalText = finalText.replace("%item%", item)
                 .replace("%amount%", String.valueOf(amount))
                 .replace("%price%", String.valueOf(price.multiply(BigDecimal.valueOf(amount))))
-                .replace("_", " ")
-                .toLowerCase(Locale.ROOT);
+                .replace("_", " ");
         return finalText;
     }
 
@@ -35,14 +34,13 @@ public class Placeholders {
 
         String finalText = colorCode(text);
         finalText = finalText.replace("%price%", String.valueOf(price))
-                .replace("%command%", command)
-                .toLowerCase(Locale.ROOT);
+                .replace("%command%", command);
         return finalText;
     }
 
     public static @NotNull String set(String text, BigDecimal buyPrice, BigDecimal sellPrice) {
 
-        String finalText = colorCode(text);
+        String finalText = text;
         finalText = finalText.replace("%buyprice%", noBuyPrice(buyPrice))
                 .replace("%sellprice%", noSellPrice(sellPrice))
                 .replace("_", " ");
@@ -67,7 +65,7 @@ public class Placeholders {
         String sellValue = String.valueOf(sellPrice);
         // If price is 0 then item is not sell-able.
         if (sellPrice == null || sellPrice.doubleValue() == 0.0 || sellPrice.intValue() == 0) {
-            sellValue = SECTION.getMessages("no-sell-price");
+            sellValue = colorCode(SECTION.getMessages("no-sell-price"));
         }
 
         assert sellValue != null;
@@ -79,11 +77,11 @@ public class Placeholders {
         String buyValue = String.valueOf(buyPrice);
         // If price is 0 then item is not sell-able.
         if (buyPrice == null) {
-            buyValue = SECTION.getMessages("no-buy-price");
+            buyValue = colorCode(SECTION.getMessages("no-buy-price"));
             return buyValue;
         } else {
             if (buyPrice.doubleValue() == 0.0 || buyPrice.intValue() == 0) {
-                buyValue = SECTION.getMessages("no-price-set");
+                buyValue = colorCode(SECTION.getMessages("no-price-set"));
                 return buyValue;
             }
         }

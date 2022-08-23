@@ -43,7 +43,6 @@ public class TransactionHandler extends ShopData {
         // Check if player has enough money or if the shop is disabled.
         // If price is null then item is not buy-able.
         if (buyPrice == null) {
-            System.out.println("dskfjsdlfkj");
             player.sendMessage(Placeholders.colorCode(SECTION.getMessages("no-buy-price")));
             return;
         }

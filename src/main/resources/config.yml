@@ -73,7 +73,7 @@ buy-sell:
   title: "Buy or sell %item%"
   buy-or-sell: Buy - sell
   slider: "Amount you want to buy/sell"
-  label: "price each\n\nbuy: %buyprice% \nsell: %sellprice%"
+  label: "price each\n\n§fbuy: %buyprice% \n§fsell: %sellprice%"
 
 #########################
 # ItemShopList Menu     #
