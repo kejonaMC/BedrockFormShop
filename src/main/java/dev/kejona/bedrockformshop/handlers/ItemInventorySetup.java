@@ -76,7 +76,7 @@ public class ItemInventorySetup extends ShopData {
         int freeslots = this.inventorySpace(player.getInventory(), material);
         if (notStackable) {
             if (freeslots >= quantity) {
-                for (int i = quantity; i > 1; i--) {
+                for (int i = quantity; i > 0; ii--) {
                     item.setAmount(1);
                     player.getInventory().addItem(item);
                 }
