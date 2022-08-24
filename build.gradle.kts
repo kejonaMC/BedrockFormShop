@@ -37,7 +37,7 @@ dependencies {
     implementation("org.jetbrains:annotations:23.0.0")
     implementation("org.projectlombok:lombok:1.18.24")
     implementation("com.github.Gypopo:EconomyShopGUI-API:1.2.0")
-    compileOnly("org.spigotmc:spigot-api:1.19-R0.1-SNAPSHOT")
+    compileOnly("org.spigotmc:spigot-api:1.15-R0.1-SNAPSHOT")
     compileOnly("org.geysermc.floodgate:api:2.2.0-SNAPSHOT")
     compileOnly("com.github.MilkBowl:VaultAPI:1.7")
 }

@@ -1,18 +1,20 @@
-package dev.kejona.bedrockformshop.utils;
+package dev.kejona.bedrockformshop.shopdata;
 
 import dev.kejona.bedrockformshop.BedrockFormShop;
+import org.bukkit.Material;
 
 import java.io.*;
+import java.math.BigDecimal;
 import java.util.Date;
 
-public class ShopData {
+public class FileWriterShopOutput {
     private final File folder;
     private final String item;
     private final String playername;
-    private final double price;
+    private final BigDecimal price;
     private final int amount;
 
-    public ShopData(String playername, double price, int amount, String item) throws IOException {
+    public FileWriterShopOutput(String playername, BigDecimal price, int amount, String item) throws IOException {
 
         this.folder = BedrockFormShop.getInstance().getDataFolder();
         this.playername = playername;

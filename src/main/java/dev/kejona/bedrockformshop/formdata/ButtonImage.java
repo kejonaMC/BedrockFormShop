@@ -1,4 +1,4 @@
-package dev.kejona.bedrockformshop.utils;
+package dev.kejona.bedrockformshop.formdata;
 
 import edu.umd.cs.findbugs.annotations.Nullable;
 import org.geysermc.cumulus.util.FormImage;

@@ -2,7 +2,8 @@ package dev.kejona.bedrockformshop.forms;
 
 import dev.kejona.bedrockformshop.BedrockFormShop;
 import dev.kejona.bedrockformshop.config.ConfigurationHandler;
-import dev.kejona.bedrockformshop.utils.ButtonImage;
+import dev.kejona.bedrockformshop.formdata.ButtonImage;
+import dev.kejona.bedrockformshop.shopdata.ShopData;
 import dev.kejona.bedrockformshop.utils.Permission;
 import org.geysermc.cumulus.form.SimpleForm;
 import org.geysermc.cumulus.util.FormImage;
@@ -10,7 +11,7 @@ import org.geysermc.floodgate.api.FloodgateApi;
 
 import java.util.*;
 
-public class ShopsForm {
+public class ShopsForm extends ShopData {
     private final ConfigurationHandler SECTION = BedrockFormShop.getInstance().getSECTION();
 
     // A form with shop categories as buttons.
@@ -41,8 +42,9 @@ public class ShopsForm {
 
         form.validResultHandler(response -> {
             // Send itemlist to player.
-            ItemListForm itemListForm = new ItemListForm();
-            itemListForm.sendItemListForm(uuid, buttons.get(response.clickedButtonId()));
+            ItemListForm listForm = new ItemListForm(uuid);
+            listForm.setMenuID(buttons.get(response.clickedButtonId()));
+            listForm.sendItemListForm();
         });
         // Build form and send to player.
         FloodgateApi.getInstance().sendForm(uuid, form.build());

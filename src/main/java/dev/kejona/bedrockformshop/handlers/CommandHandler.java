@@ -5,17 +5,18 @@ import dev.kejona.bedrockformshop.config.ConfigurationHandler;
 import dev.kejona.bedrockformshop.utils.Placeholders;
 import org.bukkit.entity.Player;
 
+import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.UUID;
 
 public class CommandHandler {
     private final ConfigurationHandler SECTION = BedrockFormShop.getInstance().getSECTION();
-    public void executeCommand(UUID uuid, String command, double price) {
+    public void executeCommand(UUID uuid, String command, BigDecimal price) {
         HashMap<UUID, Boolean> tempOpPlayer = new HashMap<>();
         // Get Player Instance.
         Player player = BedrockFormShop.getInstance().getServer().getPlayer(uuid);
         // Check if player has enough money.
-        if (VaultAPI.eco().getBalance(player) < price) {
+        if (VaultAPI.eco().getBalance(player).doubleValue() < price.doubleValue()) {
             assert player != null;
             player.sendMessage(Placeholders.colorCode(SECTION.getMessages("not-enough-money")));
             return;

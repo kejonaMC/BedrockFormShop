@@ -1,4 +1,4 @@
-package dev.kejona.bedrockformshop.utils;
+package dev.kejona.bedrockformshop.shopdata;
 
 public enum ShopType {
     ITEM("ITEM"),

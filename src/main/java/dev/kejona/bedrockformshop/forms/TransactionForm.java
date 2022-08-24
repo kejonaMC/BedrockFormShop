@@ -3,23 +3,41 @@ package dev.kejona.bedrockformshop.forms;
 import dev.kejona.bedrockformshop.BedrockFormShop;
 import dev.kejona.bedrockformshop.config.ConfigurationHandler;
 import dev.kejona.bedrockformshop.handlers.CommandHandler;
-import dev.kejona.bedrockformshop.handlers.ItemHandler;
+import dev.kejona.bedrockformshop.handlers.TransactionHandler;
+import dev.kejona.bedrockformshop.shopdata.ShopData;
 import dev.kejona.bedrockformshop.utils.Placeholders;
-import org.bukkit.Bukkit;
-import org.bukkit.entity.Player;
+import org.bukkit.Material;
 import org.geysermc.cumulus.form.CustomForm;
 import org.geysermc.floodgate.api.FloodgateApi;
 
+import java.math.BigDecimal;
 import java.util.*;
 
-public class TransactionForm {
+public class TransactionForm extends ShopData {
     private final ConfigurationHandler SECTION = BedrockFormShop.getInstance().getSECTION();
+    private final UUID uuid;
+    private final String object;
+    private final boolean isCommand;
+
+    public TransactionForm(UUID uuid, String object, boolean isCommand) {
+        this.uuid = uuid;
+        this.object = object;
+        this.isCommand = isCommand;
+    }
 
     // A form with item price and amount / command to buy or sell.
-    public void sendTransactionForm(UUID uuid, String object, String clickedButton, String menuID, boolean isCommand) {
+    public void sendTransactionForm() {
         // Item Prices.
-        double buyPrice = SECTION.getButtonData(menuID, clickedButton).getDouble("buy-price");
-        double sellPrice = SECTION.getButtonData(menuID, clickedButton).getDouble("sell-price");
+        if (SECTION.getButtonData(getMenuID(), getButtonID()).isSet("buy-price")) {
+            setBuyPrice(BigDecimal.valueOf(SECTION.getButtonData(getMenuID(), getButtonID()).getDouble("buy-price")));
+        } else {
+            setBuyPrice(null);
+        }
+        if (SECTION.getButtonData(getMenuID(), getButtonID()).isSet("sell-price")) {
+            setSellPrice(BigDecimal.valueOf(SECTION.getButtonData(getMenuID(), getButtonID()).getDouble("sell-price")));
+        } else {
+            setSellPrice(null);
+        }
         // Form Builder.
         CustomForm.Builder form = CustomForm.builder()
         .title(Placeholders.set((SECTION.getMenuData("buy-sell").getString("title")), object));
@@ -27,36 +45,37 @@ public class TransactionForm {
         if (!isCommand) {
                 form.toggle(Placeholders.colorCode(SECTION.getMenuData("buy-sell").getString("buy-or-sell")), false);
                 form.slider(Placeholders.colorCode(SECTION.getMenuData("buy-sell").getString("slider")), 1, 64);
-                form.label(Placeholders.set(SECTION.getMenuData("buy-sell").getString("label"), buyPrice, sellPrice));
+                form.label(Placeholders.set(SECTION.getMenuData("buy-sell").getString("label"), getBuyPrice(), getSellPrice()));
             }
             else {
-                form.label(Placeholders.set(SECTION.getButtonData(menuID, clickedButton).getString("label"), buyPrice, sellPrice));
+                form.label(Placeholders.set(SECTION.getButtonData(getMenuID(), getButtonID()).getString("label"), getBuyPrice(), getSellPrice()));
         }
 
         form.validResultHandler(response -> {
             // If shopType is item get the input from slider.
             if (!isCommand) {
-                ItemHandler itemHandler = new ItemHandler();
-                int getAmount = (int) response.asSlider(1);
+                TransactionHandler transactionHandler = new TransactionHandler(
+                        uuid,
+                        Material.getMaterial(object),
+                        getBuyPrice(),
+                        getSellPrice(),
+                        (int) response.asSlider(1)
+                );
+                transactionHandler.setButtonID(getButtonID());
+                transactionHandler.setMenuID(getMenuID());
                 // Form response
                 if (response.asToggle(0)) {
-                    if (sellPrice == 0.0) {
-                        Player player = Bukkit.getPlayer(uuid);
-                        assert player != null;
-                        player.sendMessage(SECTION.getMessages("no-sell-price"));
-                        return;
-                    }
                     // Sell item.
-                    itemHandler.sellItem(uuid, object, sellPrice, getAmount);
+                    transactionHandler.sellItem();
                 } else {
                     // It's a normal item to buy
-                    itemHandler.buyItem(uuid, object, buyPrice, getAmount, menuID, clickedButton);
+                    transactionHandler.buyItem();
                 }
             }
             // If shopType is command inputs do not exist.
             else {
                 CommandHandler commandHandler = new CommandHandler();
-                commandHandler.executeCommand(uuid, object, buyPrice);
+                commandHandler.executeCommand(uuid, object, getBuyPrice());
             }
         });
 
