@@ -34,15 +34,11 @@ public class TransactionHandler extends ShopData {
     public void buyItem() {
         // Get Player Instance.
         Player player = BedrockFormShop.getInstance().getServer().getPlayer(uuid);
-        // Check if player has enough space in inventory.
         assert player != null;
-        if (player.getInventory().firstEmpty() == -1) {
-            player.sendMessage(Placeholders.colorCode(SECTION.getMessages("inventory-full")));
-            return;
-        }
         // Check if player has enough money or if the shop is disabled.
         // If price is null then item is not buy-able.
         if (buyPrice == null) {
+
             player.sendMessage(Placeholders.colorCode(SECTION.getMessages("no-buy-price")));
             return;
         }
@@ -51,26 +47,29 @@ public class TransactionHandler extends ShopData {
             player.sendMessage(Placeholders.colorCode(SECTION.getMessages("not-enough-money")));
             return;
         }
+        // ItemHandler
         // Create the ItemStack
-        ItemBuilder itemBuilder = new ItemBuilder(
+        ItemInventorySetup itemInventorySetup = new ItemInventorySetup(
                 item,
-                quantity,
-                SECTION.getButtonData(getMenuID(), getButtonID()).getString("type")
+                SECTION.getButtonData(getMenuID(), getButtonID()).getString("type"),
+                player,
+                quantity
         );
-        itemBuilder.setMenuID(getMenuID());
-        itemBuilder.setButtonID(getButtonID());
-        // Withdraw money from player.
-        VaultAPI.eco().withdrawBalance(player, buyPrice.multiply(BigDecimal.valueOf(quantity)));
-        // Give item to player.
-        player.getInventory().addItem(itemBuilder.item());
-        // Print the transaction to txt file
-        try {
-            new FileWriterShopOutput(player.getName(), buyPrice, quantity, itemBuilder.item().getType());
-        } catch (IOException e) {
-            logger.severe("Could not save shop data." + e.getMessage());
-        }
 
-        player.sendMessage(Placeholders.set(SECTION.getMessages("item-bought"), itemBuilder.getItemName(), buyPrice, quantity));
+        itemInventorySetup.setMenuID(getMenuID());
+        itemInventorySetup.setButtonID(getButtonID());
+        // Set Inventory
+        if (itemInventorySetup.buyItemSuccess()) {
+            // Withdraw money from player.
+            VaultAPI.eco().withdrawBalance(player, buyPrice.multiply(BigDecimal.valueOf(quantity)));
+            // Print the transaction to txt file
+            try {
+                new FileWriterShopOutput(player.getName(), buyPrice, quantity, item.name());
+            } catch (IOException e) {
+                logger.severe("Could not save shop data." + e.getMessage());
+            }
+            player.sendMessage(Placeholders.set(SECTION.getMessages("item-bought"), itemInventorySetup.getItemName(), buyPrice, quantity));
+        }
     }
 
     public void sellItem() {
@@ -104,7 +103,7 @@ public class TransactionHandler extends ShopData {
                 fullinventory.setAmount(fullinventory.getAmount() - quantity);
                 // Print the transaction to txt file
                 try {
-                    new FileWriterShopOutput(player.getName(), sellPrice, quantity, item);
+                    new FileWriterShopOutput(player.getName(), sellPrice, quantity, item.name());
                 } catch (IOException e) {
                     logger.severe("Could not save shop data." + e.getMessage());
                 }

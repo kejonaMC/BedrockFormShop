@@ -11,9 +11,9 @@ command-override:
 messages:
   not-enough-money: "§cYou don't have enough money."
   not-enough-items: "§cYou don't have enough %item% to sell."
-  inventory-full: "§cYour inventory is full."
+  no-free-space: "§cYou do not have the amount of free slots for all the items!"
   no-sell-price: "§cYou cannot sell this item."
-  no-buy-price: "§cThis item is cannot be bought"
+  no-buy-price: "§cThis item is cannot be bough.t"
   no-price-set: "§2This item is free."
   no-items: "§cYou don't have any %item% to sell."
   item-bought: "§2You bought %amount% %item% for $%price%."

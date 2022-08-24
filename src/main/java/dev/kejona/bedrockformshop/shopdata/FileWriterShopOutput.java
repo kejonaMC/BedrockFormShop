@@ -9,12 +9,12 @@ import java.util.Date;
 
 public class FileWriterShopOutput {
     private final File folder;
-    private final Material item;
+    private final String item;
     private final String playername;
     private final BigDecimal price;
     private final int amount;
 
-    public FileWriterShopOutput(String playername, BigDecimal price, int amount, Material item) throws IOException {
+    public FileWriterShopOutput(String playername, BigDecimal price, int amount, String item) throws IOException {
 
         this.folder = BedrockFormShop.getInstance().getDataFolder();
         this.playername = playername;
@@ -33,7 +33,7 @@ public class FileWriterShopOutput {
         BufferedWriter bw = new BufferedWriter(writeTransaction);
         PrintWriter pw = new PrintWriter(bw);
 
-        pw.println(playername + " Bought: " + amount + " " + item.name() + " for: " + price + " on: " + new Date());
+        pw.println(playername + " Bought: " + amount + " " + item + " for: " + price + " on: " + new Date());
         pw.close();
     }
 }
