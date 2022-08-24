@@ -40,10 +40,8 @@ public class ItemInventorySetup extends ShopData {
         }
         switch (ShopType.valueOf(shopType)) {
 
-            case SPAWNER -> {
-                // Add spawner name to item.
-                item.setItemMeta(ApplyItemEffects.addMobToBlock(SECTION.getButtonData(getMenuID(), getButtonID()), item));
-            }
+            // Add spawner name to item.
+            case SPAWNER -> item.setItemMeta(ApplyItemEffects.addMobToBlock(SECTION.getButtonData(getMenuID(), getButtonID()), item));
 
             case ENCHANTMENT -> {
                 // Get enchantment name from config
@@ -66,17 +64,15 @@ public class ItemInventorySetup extends ShopData {
                 }
             }
 
-            case POTION -> {
-                item.setItemMeta(ApplyItemEffects.addPotionEffect(SECTION.getButtonData(getMenuID(), getButtonID()), item));
-                // Add potion name to item.
-            }
+            // Add potion name to item.
+            case POTION -> item.setItemMeta(ApplyItemEffects.addPotionEffect(SECTION.getButtonData(getMenuID(), getButtonID()), item));
         }
         // Set item inventory logic
         boolean notStackable = item.getMaxStackSize() == 1;
         int freeslots = this.inventorySpace(player.getInventory(), material);
         if (notStackable) {
             if (freeslots >= quantity) {
-                for (int i = quantity; i > 0; ii--) {
+                for (int i = quantity; i > 0; i--) {
                     item.setAmount(1);
                     player.getInventory().addItem(item);
                 }
