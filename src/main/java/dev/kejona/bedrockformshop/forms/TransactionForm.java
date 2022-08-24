@@ -38,7 +38,6 @@ public class TransactionForm extends ShopData {
         } else {
             setSellPrice(null);
         }
-
         // Form Builder.
         CustomForm.Builder form = CustomForm.builder()
         .title(Placeholders.set((SECTION.getMenuData("buy-sell").getString("title")), object));
@@ -62,7 +61,6 @@ public class TransactionForm extends ShopData {
                         getSellPrice(),
                         (int) response.asSlider(1)
                 );
-
                 transactionHandler.setButtonID(getButtonID());
                 transactionHandler.setMenuID(getMenuID());
                 // Form response

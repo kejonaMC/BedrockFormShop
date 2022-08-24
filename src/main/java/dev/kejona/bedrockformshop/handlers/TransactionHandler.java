@@ -38,7 +38,6 @@ public class TransactionHandler extends ShopData {
         // Check if player has enough money or if the shop is disabled.
         // If price is null then item is not buy-able.
         if (buyPrice == null) {
-
             player.sendMessage(Placeholders.colorCode(SECTION.getMessages("no-buy-price")));
             return;
         }
@@ -47,22 +46,20 @@ public class TransactionHandler extends ShopData {
             player.sendMessage(Placeholders.colorCode(SECTION.getMessages("not-enough-money")));
             return;
         }
-        // ItemHandler
-        // Create the ItemStack
+        // Setup items and inventory.
         ItemInventorySetup itemInventorySetup = new ItemInventorySetup(
                 item,
                 SECTION.getButtonData(getMenuID(), getButtonID()).getString("type"),
                 player,
                 quantity
         );
-
         itemInventorySetup.setMenuID(getMenuID());
         itemInventorySetup.setButtonID(getButtonID());
-        // Set Inventory
+        // If success = item has been succesfully created and sent to player inventory.
         if (itemInventorySetup.buyItemSuccess()) {
             // Withdraw money from player.
             VaultAPI.eco().withdrawBalance(player, buyPrice.multiply(BigDecimal.valueOf(quantity)));
-            // Print the transaction to txt file
+            // Print the transaction to txt file.
             try {
                 new FileWriterShopOutput(player.getName(), buyPrice, quantity, item.name());
             } catch (IOException e) {
