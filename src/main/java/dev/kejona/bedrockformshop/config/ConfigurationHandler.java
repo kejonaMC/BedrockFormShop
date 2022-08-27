@@ -43,4 +43,11 @@ public class ConfigurationHandler implements ConfigurationInterface {
     public int getVersion() {
         return config.getInt("version");
     }
+
+    @Override
+    public boolean getApiEnable() { return config.getBoolean("enable-hook"); }
+
+    @Override
+    public boolean isDebug() { return config.getBoolean("debug"); }
+
 }

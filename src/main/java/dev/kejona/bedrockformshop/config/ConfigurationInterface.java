@@ -44,4 +44,14 @@ public interface ConfigurationInterface {
      * Get a list of command overrides from config
      */
     ConfigurationSection getCommandOverrides();
+
+    /**
+     * Enable the api checker.
+     */
+    boolean getApiEnable();
+
+    /**
+     * enables debug logger.
+     */
+    boolean isDebug();
 }

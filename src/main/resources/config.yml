@@ -1,5 +1,7 @@
 # Do not change version!
 version: 1
+# Debug option.
+debug: false
 # If you already have a shop plugin that has /shop the command will be overridden by BedrockFormShop
 command-override:
   enable: false
@@ -7,6 +9,10 @@ command-override:
     - /shop
     - /buy
     - /sell
+# If you already have a shop plugin { GuiShop - EconomyShopGUI } you can set this option on true.
+# If set ln true BedrockFormShop will use the item price from that shop plugin. if price is not available
+# it will use the default set price in this config file.
+enable-hook: false
 # Messages. placeholders: %item%, %amount%, %price%, %command%
 messages:
   not-enough-money: "§cYou don't have enough money."
