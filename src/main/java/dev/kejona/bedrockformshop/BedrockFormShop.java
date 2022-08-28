@@ -20,7 +20,7 @@ import java.util.Objects;
 public final class BedrockFormShop extends JavaPlugin {
     private static BedrockFormShop INSTANCE;
     private ConfigurationHandler SECTION;
-    public HashMap<Boolean, String> pluginHook = new HashMap<>();
+    private final HashMap<Boolean, String> pluginHook = new HashMap<>();
     private Logger logger;
 
     @Override
@@ -62,7 +62,7 @@ public final class BedrockFormShop extends JavaPlugin {
 
     public void apisChecker() {
         // List of api names.
-        String[] plugins = {"GuiShop", "EconomyShopGUI"};
+        String[] plugins = {"ShopGUI", "EconomyShopGUI"};
         for (String plugin : plugins) {
             if (getServer().getPluginManager().getPlugin(plugin) != null) {
                 if (SECTION.getApiEnable()) {
@@ -81,14 +81,13 @@ public final class BedrockFormShop extends JavaPlugin {
     public void createFiles() {
         Logger logger = Logger.getLogger();
         File configFile = new File(this.getDataFolder(), "config.yml");
-
+        // Create file
         if (!configFile.exists()) {
             configFile.getParentFile().mkdirs();
             this.saveResource("config.yml", false);
         }
-
+        // load config
         FileConfiguration config = new YamlConfiguration();
-
         try {
             config.load(configFile);
         } catch (IOException | InvalidConfigurationException e) {

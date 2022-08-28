@@ -4,6 +4,7 @@ import dev.kejona.bedrockformshop.BedrockFormShop;
 import dev.kejona.bedrockformshop.config.ConfigurationHandler;
 import dev.kejona.bedrockformshop.logger.Logger;
 import me.gypopo.economyshopgui.api.EconomyShopGUIHook;
+import net.brcdev.shopgui.ShopGuiPlusApi;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
@@ -25,25 +26,26 @@ public class PriceProvider {
     }
 
     public BigDecimal buyPrice(Material material) {
-        try {
-            if (plugins.containsKey(true)) {
+        if (plugins.containsKey(true)) {
+            // plugin hook for price
+            //
+            try {
                 // Get plugins name.
                 String pluginName = plugins.get(true);
                 // GuiShop prices
-                if (pluginName.equals("GuiShop")) {
-                    // guishop stuff
+                if (pluginName.equals("ShopGUI")) {
+                    return BigDecimal.valueOf(ShopGuiPlusApi.getItemStackPriceBuy(new ItemStack(material)));
                 }
                 // EconomyShopGUI prices
                 if (pluginName.equals("EconomyShopGUI")) {
                     return BigDecimal.valueOf(EconomyShopGUIHook.getItemBuyPrice(new ItemStack(material)));
-
                 }
+                // END of hooks
+            } catch (Exception ignored) {
+                logger.debug("Was unable to get a price of (" + material.name() + ") from " + plugins.get(true) + " If a price is present in BedrockFormShop config that price will be used.");
             }
-            // If somehow api's returned a null we check our own price list if price is present.
-        } catch (Exception ignored) {}
-
-        logger.debug("Was unable to get a price of (" + material.name() + ") from " + plugins.get(true) + " If a price is present in BedrockFormShop config that price will be used.");
-        // Always default back to our price list
+        }
+        // If api's returned a null or is not enabled we check our own price list if price is present.
         if (SECTION.getButtonData(menuID, buttonID).isSet("buy-price")) {
             return BigDecimal.valueOf(SECTION.getButtonData(menuID, buttonID).getDouble("buy-price"));
         }
@@ -52,24 +54,26 @@ public class PriceProvider {
     }
 
     public BigDecimal sellPrice(Material material) {
-        try {
-            if (plugins.containsKey(true)) {
-                // Get plugins name.
+        if (plugins.containsKey(true)) {
+            // plugin hook for price
+            //
+            try {
                 String pluginName = plugins.get(true);
                 // GuiShop prices
-                if (pluginName.equals("GuiShop")) {
+                if (pluginName.equals("ShopGUI")) {
+                    return BigDecimal.valueOf(ShopGuiPlusApi.getItemStackPriceSell(new ItemStack(material)));
                 }
                 // EconomyShopGUI prices.
                 if (pluginName.equals("EconomyShopGUI")) {
                     return BigDecimal.valueOf(EconomyShopGUIHook.getItemSellPrice(new ItemStack(material)));
-
                 }
+                // END
+                // If somehow api's returned a null we check our own price list if price is present.
+            } catch (Exception ignored) {
+                logger.debug("Was unable to get a price of (" + material.name() + ") from " + plugins.get(true) + ". If a price is present in BedrockFormShop config that price will be used.");
             }
-            // If somehow api's returned a null we check our own price list if price is present.
-        } catch (Exception ignored) {}
-
-        logger.debug("Was unable to get a price of (" + material.name() + ") from " + plugins.get(true) + ". If a price is present in BedrockFormShop config that price will be used.");
-        // Always default back to our price list
+        }
+        // If somehow api's returned a null we check our own price list if price is present.
         if (SECTION.getButtonData(menuID, buttonID).isSet("sell-price")) {
             return BigDecimal.valueOf(SECTION.getButtonData(menuID, buttonID).getDouble("sell-price"));
         }

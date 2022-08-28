@@ -40,6 +40,7 @@ dependencies {
     compileOnly("org.spigotmc:spigot-api:1.15-R0.1-SNAPSHOT")
     compileOnly("org.geysermc.floodgate:api:2.2.0-SNAPSHOT")
     compileOnly("com.github.MilkBowl:VaultAPI:1.7")
+    compileOnly("com.github.brcdev-minecraft:shopgui-api:3.0.0")
 }
 
 group = "dev.kejona"
