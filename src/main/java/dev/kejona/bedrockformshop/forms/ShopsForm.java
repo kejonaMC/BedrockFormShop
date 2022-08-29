@@ -41,7 +41,7 @@ public class ShopsForm extends ShopData {
         buttons.removeAll(noPermButtons);
 
         form.validResultHandler(response -> {
-            // Send itemlist to player.
+            // Send item-list to player.
             ItemListForm listForm = new ItemListForm(uuid);
             listForm.setMenuID(buttons.get(response.clickedButtonId()));
             listForm.sendItemListForm();

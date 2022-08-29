@@ -23,7 +23,7 @@ public class PlacedSpawner implements Listener {
                 spawner.setSpawnedType(EntityType.valueOf(Objects.requireNonNull(item.getItemMeta()).getDisplayName()));
                 spawner.update();
             } catch (Exception ignored) {
-                // Ignore only happends spawner is not one bought in our shop
+                // Ignore only happens spawner is not one bought in our shop
             }
         }
     }

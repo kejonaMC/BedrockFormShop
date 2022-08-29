@@ -46,7 +46,7 @@ dependencies {
 group = "dev.kejona"
 version = "1.0-SNAPSHOT"
 description = "BedrockFormShop"
-java.sourceCompatibility = JavaVersion.VERSION_14
+java.sourceCompatibility = JavaVersion.VERSION_17
 
 publishing {
     publications.create<MavenPublication>("maven") {
