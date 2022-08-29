@@ -10,7 +10,7 @@ command-override:
     - /buy
     - /sell
 # If you already have a shop plugin { GuiShop - EconomyShopGUI } you can set this option on true.
-# If set ln true BedrockFormShop will use the item price from that shop plugin. if price is not available
+# If set on true BedrockFormShop will use the item price from that shop plugin. if price is not available
 # it will use the default set price in this config file.
 enable-hook: false
 # Messages. placeholders: %item%, %amount%, %price%, %command%
