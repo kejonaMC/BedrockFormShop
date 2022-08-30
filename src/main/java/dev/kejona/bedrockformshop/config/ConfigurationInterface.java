@@ -46,9 +46,9 @@ public interface ConfigurationInterface {
     ConfigurationSection getCommandOverrides();
 
     /**
-     * Enable the api checker.
+     * Dependencies
      */
-    boolean getApiEnable();
+    ConfigurationSection getDependencies();
 
     /**
      * enables debug logger.

@@ -30,12 +30,6 @@ public class TransactionForm extends ShopData {
     public void sendTransactionForm() {
         // Item Prices.
         PriceProvider price = new PriceProvider(getMenuID(), getButtonID());
-
-        if (SECTION.getButtonData(getMenuID(), getButtonID()).isSet("sell-price")) {
-            setSellPrice(BigDecimal.valueOf(SECTION.getButtonData(getMenuID(), getButtonID()).getDouble("sell-price")));
-        } else {
-            setSellPrice(null);
-        }
         // Form Builder.
         CustomForm.Builder form = CustomForm.builder()
                 .title(Placeholders.set((SECTION.getMenuData("buy-sell").getString("title")), object));

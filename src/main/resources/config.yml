@@ -9,10 +9,12 @@ command-override:
     - /shop
     - /buy
     - /sell
-# If you already have a shop plugin { GuiShop - EconomyShopGUI } you can set this option on true.
-# If set on true BedrockFormShop will use the item price from that shop plugin. if price is not available
+# If you already have a shop plugin { ShopGui - EconomyShopGUI } you can set the enable-dependencies on true.
+# If set on true and dependency is defined BedrockFormShop will use the item price from that shop plugin. if price is not available
 # it will use the default set price in this config file.
-enable-hook: false
+dependencies:
+  enable-dependencies: false
+  dependency: "EconomyShopGUI"
 # Messages. placeholders: %item%, %amount%, %price%, %command%
 messages:
   not-enough-money: "§cYou don't have enough money."
