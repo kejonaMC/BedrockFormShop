@@ -13,7 +13,9 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Objects;
 
 public class PlacedSpawner implements Listener {
-
+    /**
+     * We need to update block state on placed spawner when item gets placed.
+     */
     @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
     public void onBlockPlace(@NotNull BlockPlaceEvent event) {
         ItemStack item = event.getItemInHand();

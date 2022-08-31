@@ -13,8 +13,9 @@ import java.util.*;
 
 public class ShopsForm extends ShopData {
     private final ConfigurationHandler SECTION = BedrockFormShop.getInstance().getSECTION();
-
-    // A form with shop categories as buttons.
+    /**
+     * A form with shop categories as buttons.
+     */
     public void sendShopsForm(UUID uuid) {
         // Form Builder
         SimpleForm.Builder form = SimpleForm.builder()

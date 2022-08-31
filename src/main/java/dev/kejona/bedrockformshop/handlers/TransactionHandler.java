@@ -21,7 +21,7 @@ public class TransactionHandler extends ShopData {
     private final BigDecimal buyPrice;
     private final BigDecimal sellPrice;
     private final int quantity;
-    Logger logger = Logger.getLogger();
+    private final Logger logger = Logger.getLogger();
 
     public TransactionHandler(UUID uuid, Material item, BigDecimal buyPrice, BigDecimal sellPrice, int quantity) {
         this.uuid = uuid;
@@ -30,7 +30,9 @@ public class TransactionHandler extends ShopData {
         this.sellPrice = sellPrice;
         this.quantity = quantity;
     }
-
+    /**
+     * Buy Item logic.
+     */
     public void buyItem() {
         // Get Player Instance.
         Player player = BedrockFormShop.getInstance().getServer().getPlayer(uuid);
@@ -55,7 +57,7 @@ public class TransactionHandler extends ShopData {
         );
         itemInventorySetup.setMenuID(getMenuID());
         itemInventorySetup.setButtonID(getButtonID());
-        // If success = item has been succesfully created and sent to player inventory.
+        // If success = item has been successfully created and sent to player inventory.
         if (itemInventorySetup.buyItemSuccess()) {
             // Withdraw money from player.
             VaultAPI.eco().withdrawBalance(player, buyPrice.multiply(BigDecimal.valueOf(quantity)));
@@ -68,7 +70,9 @@ public class TransactionHandler extends ShopData {
             player.sendMessage(Placeholders.set(SECTION.getMessages("item-bought"), itemInventorySetup.getItemName(), buyPrice, quantity));
         }
     }
-
+    /**
+     * Sell Item logic.
+     */
     public void sellItem() {
         // Get Player Instance.
         Player player = BedrockFormShop.getInstance().getServer().getPlayer(uuid);

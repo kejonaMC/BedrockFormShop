@@ -14,7 +14,9 @@ public class CommandInterceptor implements Listener {
     public CommandInterceptor(List<String> commands) {
         this.commands = commands;
     }
-
+    /**
+     * In case a shop plugin is already present we can intercept its command and set a form shop to the bedrock player.
+     */
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onPreProcessCommand(@NotNull PlayerCommandPreprocessEvent event) {
         // Check if command is in list.

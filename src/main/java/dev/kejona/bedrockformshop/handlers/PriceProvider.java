@@ -16,7 +16,7 @@ public class PriceProvider {
 
     private final ConfigurationHandler SECTION = BedrockFormShop.getInstance().getSECTION();
     private final HashMap<Boolean, String> supportedPluginMap = BedrockFormShop.getInstance().getSupportedPluginMap();
-    private final Dependencies supportedPlugin;
+    private Dependencies supportedPlugin;
     private final String menuID;
     private final String buttonID;
     private final Logger logger = Logger.getLogger();
@@ -24,9 +24,10 @@ public class PriceProvider {
     public PriceProvider(String menuID, String buttonID) {
         this.menuID = menuID;
         this.buttonID = buttonID;
-        supportedPlugin = Dependencies.valueOf(supportedPluginMap.get(true));
     }
-
+    /**
+     * Buy price provider logic. Check if another shop plugin is present and always default back to our price list.
+     */
     @Nullable
     public BigDecimal buyPrice(Material material) {
         // Always start at out own price provider
@@ -34,6 +35,7 @@ public class PriceProvider {
             return defaultBuyPrice();
         }
 
+        supportedPlugin = Dependencies.valueOf(supportedPluginMap.get(true));
         try {
             switch (supportedPlugin) {
                 // All dependency price getters
@@ -56,7 +58,9 @@ public class PriceProvider {
         }
         return null;
     }
-
+    /**
+     * Sell price provider logic. Check if another shop plugin is present and always default back to our price list.
+     */
     @Nullable
     public BigDecimal sellPrice(Material material) {
         // Always start at out own price provider
@@ -64,6 +68,7 @@ public class PriceProvider {
             return defaultSellPrice();
         }
 
+        supportedPlugin = Dependencies.valueOf(supportedPluginMap.get(true));
         try {
             switch (supportedPlugin) {
                 // All dependency price getters
@@ -86,8 +91,9 @@ public class PriceProvider {
         }
         return null;
     }
-
-    // Default BedrockFormShop price list
+    /**
+     * Our own buy price list.
+     */
     public BigDecimal defaultBuyPrice() {
         if (SECTION.getButtonData(menuID, buttonID).isSet("buy-price")) {
             return BigDecimal.valueOf(SECTION.getButtonData(menuID, buttonID).getDouble("buy-price"));
@@ -95,7 +101,9 @@ public class PriceProvider {
             return null;
         }
     }
-
+    /**
+     * Our own sell price list.
+     */
     public BigDecimal defaultSellPrice() {
         if (SECTION.getButtonData(menuID, buttonID).isSet("sell-price")) {
             return BigDecimal.valueOf(SECTION.getButtonData(menuID, buttonID).getDouble("sell-price"));

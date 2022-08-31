@@ -16,7 +16,7 @@ import org.bukkit.inventory.PlayerInventory;
 
 public class ItemInventorySetup extends ShopData {
     private final ConfigurationHandler SECTION = BedrockFormShop.getInstance().getSECTION();
-
+    private final ApplyItemEffects itemEffects = new ApplyItemEffects();
     private final String shopType;
     private final Material material;
     private final Player player;
@@ -28,7 +28,10 @@ public class ItemInventorySetup extends ShopData {
         this.quantity = quantity;
         this.player = player;
     }
-
+    /**
+     * ItemStack creator, Create itemStack apply Enchantment, spawner or potion effect if present.
+     * Also calculates item space availability in inventory.
+     */
     public boolean buyItemSuccess() {
         ItemStack item = new ItemStack(this.material);
         // Set material to ItemStack
@@ -41,7 +44,7 @@ public class ItemInventorySetup extends ShopData {
         switch (ShopType.valueOf(shopType)) {
 
             // Add spawner name to item.
-            case SPAWNER -> item.setItemMeta(ApplyItemEffects.addMobToBlock(SECTION.getButtonData(getMenuID(), getButtonID()), item));
+            case SPAWNER -> item.setItemMeta(itemEffects.addMobToBlock(SECTION.getButtonData(getMenuID(), getButtonID()), item));
 
             case ENCHANTMENT -> {
                 // Get enchantment name from config
@@ -52,7 +55,7 @@ public class ItemInventorySetup extends ShopData {
                 try {
                     Enchantment enchantment = Enchantment.getByKey(NamespacedKey.minecraft(getEnchantment.replace(":" + level, "").toLowerCase()));
                     if (item.getType() == Material.ENCHANTED_BOOK) {
-                        item.setItemMeta(ApplyItemEffects.addEnchantmentToBook(enchantment, level, item));
+                        item.setItemMeta(itemEffects.addEnchantmentToBook(enchantment, level, item));
                     } else {
                         // Add enchantment to normal items.
                         assert enchantment != null;
@@ -65,7 +68,7 @@ public class ItemInventorySetup extends ShopData {
             }
 
             // Add potion name to item.
-            case POTION -> item.setItemMeta(ApplyItemEffects.addPotionEffect(SECTION.getButtonData(getMenuID(), getButtonID()), item));
+            case POTION -> item.setItemMeta(itemEffects.addPotionEffect(SECTION.getButtonData(getMenuID(), getButtonID()), item));
         }
         // Set item inventory logic
         boolean notStackable = item.getMaxStackSize() == 1;
@@ -91,7 +94,9 @@ public class ItemInventorySetup extends ShopData {
         }
         return true;
     }
-
+    /**
+     * Check if player has enough room in their inventory to buy the item.
+     */
     public int inventorySpace(PlayerInventory inventory, Material item) {
         int count = 0;
         for (int slot = 0; slot < 36; slot ++) {

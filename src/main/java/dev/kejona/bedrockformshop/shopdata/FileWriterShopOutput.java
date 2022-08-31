@@ -24,7 +24,9 @@ public class FileWriterShopOutput {
         writeData();
     }
 
-    //Write the transactions' data to the transactions.txt file.
+    /**
+     * Write the transactions' data to the transactions.txt file.
+     */
     public void writeData () throws IOException {
 
         File transactionFile = new File(folder, "transactions.txt");

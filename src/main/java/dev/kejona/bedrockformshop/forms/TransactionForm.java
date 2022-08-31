@@ -11,7 +11,6 @@ import org.bukkit.Material;
 import org.geysermc.cumulus.form.CustomForm;
 import org.geysermc.floodgate.api.FloodgateApi;
 
-import java.math.BigDecimal;
 import java.util.*;
 
 public class TransactionForm extends ShopData {
@@ -25,8 +24,9 @@ public class TransactionForm extends ShopData {
         this.object = object;
         this.isCommand = isCommand;
     }
-
-    // A form with item price and amount / command to buy or sell.
+    /**
+     * A form with item price and amount / command to buy or sell.
+     */
     public void sendTransactionForm() {
         // Item Prices.
         PriceProvider price = new PriceProvider(getMenuID(), getButtonID());

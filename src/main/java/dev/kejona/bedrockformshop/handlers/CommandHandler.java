@@ -11,6 +11,9 @@ import java.util.UUID;
 
 public class CommandHandler {
     private final ConfigurationHandler SECTION = BedrockFormShop.getInstance().getSECTION();
+    /**
+     * Command execution logic
+     */
     public void executeCommand(UUID uuid, String command, BigDecimal price) {
         HashMap<UUID, Boolean> tempOpPlayer = new HashMap<>();
         // Get Player Instance.
