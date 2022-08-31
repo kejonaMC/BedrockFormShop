@@ -3,6 +3,7 @@ package dev.kejona.bedrockformshop.forms;
 import dev.kejona.bedrockformshop.BedrockFormShop;
 import dev.kejona.bedrockformshop.config.ConfigurationHandler;
 import dev.kejona.bedrockformshop.handlers.CommandHandler;
+import dev.kejona.bedrockformshop.handlers.PriceProvider;
 import dev.kejona.bedrockformshop.handlers.TransactionHandler;
 import dev.kejona.bedrockformshop.shopdata.ShopData;
 import dev.kejona.bedrockformshop.utils.Placeholders;
@@ -10,7 +11,6 @@ import org.bukkit.Material;
 import org.geysermc.cumulus.form.CustomForm;
 import org.geysermc.floodgate.api.FloodgateApi;
 
-import java.math.BigDecimal;
 import java.util.*;
 
 public class TransactionForm extends ShopData {
@@ -24,31 +24,24 @@ public class TransactionForm extends ShopData {
         this.object = object;
         this.isCommand = isCommand;
     }
-
-    // A form with item price and amount / command to buy or sell.
+    /**
+     * A form with item price and amount / command to buy or sell.
+     */
     public void sendTransactionForm() {
         // Item Prices.
-        if (SECTION.getButtonData(getMenuID(), getButtonID()).isSet("buy-price")) {
-            setBuyPrice(BigDecimal.valueOf(SECTION.getButtonData(getMenuID(), getButtonID()).getDouble("buy-price")));
-        } else {
-            setBuyPrice(null);
-        }
-        if (SECTION.getButtonData(getMenuID(), getButtonID()).isSet("sell-price")) {
-            setSellPrice(BigDecimal.valueOf(SECTION.getButtonData(getMenuID(), getButtonID()).getDouble("sell-price")));
-        } else {
-            setSellPrice(null);
-        }
+        PriceProvider price = new PriceProvider(getMenuID(), getButtonID());
         // Form Builder.
         CustomForm.Builder form = CustomForm.builder()
-        .title(Placeholders.set((SECTION.getMenuData("buy-sell").getString("title")), object));
+                .title(Placeholders.set((SECTION.getMenuData("buy-sell").getString("title")), object));
         // Check if config block is an item or command.
         if (!isCommand) {
-                form.toggle(Placeholders.colorCode(SECTION.getMenuData("buy-sell").getString("buy-or-sell")), false);
-                form.slider(Placeholders.colorCode(SECTION.getMenuData("buy-sell").getString("slider")), 1, 64);
-                form.label(Placeholders.set(SECTION.getMenuData("buy-sell").getString("label"), getBuyPrice(), getSellPrice()));
-            }
-            else {
-                form.label(Placeholders.set(SECTION.getButtonData(getMenuID(), getButtonID()).getString("label"), getBuyPrice(), getSellPrice()));
+            setBuyPrice(price.buyPrice(Material.valueOf(object)));
+            setSellPrice(price.sellPrice(Material.valueOf(object)));
+            form.toggle(Placeholders.colorCode(SECTION.getMenuData("buy-sell").getString("buy-or-sell")), false);
+            form.slider(Placeholders.colorCode(SECTION.getMenuData("buy-sell").getString("slider")), 1, 64);
+            form.label(Placeholders.set(SECTION.getMenuData("buy-sell").getString("label"), getBuyPrice(), getSellPrice()));
+        } else {
+            form.label(Placeholders.set(SECTION.getButtonData(getMenuID(), getButtonID()).getString("label"), getBuyPrice(), getSellPrice()));
         }
 
         form.validResultHandler(response -> {
@@ -61,6 +54,7 @@ public class TransactionForm extends ShopData {
                         getSellPrice(),
                         (int) response.asSlider(1)
                 );
+
                 transactionHandler.setButtonID(getButtonID());
                 transactionHandler.setMenuID(getMenuID());
                 // Form response

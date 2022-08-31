@@ -5,7 +5,12 @@ import edu.umd.cs.findbugs.annotations.Nullable;
 import org.geysermc.cumulus.util.FormImage;
 
 public class ButtonImage {
-    // The image location
+    /**
+     * Adds an image to a form
+     * @param data image location
+     * @param extraData item name
+     * @return formImage
+     */
     @Nullable
     public static FormImage createFormImage(@Nullable String data,@Nullable String extraData) {
         if (data == null || data.isEmpty()) {

@@ -15,14 +15,15 @@ import java.util.*;
 
 public class ItemListForm extends ShopData {
     private final ConfigurationHandler SECTION = BedrockFormShop.getInstance().getSECTION();
-    Logger logger = Logger.getLogger();
+    private final Logger logger = Logger.getLogger();
     private final UUID uuid;
 
     public ItemListForm(UUID uuid) {
         this.uuid = uuid;
     }
-
-    // A form with all shop items as buttons.
+    /**
+     * A form with all shop items as buttons + images.
+     */
     public void sendItemListForm() {
         // Form Builder
         SimpleForm.Builder form = SimpleForm.builder()

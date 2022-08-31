@@ -13,8 +13,9 @@ import java.util.*;
 
 public class ShopsForm extends ShopData {
     private final ConfigurationHandler SECTION = BedrockFormShop.getInstance().getSECTION();
-
-    // A form with shop categories as buttons.
+    /**
+     * A form with shop categories as buttons.
+     */
     public void sendShopsForm(UUID uuid) {
         // Form Builder
         SimpleForm.Builder form = SimpleForm.builder()
@@ -41,7 +42,7 @@ public class ShopsForm extends ShopData {
         buttons.removeAll(noPermButtons);
 
         form.validResultHandler(response -> {
-            // Send itemlist to player.
+            // Send item-list to player.
             ItemListForm listForm = new ItemListForm(uuid);
             listForm.setMenuID(buttons.get(response.clickedButtonId()));
             listForm.sendItemListForm();

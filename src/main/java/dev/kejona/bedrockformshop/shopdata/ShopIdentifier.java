@@ -3,6 +3,7 @@ package dev.kejona.bedrockformshop.shopdata;
 import java.math.BigDecimal;
 
 public interface ShopIdentifier {
+
     String getButtonID();
 
     String getMenuID();

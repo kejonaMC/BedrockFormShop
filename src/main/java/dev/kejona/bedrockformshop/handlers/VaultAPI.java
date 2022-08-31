@@ -48,8 +48,4 @@ public class VaultAPI {
     public static @NotNull VaultAPI eco() {
         return new VaultAPI();
     }
-
-    public Economy getEconomy() {
-        return economy;
-    }
 }

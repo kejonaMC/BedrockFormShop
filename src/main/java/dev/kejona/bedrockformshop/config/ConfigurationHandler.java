@@ -43,4 +43,11 @@ public class ConfigurationHandler implements ConfigurationInterface {
     public int getVersion() {
         return config.getInt("version");
     }
+
+    @Override
+    public ConfigurationSection getDependencies() { return config.getConfigurationSection("dependencies"); }
+
+    @Override
+    public boolean isDebug() { return config.getBoolean("debug"); }
+
 }

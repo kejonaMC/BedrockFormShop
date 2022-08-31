@@ -17,8 +17,7 @@ public class ShopCommand implements CommandExecutor {
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command cmd, @NotNull String commandLabel, String[] args) {
         // Check if sender is a player & floodgate player.
         if (args.length == 0) {
-            if (sender instanceof Player) {
-                Player player = (Player) sender;
+            if (sender instanceof Player player) {
                 if (FloodgateUser.isFloodgatePlayer(player.getUniqueId())) {
                     ShopsForm mainMenuForm = new ShopsForm();
                     mainMenuForm.sendShopsForm(player.getUniqueId());
@@ -28,8 +27,7 @@ public class ShopCommand implements CommandExecutor {
             notFloodgatePlayer(sender);
             // If command is /shop reload, reload config.
         } else if (args[0].equalsIgnoreCase("reload")) {
-            if (sender instanceof Player) {
-                Player player = (Player) sender;
+            if (sender instanceof Player player) {
                 if (!Permission.RELOAD.checkPermission(player.getUniqueId())) {
                     sender.sendMessage(ChatColor.RED + "You don't have permission to use this command.");
                     return true;
