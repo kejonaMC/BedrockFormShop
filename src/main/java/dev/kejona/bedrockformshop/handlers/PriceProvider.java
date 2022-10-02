@@ -47,9 +47,11 @@ public class PriceProvider {
                     return BigDecimal.valueOf(price);
 
                 case EconomyShopGUI:
+
+                case EconomyShopGuiPremium:
                     return BigDecimal.valueOf(EconomyShopGUIHook.getItemBuyPrice(new ItemStack(material)));
 
-                    // End if hooks
+                // End if hooks
             }
         } catch (Exception ignored) {
             // incase a return on dependency returns a null we check our prices
@@ -80,9 +82,11 @@ public class PriceProvider {
                     return BigDecimal.valueOf(price);
 
                 case EconomyShopGUI:
+
+                case EconomyShopGuiPremium:
                     return BigDecimal.valueOf(EconomyShopGUIHook.getItemSellPrice(new ItemStack(material)));
 
-                    // End of hooks
+                // End of hooks
             }
         } catch (Exception ignored) {
             // incase a return on dependency returns a null we check our prices
@@ -114,6 +118,7 @@ public class PriceProvider {
 
     private enum Dependencies {
         ShopGui,
-        EconomyShopGUI
+        EconomyShopGUI,
+        EconomyShopGuiPremium
     }
 }

@@ -63,12 +63,12 @@ public final class BedrockFormShop extends JavaPlugin {
     public void dependencyChecker() {
         // List of api names.
         boolean isActive = SECTION.getDependencies().getBoolean("enable-dependencies");
-        String[] plugins = {"ShopGUI", "EconomyShopGUI"};
+        String[] plugins = {"ShopGUI", "EconomyShopGUI", "EconomyShopGui-Premium"};
         for (String supportedPlugin : plugins) {
             if (getServer().getPluginManager().getPlugin(supportedPlugin) != null) {
                 if (isActive) {
                     logger.info("We will check price list of " + supportedPlugin + ". If prices are available on " + supportedPlugin + " we will use those prices in BedrockFormShop");
-                    supportedPluginMap.put(true, supportedPlugin);
+                    supportedPluginMap.put(true, supportedPlugin.replace("-", ""));
                 } else {
                     logger.info("Found a compatible shop plugin; " + supportedPlugin + ". You can set its dependency in config.yml to true if you want to use " + supportedPlugin + " prices!");
                 }
