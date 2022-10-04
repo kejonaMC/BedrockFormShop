@@ -109,7 +109,7 @@ public final class BedrockFormShop extends JavaPlugin {
         return INSTANCE;
     }
 
-        public ConfigurationHandler getSECTION() {
+    public ConfigurationHandler getSECTION() {
         return SECTION;
     }
 
