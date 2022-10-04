@@ -102,14 +102,14 @@ public final class BedrockFormShop extends JavaPlugin {
 
     // Get the server api version. split to remove snapshot.
     public String getServerVersion() {
-        return getServer().getBukkitVersion().split("-")[0];
+        return getServer().getBukkitVersion().substring(0,4).split("-")[0];
     }
 
     public static BedrockFormShop getInstance() {
         return INSTANCE;
     }
 
-    public ConfigurationHandler getSECTION() {
+        public ConfigurationHandler getSECTION() {
         return SECTION;
     }
 
