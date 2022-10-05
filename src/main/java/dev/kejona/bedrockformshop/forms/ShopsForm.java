@@ -42,6 +42,10 @@ public class ShopsForm extends ShopData {
         buttons.removeAll(noPermButtons);
 
         form.validResultHandler(response -> {
+            // Check if main meny got boolean isCancel type if true return.
+            if (SECTION.getButtonData("menu", buttons.get(response.clickedButtonId())).getBoolean("isExit")) {
+                return;
+            }
             // Send item-list to player.
             ItemListForm listForm = new ItemListForm(uuid);
             listForm.setMenuID(buttons.get(response.clickedButtonId()));

@@ -67,6 +67,13 @@ public class ItemListForm extends ShopData {
                     transactionForm.setButtonID(buttons.get(response.clickedButtonId()));
                     transactionForm.sendTransactionForm();
                 }
+
+                case BACK -> {
+                    ShopsForm mainMenuForm = new ShopsForm();
+                    mainMenuForm.sendShopsForm(uuid);
+                }
+                // If button type is set to cancel we just close the form.
+                case CANCEL -> {}
                 // default gets triggered if no type is set or not matched.
                 default -> logger.severe("ShopType: " + ShopType.valueOf(SECTION.getButtonData(getMenuID(), getButtonID()).getString("type")) + " is not a valid type!");
             }

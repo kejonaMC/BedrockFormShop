@@ -21,7 +21,7 @@ messages:
   not-enough-items: "§cYou don't have enough %item% to sell."
   no-free-space: "§cYou do not have the amount of free slots for all the items!"
   no-sell-price: "§cYou cannot sell this item."
-  no-buy-price: "§cThis item is cannot be bough.t"
+  no-buy-price: "§cThis item is cannot be bought."
   no-price-set: "§2This item is free."
   no-items: "§cYou don't have any %item% to sell."
   item-bought: "§2You bought %amount% %item% for $%price%."
@@ -73,6 +73,7 @@ menu:
     Exit:
       permission: PLAYER
       image: "default/barrier"
+      isExit: true
 
 #########################
 # Buy/Sell Menu         #
@@ -90,6 +91,9 @@ Ores:
   title: "%item% shop"
   content: "Select which item you want to buy/sell."
   buttons:
+    Back:
+      permission: PLAYER
+      type: BACK
     coal-ore:
       permission: PLAYER
       image: "default"
@@ -150,6 +154,9 @@ Items:
   title: "%item% shop"
   content: "Select which item you want to buy/sell."
   buttons:
+    Back:
+      permission: PLAYER
+      type: BACK
     bone:
       permission: PLAYER
       image: "default"
@@ -301,6 +308,9 @@ Blocks:
   title: "%item% shop"
   content: "Select which item you want to buy/sell."
   buttons:
+    Back:
+      permission: PLAYER
+      type: BACK
     stone-brick:
       permission: PLAYER
       image: "default"
@@ -350,7 +360,7 @@ Blocks:
       item: "MOSSY_COBBLESTONE"
       buy-price: 0.0
       sell-price: 0.0
-    grass-block:
+    grass_block:
       permission: PLAYER
       image: "default"
       type: ITEM
@@ -522,6 +532,9 @@ Spawners:
   title: "%item% shop"
   content: "Select which item you want to buy/sell."
   buttons:
+    Back:
+      permission: PLAYER
+      type: BACK
     pig:
       permission: PLAYER
       image: "default"
@@ -714,6 +727,9 @@ Food:
   title: "%item% shop"
   content: "Select which item you want to buy/sell."
   buttons:
+    Back:
+      permission: PLAYER
+      type: BACK
     apple:
       permission: PLAYER
       image: "default"
@@ -777,17 +793,13 @@ Food:
       item: "MELON_SLICE"
       buy-price: 0.0
       sell-price: 0.0
-    pumpkin_slice:
-      permission: PLAYER
-      image: "default"
-      type: ITEM
-      item: "PUMPKIN_SLICE"
-      buy-price: 0.0
-      sell-price: 0.0
 Tools:
   title: "%item% shop"
   content: "Select which item you want to buy/sell."
   buttons:
+    Back:
+      permission: PLAYER
+      type: BACK
     stone_pickaxe:
       permission: PLAYER
       image: "default"
@@ -932,6 +944,9 @@ Weapons:
   title: "%item% shop"
   content: "Select which item you want to buy/sell."
   buttons:
+    Back:
+      permission: PLAYER
+      type: BACK
     stone_sword:
       permission: PLAYER
       image: "default"
@@ -985,6 +1000,9 @@ Armor:
   title: "%item% shop"
   content: "Select which item you want to buy/sell."
   buttons:
+    Back:
+      permission: PLAYER
+      type: BACK
     leather_helmet:
       permission: PLAYER
       image: "default"
@@ -1129,6 +1147,9 @@ Enchantments:
   title: "%item% shop"
   content: "Select which item you want to buy/sell."
   buttons:
+    Back:
+      permission: PLAYER
+      type: BACK
     protection:
       permission: PLAYER
       image: "default"
@@ -1205,6 +1226,9 @@ Potions:
   title: "%item% shop"
   content: "Select which item you want to buy/sell."
   buttons:
+    Back:
+      permission: PLAYER
+      type: BACK
     speed:
       permission: PLAYER
       image: "default"
@@ -1281,6 +1305,9 @@ Misc:
   title: "%item% shop"
   content: "Select which item you want to buy/sell."
   buttons:
+    Back:
+      permission: PLAYER
+      type: BACK
     spawn:
       permission: PLAYER
       label: "You can buy the spawn command for %buyprice% \nthe command will take you back to spawn"
