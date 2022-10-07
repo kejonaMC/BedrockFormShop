@@ -20,8 +20,7 @@ public class PriceProvider {
     private final String menuID;
     private final String buttonID;
     private final Logger logger = Logger.getLogger();
-
-    private final BigDecimal negative = BigDecimal.valueOf(-0.1);
+    private final int negativeInt = -1;
 
     public PriceProvider(String menuID, String buttonID) {
         this.menuID = menuID;
@@ -44,7 +43,7 @@ public class PriceProvider {
                 // All dependency price getters
                 case ShopGui -> {
                     price = BigDecimal.valueOf(ShopGuiPlusApi.getItemStackPriceBuy(new ItemStack(material)));
-                    if (price.equals(negative)) {
+                    if (price.intValue() == negativeInt) {
                         return defaultBuyPrice();
                     }
                     return price;
@@ -52,7 +51,7 @@ public class PriceProvider {
 
                 case EconomyShopGUI, EconomyShopGuiPremium -> {
                     price = BigDecimal.valueOf(EconomyShopGUIHook.getItemBuyPrice(new ItemStack(material)));
-                    if (price.equals(negative)) {
+                    if (price.intValue() == negativeInt) {
                         return defaultBuyPrice();
                     }
                     return price;
@@ -84,7 +83,7 @@ public class PriceProvider {
                 // All dependency price getters
                 case ShopGui -> {
                     price = BigDecimal.valueOf(ShopGuiPlusApi.getItemStackPriceSell(new ItemStack(material)));
-                    if (price.equals(negative)) {
+                    if (price.intValue() == negativeInt) {
                         return defaultSellPrice();
                     }
                     return price;
@@ -92,7 +91,7 @@ public class PriceProvider {
 
                 case EconomyShopGUI, EconomyShopGuiPremium -> {
                     price = BigDecimal.valueOf(EconomyShopGUIHook.getItemSellPrice(new ItemStack(material)));
-                    if (price.equals(negative)) {
+                    if (price.intValue() == negativeInt) {
                         return defaultBuyPrice();
                     }
                     return price;

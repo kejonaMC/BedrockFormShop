@@ -3,6 +3,7 @@ version: '${project.version}'
 main: dev.kejona.bedrockformshop.BedrockFormShop
 api-version: 1.15
 depend: [ floodgate, Vault ]
+softdepend: [ EconomyShopGui, EconomyShopGui-Premium, GuiShop]
 authors: [ kejonaMC ]
 commands:
   bshop:
