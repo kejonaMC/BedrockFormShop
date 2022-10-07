@@ -46,7 +46,7 @@ public final class BedrockFormShop extends JavaPlugin {
         // Enable Vault.
         new VaultAPI();
         // Register commands.
-        Objects.requireNonNull(this.getCommand("shop")).setExecutor(new ShopCommand());
+        Objects.requireNonNull(this.getCommand("bshop")).setExecutor(new ShopCommand());
         // Register event for Spawners block-state update.
         getServer().getPluginManager().registerEvents(new PlacedSpawner(), this);
         // Register event for command interceptor if enabled and get a list of commands to intercept.

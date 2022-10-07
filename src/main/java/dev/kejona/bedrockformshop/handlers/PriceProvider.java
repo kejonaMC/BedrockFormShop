@@ -21,6 +21,8 @@ public class PriceProvider {
     private final String buttonID;
     private final Logger logger = Logger.getLogger();
 
+    private final BigDecimal negative = BigDecimal.valueOf(-0.1);
+
     public PriceProvider(String menuID, String buttonID) {
         this.menuID = menuID;
         this.buttonID = buttonID;
@@ -37,19 +39,24 @@ public class PriceProvider {
 
         supportedPlugin = Dependencies.valueOf(supportedPluginMap.get(true));
         try {
+            BigDecimal price;
             switch (supportedPlugin) {
                 // All dependency price getters
-                case ShopGui:
-                    double price = ShopGuiPlusApi.getItemStackPriceBuy(new ItemStack(material));
-                    if (price == -0.1) {
+                case ShopGui -> {
+                    price = BigDecimal.valueOf(ShopGuiPlusApi.getItemStackPriceBuy(new ItemStack(material)));
+                    if (price.equals(negative)) {
                         return defaultBuyPrice();
                     }
-                    return BigDecimal.valueOf(price);
+                    return price;
+                }
 
-                case EconomyShopGUI:
-
-                case EconomyShopGuiPremium:
-                    return BigDecimal.valueOf(EconomyShopGUIHook.getItemBuyPrice(new ItemStack(material)));
+                case EconomyShopGUI, EconomyShopGuiPremium -> {
+                    price = BigDecimal.valueOf(EconomyShopGUIHook.getItemBuyPrice(new ItemStack(material)));
+                    if (price.equals(negative)) {
+                        return defaultBuyPrice();
+                    }
+                    return price;
+                }
 
                 // End if hooks
             }
@@ -72,19 +79,24 @@ public class PriceProvider {
 
         supportedPlugin = Dependencies.valueOf(supportedPluginMap.get(true));
         try {
+            BigDecimal price;
             switch (supportedPlugin) {
                 // All dependency price getters
-                case ShopGui:
-                    double price = ShopGuiPlusApi.getItemStackPriceSell(new ItemStack(material));
-                    if (price == -0.1) {
+                case ShopGui -> {
+                    price = BigDecimal.valueOf(ShopGuiPlusApi.getItemStackPriceSell(new ItemStack(material)));
+                    if (price.equals(negative)) {
                         return defaultSellPrice();
                     }
-                    return BigDecimal.valueOf(price);
+                    return price;
+                }
 
-                case EconomyShopGUI:
-
-                case EconomyShopGuiPremium:
-                    return BigDecimal.valueOf(EconomyShopGUIHook.getItemSellPrice(new ItemStack(material)));
+                case EconomyShopGUI, EconomyShopGuiPremium -> {
+                    price = BigDecimal.valueOf(EconomyShopGUIHook.getItemSellPrice(new ItemStack(material)));
+                    if (price.equals(negative)) {
+                        return defaultBuyPrice();
+                    }
+                    return price;
+                }
 
                 // End of hooks
             }

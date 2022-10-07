@@ -364,7 +364,7 @@ Blocks:
       permission: PLAYER
       image: "default"
       type: ITEM
-      item: "GRASS-BLOCK"
+      item: "GRASS_BLOCK"
       buy-price: 0.0
       sell-price: 0.0
     dirt:

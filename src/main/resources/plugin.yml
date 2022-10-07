@@ -5,11 +5,11 @@ api-version: 1.15
 depend: [ floodgate, Vault ]
 authors: [ kejonaMC ]
 commands:
-  shop:
+  bshop:
     description: Open Shop
     permission: bedrockformshop.openshop
     default: true
-    aliases: /shop
+    aliases: /bshop
 permissions:
   bedrockformshop.openshop:
     description: "Open Shop"

@@ -1,6 +1,7 @@
 package dev.kejona.bedrockformshop.listeners;
 
 import dev.kejona.bedrockformshop.forms.ShopsForm;
+import dev.kejona.bedrockformshop.utils.FloodgateUser;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
@@ -17,8 +18,11 @@ public class CommandInterceptor implements Listener {
     /**
      * In case a shop plugin is already present we can intercept its command and set a form shop to the bedrock player.
      */
-    @EventHandler(priority = EventPriority.HIGHEST)
+    @EventHandler(priority = EventPriority.LOW)
     public void onPreProcessCommand(@NotNull PlayerCommandPreprocessEvent event) {
+        if (!FloodgateUser.isFloodgatePlayer(event.getPlayer().getUniqueId())) {
+            return;
+        }
         // Check if command is in list.
         if (commands.contains(event.getMessage().split(" ")[0])) {
             // Command is in list so cancel event and send our shop form.
@@ -27,4 +31,5 @@ public class CommandInterceptor implements Listener {
             mainMenuForm.sendShopsForm(event.getPlayer().getUniqueId());
         }
     }
+
 }

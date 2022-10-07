@@ -63,7 +63,7 @@ public class Placeholders {
 
         String sellValue = String.valueOf(sellPrice);
         // If price is 0 then item is not sell-able.
-        if (sellPrice == null || sellPrice.doubleValue() == 0.0 || sellPrice.intValue() == 0) {
+        if (sellPrice == null) {
             sellValue = colorCode(SECTION.getMessages("no-sell-price"));
         }
 
