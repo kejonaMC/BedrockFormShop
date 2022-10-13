@@ -32,7 +32,7 @@ public class ShopCommand implements CommandExecutor {
                     return true;
                 }
             }
-            BedrockFormShop.getInstance().reloadConfig();
+            BedrockFormShop.getInstance().reloadConfigFiles();
             sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Objects.requireNonNull(BedrockFormShop.getInstance().getConfig().getString("messages.reload-config"))));
         } else {
             sender.sendMessage("The argument " + args[0] + " is not a valid command. please use /shop");

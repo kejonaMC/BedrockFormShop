@@ -29,7 +29,7 @@ public final class BedrockFormShop extends JavaPlugin {
         // Create the logger.
         logger = new JavaUtilLogger(this.getLogger());
         // load configuration.
-        createFiles();
+        configFiles();
         SECTION = new ConfigurationHandler(this.getConfig());
         // Check if config file is up-to-date.
         if (SECTION.getVersion() > 1) {
@@ -83,7 +83,7 @@ public final class BedrockFormShop extends JavaPlugin {
     /**
      * Load config or create.
      */
-    public void createFiles() {
+    public void configFiles() {
         Logger logger = Logger.getLogger();
         File configFile = new File(this.getDataFolder(), "config.yml");
         // Create file
@@ -98,6 +98,11 @@ public final class BedrockFormShop extends JavaPlugin {
         } catch (IOException | InvalidConfigurationException e) {
             logger.severe("Could not load config.yml" + e.getMessage());
         }
+    }
+
+    public void reloadConfigFiles() {
+        this.reloadConfig();
+        SECTION = new ConfigurationHandler(this.getConfig());
     }
 
     // Get the server api version. split to remove snapshot.
