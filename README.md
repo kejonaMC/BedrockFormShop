@@ -5,6 +5,8 @@ A shop plugin fully compatible with Bedrock Forms.
 
 _**See how our configuration works [here](https://github.com/kejonaMC/BedrockFormShop/wiki)**_
 
+_**You can Download BedrockFormShop here: [Download](https://ci.kejona.dev/job/BedrockFormShop/job/master/)**_
+
 ## Commands
 
 | Commands | Permission |
