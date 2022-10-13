@@ -3,6 +3,8 @@
 # BedrockFormShop
 A shop plugin fully compatible with Bedrock Forms.
 
+_**See how our configuration works [here](https://github.com/kejonaMC/BedrockFormShop/wiki)**_
+
 ## Commands
 
 | Commands | Permission |
@@ -16,6 +18,3 @@ A shop plugin fully compatible with Bedrock Forms.
 | --- | --- |
 | `Display player-able buttons` | `bedrockformshop.playermenu` |
 | `Display admin-able buttons` | `bedrockformshop.adminmenu` |
-
-<br>
-_**See how our configuration works [here](https://github.com/kejonaMC/BedrockFormShop/wiki)**_
