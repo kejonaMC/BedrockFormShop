@@ -9,6 +9,11 @@ plugins {
     `maven-publish`
 }
 
+group = "dev.kejona"
+version = "1.0.0"
+description = "BedrockFormShop"
+java.sourceCompatibility = JavaVersion.VERSION_17
+
 repositories {
     mavenLocal()
     mavenCentral()
@@ -42,11 +47,6 @@ dependencies {
     compileOnly("com.github.MilkBowl:VaultAPI:1.7")
     compileOnly("com.github.brcdev-minecraft:shopgui-api:3.0.0")
 }
-
-group = "dev.kejona"
-version = "1.0-SNAPSHOT"
-description = "BedrockFormShop"
-java.sourceCompatibility = JavaVersion.VERSION_17
 
 publishing {
     publications.create<MavenPublication>("maven") {

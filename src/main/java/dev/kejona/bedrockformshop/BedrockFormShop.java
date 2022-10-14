@@ -7,6 +7,7 @@ import dev.kejona.bedrockformshop.listeners.CommandInterceptor;
 import dev.kejona.bedrockformshop.listeners.PlacedSpawner;
 import dev.kejona.bedrockformshop.logger.JavaUtilLogger;
 import dev.kejona.bedrockformshop.logger.Logger;
+import dev.kejona.bedrockformshop.utils.Metrics;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -26,6 +27,7 @@ public final class BedrockFormShop extends JavaPlugin {
     @Override
     public void onEnable() {
         INSTANCE = this;
+        new Metrics(this, 16668);
         // Create the logger.
         logger = new JavaUtilLogger(this.getLogger());
         // load configuration.
@@ -41,7 +43,6 @@ public final class BedrockFormShop extends JavaPlugin {
             logger.setDebug(true);
         }
         // Check if api's are present.
-        logger.info("Checking for supported shop plugins.");
         dependencyChecker();
         // Enable Vault.
         new VaultAPI();
@@ -62,7 +63,8 @@ public final class BedrockFormShop extends JavaPlugin {
 
     public void dependencyChecker() {
         // List of api names.
-        boolean isActive = SECTION.getDependencies().getBoolean("enable-dependencies");
+        logger.info("Checking for supported shop plugins...");
+        boolean isActive = SECTION.getDependencies().getBoolean("enable-hook");
         String[] plugins = {"ShopGUI", "EconomyShopGUI", "EconomyShopGui-Premium"};
         for (String supportedPlugin : plugins) {
             if (getServer().getPluginManager().getPlugin(supportedPlugin) != null) {
@@ -74,6 +76,11 @@ public final class BedrockFormShop extends JavaPlugin {
                 }
             }
         }
+        // If map is empty no supported plugin was found.
+        if (supportedPluginMap.isEmpty()) {
+            logger.info("No compatible shop plugin was found!");
+        }
+        // Deactivate plugin support if 2 or more shop plugins were found that we support.
         if (supportedPluginMap.size() > 1) {
             supportedPluginMap.clear();
             logger.severe("We have deactivated dependency price checker due to multiple supported shop plugins which could cause bugs!");
