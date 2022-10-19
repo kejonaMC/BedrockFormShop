@@ -43,7 +43,9 @@ public class PriceProvider {
                 // All dependency price getters
                 case ShopGUIPlus -> {
                     price = BigDecimal.valueOf(ShopGuiPlusApi.getItemStackPriceBuy(new ItemStack(material)));
+                    logger.debug("API item price " + price);
                     if (price.intValue() == negativeInt) {
+                        logger.debug("API item price (" + material.name() + "): " + price + " We default back to BedrockFormShop price");
                         return defaultBuyPrice();
                     }
                     return price;
@@ -51,7 +53,9 @@ public class PriceProvider {
 
                 case EconomyShopGUI, EconomyShopGuiPremium -> {
                     price = BigDecimal.valueOf(EconomyShopGUIHook.getItemBuyPrice(new ItemStack(material)));
+                    logger.debug("API item price " + price);
                     if (price.intValue() == negativeInt) {
+                        logger.debug("API item price (" + material.name() + "): " + price + " We default back to BedrockFormShop price");
                         return defaultBuyPrice();
                     }
                     return price;
@@ -83,7 +87,10 @@ public class PriceProvider {
                 // All dependency price getters
                 case ShopGUIPlus -> {
                     price = BigDecimal.valueOf(ShopGuiPlusApi.getItemStackPriceSell(new ItemStack(material)));
+                    logger.debug("API item price " + price);
                     if (price.intValue() == negativeInt) {
+                        logger.debug("API item price of (" + material.name() + "): " + price + " We default back to BedrockFormShop price");
+
                         return defaultSellPrice();
                     }
                     return price;
@@ -91,7 +98,9 @@ public class PriceProvider {
 
                 case EconomyShopGUI, EconomyShopGuiPremium -> {
                     price = BigDecimal.valueOf(EconomyShopGUIHook.getItemSellPrice(new ItemStack(material)));
+                    logger.debug("API item price " + price);
                     if (price.intValue() == negativeInt) {
+                        logger.debug("API item price (" + material.name() + "): " + price + " We default back to BedrockFormShop price");
                         return defaultBuyPrice();
                     }
                     return price;
