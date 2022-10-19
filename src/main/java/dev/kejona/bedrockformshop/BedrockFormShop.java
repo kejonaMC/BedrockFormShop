@@ -65,7 +65,7 @@ public final class BedrockFormShop extends JavaPlugin {
         // List of api names.
         logger.info("Checking for supported shop plugins...");
         boolean isActive = SECTION.getDependencies().getBoolean("enable-hook");
-        String[] plugins = {"ShopGUI", "EconomyShopGUI", "EconomyShopGui-Premium"};
+        String[] plugins = {"ShopGUIPlus", "EconomyShopGUI", "EconomyShopGui-Premium"};
         for (String supportedPlugin : plugins) {
             if (getServer().getPluginManager().getPlugin(supportedPlugin) != null) {
                 if (isActive) {

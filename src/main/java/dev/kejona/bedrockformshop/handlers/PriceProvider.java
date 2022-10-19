@@ -41,7 +41,7 @@ public class PriceProvider {
             BigDecimal price;
             switch (supportedPlugin) {
                 // All dependency price getters
-                case ShopGui -> {
+                case ShopGUIPlus -> {
                     price = BigDecimal.valueOf(ShopGuiPlusApi.getItemStackPriceBuy(new ItemStack(material)));
                     if (price.intValue() == negativeInt) {
                         return defaultBuyPrice();
@@ -81,7 +81,7 @@ public class PriceProvider {
             BigDecimal price;
             switch (supportedPlugin) {
                 // All dependency price getters
-                case ShopGui -> {
+                case ShopGUIPlus -> {
                     price = BigDecimal.valueOf(ShopGuiPlusApi.getItemStackPriceSell(new ItemStack(material)));
                     if (price.intValue() == negativeInt) {
                         return defaultSellPrice();
@@ -128,7 +128,7 @@ public class PriceProvider {
     }
 
     private enum Dependencies {
-        ShopGui,
+        ShopGUIPlus,
         EconomyShopGUI,
         EconomyShopGuiPremium
     }

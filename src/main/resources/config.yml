@@ -9,7 +9,7 @@ command-override:
     - /shop
     - /buy
     - /sell
-# If you already have a shop plugin { ShopGui - EconomyShopGUI - EconomyShopGUI-Premium } you can set the enable-hooks on true.
+# If you already have a shop plugin { ShopGUIPlus - EconomyShopGUI - EconomyShopGUI-Premium } you can set the enable-hooks on true.
 # If set on true and the hook is defined BedrockFormShop will use the item price from that shop plugin. if price is not available
 # it will use the default set price in this config file.
 hook-settings:
