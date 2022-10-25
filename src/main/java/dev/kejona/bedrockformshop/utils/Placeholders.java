@@ -49,7 +49,7 @@ public class Placeholders {
     public static @NotNull String set(String text, @NotNull Player player) {
 
         String finalText = colorCode(text);
-        finalText = finalText.replace("%playername%", player.getDisplayName());
+        finalText = finalText.replace("%player%", player.getName());
         return finalText;
     }
 
