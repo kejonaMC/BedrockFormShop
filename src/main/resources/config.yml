@@ -82,6 +82,7 @@ buy-sell:
   title: "Buy or sell %item%"
   buy-or-sell: Buy - sell
   slider: "Amount you want to buy/sell"
+  max-slider: 64
   label: "price each\n\n§fbuy: %buyprice% \n§fsell: %sellprice%"
 
 #########################

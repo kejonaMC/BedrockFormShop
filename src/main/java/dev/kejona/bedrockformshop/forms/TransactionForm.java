@@ -38,7 +38,7 @@ public class TransactionForm extends ShopData {
             setBuyPrice(price.buyPrice(Material.valueOf(object)));
             setSellPrice(price.sellPrice(Material.valueOf(object)));
             form.toggle(Placeholders.colorCode(SECTION.getMenuData("buy-sell").getString("buy-or-sell")), false);
-            form.slider(Placeholders.colorCode(SECTION.getMenuData("buy-sell").getString("slider")), 1, 64);
+            form.slider(Placeholders.colorCode(SECTION.getMenuData("buy-sell").getString("slider")), 1, SECTION.getMenuData("buy-sell").getInt("max-slider"));
             form.label(Placeholders.set(SECTION.getMenuData("buy-sell").getString("label"), getBuyPrice(), getSellPrice()));
         } else {
             setBuyPrice(price.defaultBuyPrice());
