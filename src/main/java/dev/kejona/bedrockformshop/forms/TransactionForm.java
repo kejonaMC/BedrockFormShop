@@ -31,17 +31,18 @@ public class TransactionForm extends ShopData {
         // Item Prices.
         PriceProvider price = new PriceProvider(getMenuID(), getButtonID());
         // Form Builder.
-        CustomForm.Builder form = CustomForm.builder()
-                .title(Placeholders.set((SECTION.getMenuData("buy-sell").getString("title")), object));
+        CustomForm.Builder form = CustomForm.builder();
         // Check if config block is an item or command.
         if (!isCommand) {
             setBuyPrice(price.buyPrice(Material.valueOf(object)));
             setSellPrice(price.sellPrice(Material.valueOf(object)));
+            form.title(Placeholders.set((SECTION.getMenuData("buy-sell").getString("title")), object));
             form.toggle(Placeholders.colorCode(SECTION.getMenuData("buy-sell").getString("buy-or-sell")), false);
             form.slider(Placeholders.colorCode(SECTION.getMenuData("buy-sell").getString("slider")), 1, SECTION.getMenuData("buy-sell").getInt("max-slider"));
             form.label(Placeholders.set(SECTION.getMenuData("buy-sell").getString("label"), getBuyPrice(), getSellPrice()));
         } else {
             setBuyPrice(price.defaultBuyPrice());
+            form.title(Placeholders.set(SECTION.getButtonData(getMenuID(), getButtonID()).getString("title"), object));
             form.label(Placeholders.set(SECTION.getButtonData(getMenuID(), getButtonID()).getString("label"), getBuyPrice(), getSellPrice()));
         }
 

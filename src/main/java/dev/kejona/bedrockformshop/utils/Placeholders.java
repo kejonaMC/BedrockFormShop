@@ -47,10 +47,7 @@ public class Placeholders {
     }
 
     public static @NotNull String set(String text, @NotNull Player player) {
-
-        String finalText = colorCode(text);
-        finalText = finalText.replace("%player%", player.getName());
-        return finalText;
+        return text.replace("%player_name%", player.getName());
     }
 
     @Contract("_ -> new")

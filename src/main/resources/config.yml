@@ -1309,10 +1309,11 @@ Misc:
     Back:
       permission: PLAYER
       type: BACK
-    spawn:
+    stick:
+      title: "free sticks for everyone!"
       permission: PLAYER
       label: "You can buy the spawn command for %buyprice% \nthe command will take you back to spawn"
       image: "https://www.askideas.com/wp-content/uploads/2016/11/Funny-Animal-Dog-Face-Picure.jpg"
       type: COMMAND
-      command: "spawn"
+      command: "console; give %player_name% stick 1"
       buy-price: 0.0

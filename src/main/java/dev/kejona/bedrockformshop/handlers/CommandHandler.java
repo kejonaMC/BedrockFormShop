@@ -3,6 +3,7 @@ package dev.kejona.bedrockformshop.handlers;
 import dev.kejona.bedrockformshop.BedrockFormShop;
 import dev.kejona.bedrockformshop.config.ConfigurationHandler;
 import dev.kejona.bedrockformshop.utils.Placeholders;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 import java.math.BigDecimal;
@@ -26,19 +27,33 @@ public class CommandHandler {
         }
         // Withdraw money from player.
         VaultAPI.eco().withdrawBalance(player, price);
+        // Split command config string to get the command send option.
+        String[] commandParts = command.split(" ", 2);
         assert player != null;
-        // If player is not op then set op and add player into hashmap.
-        if (!player.isOp()) {
-            tempOpPlayer.put(uuid, true);
-            player.setOp(true);
+        // The actual command.
+        String getCommand = Placeholders.set(commandParts[1], player);
+        // Command options.
+        switch (commandParts[0].replace(";", "")) {
+            // Preform command as op.
+            case "op" -> {
+                // If player is not op then set op and add player into hashmap.
+                if (!player.isOp()) {
+                    tempOpPlayer.put(uuid, true);
+                    player.setOp(true);
+                }
+                player.performCommand(getCommand);
+                // Deop player if they were not op before.
+                if (tempOpPlayer.containsKey(uuid)) {
+                    player.setOp(false);
+                    tempOpPlayer.remove(uuid);
+                }
+            }
+            // Preform command as normal player.
+            case "player" -> player.performCommand(getCommand);
+            // Preform command as console.
+            case "console" -> Bukkit.dispatchCommand(Bukkit.getConsoleSender(), command);
         }
-        // Execute command.
-        player.performCommand(Placeholders.set(command, player));
-        player.sendMessage(Placeholders.set(SECTION.getMessages("command-bought"), command, price));
-        // Deop player if they were not op before.
-        if (tempOpPlayer.containsKey(uuid)) {
-            player.setOp(false);
-            tempOpPlayer.remove(uuid);
-        }
+
+        player.sendMessage(Placeholders.set(SECTION.getMessages("command-bought"), getCommand, price));
     }
 }
