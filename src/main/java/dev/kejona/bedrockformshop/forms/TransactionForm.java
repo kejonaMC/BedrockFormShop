@@ -16,12 +16,11 @@ import java.util.*;
 public class TransactionForm extends ShopData {
     private final ConfigurationHandler SECTION = BedrockFormShop.getInstance().getSECTION();
     private final UUID uuid;
-    private final String object;
+    private String item;
     private final boolean isCommand;
 
-    public TransactionForm(UUID uuid, String object, boolean isCommand) {
+    public TransactionForm(UUID uuid, boolean isCommand) {
         this.uuid = uuid;
-        this.object = object;
         this.isCommand = isCommand;
     }
     /**
@@ -34,15 +33,16 @@ public class TransactionForm extends ShopData {
         CustomForm.Builder form = CustomForm.builder();
         // Check if config block is an item or command.
         if (!isCommand) {
-            setBuyPrice(price.buyPrice(Material.valueOf(object)));
-            setSellPrice(price.sellPrice(Material.valueOf(object)));
-            form.title(Placeholders.set((SECTION.getMenuData("buy-sell").getString("title")), object));
+            item = SECTION.getButtonData(getMenuID(), getButtonID()).getString("item");
+            setBuyPrice(price.buyPrice(Material.valueOf(item)));
+            setSellPrice(price.sellPrice(Material.valueOf(item)));
+            form.title(Placeholders.set((SECTION.getMenuData("buy-sell").getString("title")), item));
             form.toggle(Placeholders.colorCode(SECTION.getMenuData("buy-sell").getString("buy-or-sell")), false);
             form.slider(Placeholders.colorCode(SECTION.getMenuData("buy-sell").getString("slider")), 1, SECTION.getMenuData("buy-sell").getInt("max-slider"));
             form.label(Placeholders.set(SECTION.getMenuData("buy-sell").getString("label"), getBuyPrice(), getSellPrice()));
         } else {
             setBuyPrice(price.defaultBuyPrice());
-            form.title(Placeholders.set(SECTION.getButtonData(getMenuID(), getButtonID()).getString("title"), object));
+            form.title(Placeholders.colorCode(SECTION.getButtonData(getMenuID(), getButtonID()).getString("title")));
             form.label(Placeholders.set(SECTION.getButtonData(getMenuID(), getButtonID()).getString("label"), getBuyPrice(), getSellPrice()));
         }
 
@@ -51,7 +51,7 @@ public class TransactionForm extends ShopData {
             if (!isCommand) {
                 TransactionHandler transactionHandler = new TransactionHandler(
                         uuid,
-                        Material.getMaterial(object),
+                        Material.getMaterial(item),
                         getBuyPrice(),
                         getSellPrice(),
                         (int) response.asSlider(1)
@@ -70,8 +70,10 @@ public class TransactionForm extends ShopData {
             }
             // If shopType is command inputs do not exist.
             else {
-                CommandHandler commandHandler = new CommandHandler();
-                commandHandler.executeCommand(uuid, object, getBuyPrice());
+                new CommandHandler().executeCommand(
+                        uuid,
+                        SECTION.getButtonData(getMenuID(), getButtonID()).getStringList("commands"),
+                        getBuyPrice());
             }
         });
 

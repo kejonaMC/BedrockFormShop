@@ -1315,5 +1315,7 @@ Misc:
       label: "You can buy the spawn command for %buyprice% \nthe command will take you back to spawn"
       image: "https://www.askideas.com/wp-content/uploads/2016/11/Funny-Animal-Dog-Face-Picure.jpg"
       type: COMMAND
-      command: "console; give %player_name% stick 1"
+      commands:
+        - "console; give %player_name% stick 1"
+        - "console; say %player_name% bought some sticks"
       buy-price: 0.0

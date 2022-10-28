@@ -53,25 +53,20 @@ public class ItemListForm extends ShopData {
             switch (ShopType.valueOf(SECTION.getButtonData(getMenuID(), getButtonID()).getString("type"))) {
 
                 case ITEM, ENCHANTMENT, POTION, SPAWNER -> {
-                    String itemStackName = SECTION.getButtonData(getMenuID(), getButtonID()).getString("item");
-                    TransactionForm transactionForm = new TransactionForm(uuid, itemStackName, false);
+                    TransactionForm transactionForm = new TransactionForm(uuid, false);
                     transactionForm.setMenuID(getMenuID());
                     transactionForm.setButtonID(buttons.get(response.clickedButtonId()));
                     transactionForm.sendTransactionForm();
                 }
 
                 case COMMAND -> {
-                    String command = SECTION.getButtonData(getMenuID(), getButtonID()).getString("command");
-                    TransactionForm transactionForm = new TransactionForm(uuid, command, true);
+                    TransactionForm transactionForm = new TransactionForm(uuid, true);
                     transactionForm.setMenuID(getMenuID());
                     transactionForm.setButtonID(buttons.get(response.clickedButtonId()));
                     transactionForm.sendTransactionForm();
                 }
 
-                case BACK -> {
-                    ShopsForm mainMenuForm = new ShopsForm();
-                    mainMenuForm.sendShopsForm(uuid);
-                }
+                case BACK -> new ShopsForm().sendShopsForm(uuid);
                 // If button type is set to cancel we just close the form.
                 case CANCEL -> {}
                 // default gets triggered if no type is set or not matched.
