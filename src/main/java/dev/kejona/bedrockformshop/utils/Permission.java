@@ -9,6 +9,7 @@ public enum Permission {
     // Enums can be unused since we only check for valueof.
     SHOP("bedrockformshop.openshop"),
     PLAYER("bedrockformshop.playermenu"),
+    VIP("bedrockformshop.vipmenu"),
     ADMIN("bedrockformshop.adminmenu"),
     RELOAD("bedrockformshop.reload");
 

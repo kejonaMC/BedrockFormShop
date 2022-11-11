@@ -70,6 +70,11 @@ menu:
     Misc:
       permission: PLAYER
       image: "default/dispenser"
+    3thParty:
+      permission: PLAYER
+      image: "default/apple"
+      commands:
+        - "console; say hello, %player_name%. this is a command"
     Exit:
       permission: PLAYER
       image: "default/barrier"

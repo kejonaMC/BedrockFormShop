@@ -3,12 +3,14 @@ package dev.kejona.bedrockformshop.forms;
 import dev.kejona.bedrockformshop.BedrockFormShop;
 import dev.kejona.bedrockformshop.config.ConfigurationHandler;
 import dev.kejona.bedrockformshop.formdata.ButtonImage;
+import dev.kejona.bedrockformshop.handlers.CommandHandler;
 import dev.kejona.bedrockformshop.shopdata.ShopData;
 import dev.kejona.bedrockformshop.utils.Permission;
 import org.geysermc.cumulus.form.SimpleForm;
 import org.geysermc.cumulus.util.FormImage;
 import org.geysermc.floodgate.api.FloodgateApi;
 
+import java.math.BigDecimal;
 import java.util.*;
 
 public class ShopsForm extends ShopData {
@@ -44,6 +46,14 @@ public class ShopsForm extends ShopData {
         form.validResultHandler(response -> {
             // Check if main meny got boolean isCancel type if true return.
             if (SECTION.getButtonData("menu", buttons.get(response.clickedButtonId())).getBoolean("isExit")) {
+                return;
+            }
+            List<String> commands = SECTION.getButtonData("menu", buttons.get(response.clickedButtonId())).getStringList("commands");
+            if (!commands.isEmpty()) {
+                new CommandHandler().executeCommand(
+                        uuid,
+                        commands,
+                        BigDecimal.valueOf(0));
                 return;
             }
             // Send item-list to player.
