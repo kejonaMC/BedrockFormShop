@@ -44,7 +44,8 @@ public class ItemListForm extends ShopData {
                 }
                 // set image to button.
                 FormImage image = ButtonImage.createFormImage(imageLocation, getItemName);
-                form.button(Objects.requireNonNull(button).replace("_", " "), image);
+                assert button != null;
+                form.button(button.replace("_", " "), image);
 
             } else {
                 buttons.removeAll(noPermButtons);

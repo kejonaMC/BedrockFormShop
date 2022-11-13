@@ -38,6 +38,7 @@ public class ShopsForm extends ShopData {
                 // set image to button.
                 assert imageLocation != null;
                 FormImage image = ButtonImage.createFormImage(imageLocation, imageLocation);
+
                 assert button != null;
                 form.button(button.replace("_", " "), image);
 
