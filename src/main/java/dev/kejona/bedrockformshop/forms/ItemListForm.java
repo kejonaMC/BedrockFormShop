@@ -38,9 +38,13 @@ public class ItemListForm extends ShopData {
             if (Permission.valueOf(SECTION.getButtonData(getMenuID(), button).getString("permission")).checkPermission(uuid)) {
                 String imageLocation = SECTION.getButtonData(getMenuID(), button).getString("image");
                 String getItemName = SECTION.getButtonData(getMenuID(), button).getString("item");
+                // Check if a title has to be overridden.
+                if (SECTION.getButtonData(getMenuID(), button).contains("button-title")) {
+                    button = SECTION.getButtonData(getMenuID(), button).getString("button-title");
+                }
                 // set image to button.
                 FormImage image = ButtonImage.createFormImage(imageLocation, getItemName);
-                form.button(button.replace("_", " "), image);
+                form.button(Objects.requireNonNull(button).replace("_", " "), image);
 
             } else {
                 buttons.removeAll(noPermButtons);

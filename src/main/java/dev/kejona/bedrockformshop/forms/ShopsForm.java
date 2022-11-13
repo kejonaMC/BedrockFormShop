@@ -31,9 +31,14 @@ public class ShopsForm extends ShopData {
             // Check if player has permission to this button. if not button will not be generated.
             if (Permission.valueOf(SECTION.getButtonData("menu", button).getString("permission")).checkPermission(uuid)) {
                 String imageLocation = SECTION.getButtonData("menu", button).getString("image");
+                // Check if a title has to be overridden.
+                if (SECTION.getButtonData("menu", button).contains("button-title")) {
+                    button = SECTION.getButtonData("menu", button).getString("button-title");
+                }
                 // set image to button.
                 assert imageLocation != null;
                 FormImage image = ButtonImage.createFormImage(imageLocation, imageLocation);
+                assert button != null;
                 form.button(button.replace("_", " "), image);
 
             } else {
