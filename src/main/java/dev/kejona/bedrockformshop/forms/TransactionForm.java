@@ -4,7 +4,6 @@ import dev.kejona.bedrockformshop.BedrockFormShop;
 import dev.kejona.bedrockformshop.config.ConfigurationHandler;
 import dev.kejona.bedrockformshop.handlers.CommandHandler;
 import dev.kejona.bedrockformshop.handlers.PriceProvider;
-import dev.kejona.bedrockformshop.handlers.TransactionHandler;
 import dev.kejona.bedrockformshop.shopdata.ShopData;
 import dev.kejona.bedrockformshop.utils.Placeholders;
 import org.bukkit.Material;
@@ -49,7 +48,7 @@ public class TransactionForm extends ShopData {
         form.validResultHandler(response -> {
             // If shopType is item get the input from slider.
             if (!isCommand) {
-                TransactionHandler transactionHandler = new TransactionHandler(
+                ConfirmationForm confirmationForm = new ConfirmationForm(
                         uuid,
                         Material.getMaterial(item),
                         getBuyPrice(),
@@ -57,15 +56,15 @@ public class TransactionForm extends ShopData {
                         (int) response.asSlider(1)
                 );
 
-                transactionHandler.setButtonID(getButtonID());
-                transactionHandler.setMenuID(getMenuID());
+                confirmationForm.setButtonID(getButtonID());
+                confirmationForm.setMenuID(getMenuID());
                 // Form response
                 if (response.asToggle(0)) {
                     // Sell item.
-                    transactionHandler.sellItem();
+                    confirmationForm.sellItem();
                 } else {
                     // It's a normal item to buy
-                    transactionHandler.buyItem();
+                    confirmationForm.buyItem();
                 }
             }
             // If shopType is command inputs do not exist.

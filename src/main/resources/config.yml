@@ -92,6 +92,16 @@ buy-sell:
   label: "price each\n\n§fbuy: %buyprice% \n§fsell: %sellprice%"
 
 #########################
+# Confirmation Menu     #
+#########################
+# placeholders: %item%, %amount%, %price%
+confirmation:
+  title: "confirmation menu"
+  button1: "Confirm"
+  button2: "Cancel"
+  content: "Are you sure you want to buy/sell %amount% %item% for %price%?"
+
+#########################
 # ItemShopList Menu     #
 #########################
 Ores:
