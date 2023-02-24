@@ -113,7 +113,7 @@ public class ConfirmationForm extends ShopData {
             return;
         }
 
-        form.content(Objects.requireNonNull(Placeholders.set(SECTION.getMenuData("confirmation").getString("content"), item.name(), buyPrice, quantity)));
+        form.content(Objects.requireNonNull(Placeholders.set(SECTION.getMenuData("confirmation").getString("content"), item.name(), sellPrice, quantity)));
         form.validResultHandler(response -> {
             if (response.clickedFirst()) {
                 // Get an itemstack list from all items in player inventory.
