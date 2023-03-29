@@ -41,9 +41,7 @@ public class ApplyItemEffects {
      */
     public PotionMeta addPotionEffect(@NotNull ConfigurationSection SECTION, ItemStack itemstack) {
         // Check if potion is a splash potion.
-        boolean isSplash = SECTION.getBoolean("potion-data.splash");
-        // Get and set potion type.
-        if (isSplash) {
+        if (SECTION.getBoolean("potion-data.splash")) {
             itemstack.setType(Material.SPLASH_POTION);
         }
         // Add all potion effects to the potion.
@@ -54,7 +52,7 @@ public class ApplyItemEffects {
             PotionType potionType = PotionType.valueOf(getPotionType);
             // set potion data.
             assert potionmeta != null;
-            PotionData data = new PotionData(potionType, SECTION.getBoolean("potion-data.extended"), SECTION.getBoolean("potion-data..upgraded"));
+            PotionData data = new PotionData(potionType, SECTION.getBoolean("potion-data.extended"), SECTION.getBoolean("potion-data.upgraded"));
             potionmeta.setBasePotionData(data);
         } catch (IllegalArgumentException e) {
             Logger.getLogger().severe("Potion: " + getPotionType + " is not a valid potion type.");

@@ -10,6 +10,7 @@ public enum Permission {
     SHOP("bedrockformshop.openshop"),
     PLAYER("bedrockformshop.playermenu"),
     VIP("bedrockformshop.vipmenu"),
+    DONATOR("bedrockformshop.donatormenu"),
     ADMIN("bedrockformshop.adminmenu"),
     RELOAD("bedrockformshop.reload");
 

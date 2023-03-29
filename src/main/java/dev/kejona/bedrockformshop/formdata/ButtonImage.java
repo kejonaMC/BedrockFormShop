@@ -1,7 +1,7 @@
 package dev.kejona.bedrockformshop.formdata;
 
 import dev.kejona.bedrockformshop.BedrockFormShop;
-import edu.umd.cs.findbugs.annotations.Nullable;
+import javax.annotation.Nullable;
 import org.geysermc.cumulus.util.FormImage;
 
 public class ButtonImage {

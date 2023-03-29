@@ -39,8 +39,9 @@ repositories {
 }
 
 dependencies {
-    implementation("org.jetbrains:annotations:23.0.0")
-    implementation("org.projectlombok:lombok:1.18.24")
+    implementation("org.jetbrains:annotations:24.0.1")
+    implementation("javax.annotation:javax.annotation-api:1.3.2")
+    implementation("org.projectlombok:lombok:1.18.26")
     implementation("com.github.Gypopo:EconomyShopGUI-API:1.2.0")
     compileOnly("org.spigotmc:spigot-api:1.15-R0.1-SNAPSHOT")
     compileOnly("org.geysermc.floodgate:api:2.2.0-SNAPSHOT")

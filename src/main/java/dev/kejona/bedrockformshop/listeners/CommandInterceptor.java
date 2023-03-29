@@ -18,7 +18,7 @@ public class CommandInterceptor implements Listener {
     /**
      * In case a shop plugin is already present we can intercept its command and set a form shop to the bedrock player.
      */
-    @EventHandler(priority = EventPriority.LOW)
+    @EventHandler(priority = EventPriority.MONITOR)
     public void onPreProcessCommand(@NotNull PlayerCommandPreprocessEvent event) {
         if (!FloodgateUser.isFloodgatePlayer(event.getPlayer().getUniqueId())) {
             return;
