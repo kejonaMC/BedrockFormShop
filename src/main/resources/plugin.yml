@@ -3,7 +3,6 @@ version: 1.0.0
 main: dev.kejona.bedrockformshop.BedrockFormShop
 api-version: 1.15
 depend: [ floodgate, Vault ]
-softdepend: [ EconomyShopGui, EconomyShopGui-Premium, GuiShop]
 authors: [ kejonaMC ]
 commands:
   bshop:
@@ -18,6 +17,12 @@ permissions:
   bedrockformshop.playermenu:
     description: "Display Player Buttons"
     default: true
+  bedrockformshop.vipmenu:
+    description: "Display VIP Buttons"
+    default: false
+  bedrockformshop.donatormenu:
+    description: "Display Donator Buttons"
+    default: false
   bedrockformshop.adminmenu:
     description: "Display Admin Buttons"
     default: op

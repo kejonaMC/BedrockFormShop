@@ -41,7 +41,6 @@ public class ShopsForm extends ShopData {
 
                 assert button != null;
                 form.button(button.replace("_", " "), image);
-
             } else {
                 noPermButtons.add(button);
             }
@@ -50,11 +49,12 @@ public class ShopsForm extends ShopData {
         buttons.removeAll(noPermButtons);
 
         form.validResultHandler(response -> {
+            setButtonID(buttons.get(response.clickedButtonId()));
             // Check if main meny got boolean isCancel type if true return.
-            if (SECTION.getButtonData("menu", buttons.get(response.clickedButtonId())).getBoolean("isExit")) {
+            if (SECTION.getButtonData("menu", getButtonID()).getBoolean("isExit")) {
                 return;
             }
-            List<String> commands = SECTION.getButtonData("menu", buttons.get(response.clickedButtonId())).getStringList("commands");
+            List<String> commands = SECTION.getButtonData("menu", getButtonID()).getStringList("commands");
             if (!commands.isEmpty()) {
                 new CommandHandler().executeCommand(
                         uuid,
@@ -64,7 +64,7 @@ public class ShopsForm extends ShopData {
             }
             // Send item-list to player.
             ItemListForm listForm = new ItemListForm(uuid);
-            listForm.setMenuID(buttons.get(response.clickedButtonId()));
+            listForm.setMenuID(getButtonID());
             listForm.sendItemListForm();
         });
         // Build form and send to player.

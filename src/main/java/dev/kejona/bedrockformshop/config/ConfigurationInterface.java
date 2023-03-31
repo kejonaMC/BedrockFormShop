@@ -46,11 +46,6 @@ public interface ConfigurationInterface {
     ConfigurationSection getCommandOverrides();
 
     /**
-     * Dependencies
-     */
-    ConfigurationSection getDependencies();
-
-    /**
      * enables debug logger.
      */
     boolean isDebug();

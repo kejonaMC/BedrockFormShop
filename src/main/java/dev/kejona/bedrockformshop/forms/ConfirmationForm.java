@@ -98,21 +98,18 @@ public class ConfirmationForm extends ShopData {
     public void sellItem() {
         // Get Player Instance.
         Player player = BedrockFormShop.getInstance().getServer().getPlayer(uuid);
+        assert player != null;
         // Check if shop is disabled
         if (sellPrice == null) {
-            assert player != null;
             form.content(Placeholders.colorCode(SECTION.getMessages("no-sell-price")));
             FloodgateApi.getInstance().sendForm(uuid, form.build());
             return;
         }
-
-        assert player != null;
         if (!player.getInventory().contains(item)) {
             form.content(Placeholders.set(SECTION.getMessages("no-items"), item.name()));
             FloodgateApi.getInstance().sendForm(uuid, form.build());
             return;
         }
-
         form.content(Objects.requireNonNull(Placeholders.set(SECTION.getMenuData("confirmation").getString("content"), item.name(), sellPrice, quantity)));
         form.validResultHandler(response -> {
             if (response.clickedFirst()) {
@@ -122,7 +119,6 @@ public class ConfirmationForm extends ShopData {
                     if (i != null)
                         list.add(i);
                 }
-
                 ItemStack[] inv = list.toArray(new ItemStack[0]);
                 for (ItemStack fullinventory : inv) {
                     if (fullinventory == null) {

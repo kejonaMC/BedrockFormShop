@@ -15,21 +15,18 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.Objects;
 
 public final class BedrockFormShop extends JavaPlugin {
     private static BedrockFormShop INSTANCE;
     private ConfigurationHandler SECTION;
-    private Logger logger;
-    private final HashMap<Boolean, String> supportedPluginMap = new HashMap<>();
 
     @Override
     public void onEnable() {
         INSTANCE = this;
         new Metrics(this, 16668);
         // Create the logger.
-        logger = new JavaUtilLogger(this.getLogger());
+        Logger logger = new JavaUtilLogger(this.getLogger());
         // load configuration.
         configFiles();
         SECTION = new ConfigurationHandler(this.getConfig());
@@ -42,8 +39,6 @@ public final class BedrockFormShop extends JavaPlugin {
             logger.info("Debug logger is enabled!");
             logger.setDebug(true);
         }
-        // Check if api's are present.
-        dependencyChecker();
         // Enable Vault.
         new VaultAPI();
         // Register commands.
@@ -59,32 +54,6 @@ public final class BedrockFormShop extends JavaPlugin {
         }
 
         logger.info("BedrockFormShop enabled!");
-    }
-
-    public void dependencyChecker() {
-        // List of api names.
-        logger.info("Checking for supported shop plugins...");
-        boolean isActive = SECTION.getDependencies().getBoolean("enable-hook");
-        String[] plugins = {"ShopGUIPlus", "EconomyShopGUI", "EconomyShopGui-Premium"};
-        for (String supportedPlugin : plugins) {
-            if (getServer().getPluginManager().getPlugin(supportedPlugin) != null) {
-                if (isActive) {
-                    logger.info("We will check price list of " + supportedPlugin + ". If prices are available on " + supportedPlugin + " we will use those prices in BedrockFormShop");
-                    supportedPluginMap.put(true, supportedPlugin.replace("-", ""));
-                } else {
-                    logger.info("Found a compatible shop plugin; " + supportedPlugin + ". You can set its dependency in config.yml to true if you want to use " + supportedPlugin + " prices!");
-                }
-            }
-        }
-        // If map is empty no supported plugin was found.
-        if (supportedPluginMap.isEmpty()) {
-            logger.info("No compatible shop plugin was found!");
-        }
-        // Deactivate plugin support if 2 or more shop plugins were found that we support.
-        if (supportedPluginMap.size() > 1) {
-            supportedPluginMap.clear();
-            logger.severe("We have deactivated dependency price checker due to multiple supported shop plugins which could cause bugs!");
-        }
     }
 
     /**
@@ -106,12 +75,11 @@ public final class BedrockFormShop extends JavaPlugin {
             logger.severe("Could not load config.yml" + e.getMessage());
         }
     }
-
+    // Reload Config file.
     public void reloadConfigFiles() {
         this.reloadConfig();
         SECTION = new ConfigurationHandler(this.getConfig());
     }
-
     // Get the server api version. split to remove snapshot.
     public String getServerVersion() {
         return getServer().getBukkitVersion().substring(0,4).split("-")[0];
@@ -123,9 +91,5 @@ public final class BedrockFormShop extends JavaPlugin {
 
     public ConfigurationHandler getSECTION() {
         return SECTION;
-    }
-
-    public HashMap<Boolean, String> getSupportedPluginMap() {
-        return supportedPluginMap;
     }
 }

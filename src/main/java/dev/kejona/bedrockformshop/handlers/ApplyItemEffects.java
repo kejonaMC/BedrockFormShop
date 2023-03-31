@@ -45,8 +45,9 @@ public class ApplyItemEffects {
             itemstack.setType(Material.SPLASH_POTION);
         }
         // Add all potion effects to the potion.
-        PotionMeta potionmeta = null;
+
         String getPotionType = SECTION.getString("potion-data.type");
+        PotionMeta potionmeta = null;
         try {
             potionmeta = (PotionMeta) itemstack.getItemMeta();
             PotionType potionType = PotionType.valueOf(getPotionType);

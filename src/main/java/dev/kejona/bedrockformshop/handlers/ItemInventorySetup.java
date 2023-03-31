@@ -42,10 +42,8 @@ public class ItemInventorySetup extends ShopData {
             return false;
         }
         switch (ShopType.valueOf(shopType)) {
-
             // Add spawner name to item.
             case SPAWNER -> item.setItemMeta(itemEffects.addMobToBlock(SECTION.getButtonData(getMenuID(), getButtonID()), item));
-
             case ENCHANTMENT -> {
                 // Get enchantment name from config
                 String getEnchantment = SECTION.getButtonData(getMenuID(), getButtonID()).getString("enchantment");
@@ -66,7 +64,6 @@ public class ItemInventorySetup extends ShopData {
                     return false;
                 }
             }
-
             // Add potion name to item.
             case POTION -> item.setItemMeta(itemEffects.addPotionEffect(SECTION.getButtonData(getMenuID(), getButtonID()), item));
         }

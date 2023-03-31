@@ -28,19 +28,18 @@ public class TransactionForm extends ShopData {
     public void sendTransactionForm() {
         // Item Prices.
         PriceProvider price = new PriceProvider(getMenuID(), getButtonID());
+        setBuyPrice(price.buyPrice());
         // Form Builder.
         CustomForm.Builder form = CustomForm.builder();
         // Check if config block is an item or command.
         if (!isCommand) {
             item = SECTION.getButtonData(getMenuID(), getButtonID()).getString("item");
-            setBuyPrice(price.buyPrice(Material.valueOf(item)));
-            setSellPrice(price.sellPrice(Material.valueOf(item)));
+            setSellPrice(price.sellPrice());
             form.title(Placeholders.set((SECTION.getMenuData("buy-sell").getString("title")), item));
             form.toggle(Placeholders.colorCode(SECTION.getMenuData("buy-sell").getString("buy-or-sell")), false);
             form.slider(Placeholders.colorCode(SECTION.getMenuData("buy-sell").getString("slider")), 1, SECTION.getMenuData("buy-sell").getInt("max-slider"));
             form.label(Placeholders.set(SECTION.getMenuData("buy-sell").getString("label"), getBuyPrice(), getSellPrice()));
         } else {
-            setBuyPrice(price.defaultBuyPrice());
             form.title(Placeholders.colorCode(SECTION.getButtonData(getMenuID(), getButtonID()).getString("title")));
             form.label(Placeholders.set(SECTION.getButtonData(getMenuID(), getButtonID()).getString("label"), getBuyPrice(), getSellPrice()));
         }
@@ -75,7 +74,6 @@ public class TransactionForm extends ShopData {
                         getBuyPrice());
             }
         });
-
         // Build form and send to player.
         FloodgateApi.getInstance().sendForm(uuid, form.build());
     }

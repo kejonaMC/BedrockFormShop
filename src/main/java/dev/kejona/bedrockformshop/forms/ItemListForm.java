@@ -46,7 +46,6 @@ public class ItemListForm extends ShopData {
                 FormImage image = ButtonImage.createFormImage(imageLocation, getItemName);
                 assert button != null;
                 form.button(button.replace("_", " "), image);
-
             } else {
                 buttons.removeAll(noPermButtons);
             }
@@ -56,21 +55,18 @@ public class ItemListForm extends ShopData {
             setButtonID(buttons.get(response.clickedButtonId()));
             // Check shop type
             switch (ShopType.valueOf(SECTION.getButtonData(getMenuID(), getButtonID()).getString("type"))) {
-
                 case ITEM, ENCHANTMENT, POTION, SPAWNER -> {
                     TransactionForm transactionForm = new TransactionForm(uuid, false);
                     transactionForm.setMenuID(getMenuID());
-                    transactionForm.setButtonID(buttons.get(response.clickedButtonId()));
+                    transactionForm.setButtonID(getButtonID());
                     transactionForm.sendTransactionForm();
                 }
-
                 case COMMAND -> {
                     TransactionForm transactionForm = new TransactionForm(uuid, true);
                     transactionForm.setMenuID(getMenuID());
-                    transactionForm.setButtonID(buttons.get(response.clickedButtonId()));
+                    transactionForm.setButtonID(getButtonID());
                     transactionForm.sendTransactionForm();
                 }
-
                 case BACK -> new ShopsForm().sendShopsForm(uuid);
                 // If button type is set to cancel we just close the form.
                 case CANCEL -> {}
@@ -78,7 +74,6 @@ public class ItemListForm extends ShopData {
                 default -> logger.severe("ShopType: " + ShopType.valueOf(SECTION.getButtonData(getMenuID(), getButtonID()).getString("type")) + " is not a valid type!");
             }
         });
-
         // Build form and send to player.
         FloodgateApi.getInstance().sendForm(uuid, form.build());
     }

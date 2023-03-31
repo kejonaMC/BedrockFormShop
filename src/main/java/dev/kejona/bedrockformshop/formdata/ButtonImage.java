@@ -1,8 +1,9 @@
 package dev.kejona.bedrockformshop.formdata;
 
 import dev.kejona.bedrockformshop.BedrockFormShop;
-import javax.annotation.Nullable;
+
 import org.geysermc.cumulus.util.FormImage;
+import org.jetbrains.annotations.Nullable;
 
 public class ButtonImage {
     /**
@@ -12,7 +13,7 @@ public class ButtonImage {
      * @return formImage
      */
     @Nullable
-    public static FormImage createFormImage(@Nullable String data,@Nullable String extraData) {
+    public static FormImage createFormImage(@Nullable String data, @Nullable String extraData) {
         if (data == null || data.isEmpty()) {
             return null;
         } else {
