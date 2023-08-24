@@ -10,7 +10,7 @@ plugins {
 }
 
 group = "dev.kejona"
-version = "1.0.0"
+version = "1.1.0"
 description = "BedrockFormShop"
 java.sourceCompatibility = JavaVersion.VERSION_17
 
