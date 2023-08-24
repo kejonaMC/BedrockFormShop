@@ -21,60 +21,77 @@ public class ItemListForm extends ShopData {
     public ItemListForm(UUID uuid) {
         this.uuid = uuid;
     }
+
     /**
-     * A form with all shop items as buttons + images.
+     * Sends a form with all shop items as buttons + images.
      */
     public void sendItemListForm() {
-        // Form Builder
-        SimpleForm.Builder form = SimpleForm.builder()
-        .title(Placeholders.set(SECTION.getMenuData(getMenuID()).getString("title"), getMenuID()))
-        .content(Placeholders.set(SECTION.getMenuData(getMenuID()).getString("content"), getMenuID()));
-        // Get all Buttons in config.
-        List<String> buttons = new ArrayList<>(SECTION.getButtons(getMenuID()));
+        SimpleForm.Builder form = SimpleForm.builder();
+
+        String shopName = getShopName();
+        String shopTitle = SECTION.shopData(shopName).getString("title");
+        String shopContent = SECTION.shopData(shopName).getString("content");
+
+        form.title(Placeholders.set(shopTitle, shopName));
+        form.content(Placeholders.set(shopContent, shopName));
+
+        List<String> buttons = new ArrayList<>(SECTION.getButtons(shopName));
         List<String> noPermButtons = new ArrayList<>();
-        // Loop all buttons and add them to form.
+
         for (String button : buttons) {
-            // Check if player has permission to this button. if not button will not be generated.
-            if (Permission.valueOf(SECTION.getButtonData(getMenuID(), button).getString("permission")).checkPermission(uuid)) {
-                String imageLocation = SECTION.getButtonData(getMenuID(), button).getString("image");
-                String getItemName = SECTION.getButtonData(getMenuID(), button).getString("item");
-                // Check if a title has to be overridden.
-                if (SECTION.getButtonData(getMenuID(), button).contains("button-title")) {
-                    button = SECTION.getButtonData(getMenuID(), button).getString("button-title");
-                }
-                // set image to button.
-                FormImage image = ButtonImage.createFormImage(imageLocation, getItemName);
-                assert button != null;
-                form.button(button.replace("_", " "), image);
+            Permission buttonPermission = Permission.valueOf(SECTION.itemData(shopName, button).getString("permission"));
+
+            if (buttonPermission.checkItemPermission(uuid)) {
+                String imageLocation = SECTION.itemData(shopName, button).getString("image");
+                String itemName = SECTION.itemData(shopName, button).getString("item");
+
+                String buttonTitle = SECTION.itemData(shopName, button).contains("button-title") ?
+                        SECTION.itemData(shopName, button).getString("button-title") : button;
+
+                FormImage image = ButtonImage.createFormImage(imageLocation, itemName);
+                form.button(buttonTitle.replace("_", " "), image);
             } else {
-                buttons.removeAll(noPermButtons);
+                noPermButtons.add(button);
             }
         }
-        // response is valid
+
+        buttons.removeAll(noPermButtons);
+
         form.validResultHandler(response -> {
-            setButtonID(buttons.get(response.clickedButtonId()));
-            // Check shop type
-            switch (ShopType.valueOf(SECTION.getButtonData(getMenuID(), getButtonID()).getString("type"))) {
-                case ITEM, ENCHANTMENT, POTION, SPAWNER -> {
-                    TransactionForm transactionForm = new TransactionForm(uuid, false);
-                    transactionForm.setMenuID(getMenuID());
-                    transactionForm.setButtonID(getButtonID());
-                    transactionForm.sendTransactionForm();
+            String clickedButtonName = buttons.get(response.clickedButtonId());
+            setButtonName(clickedButtonName);
+
+            String buttonTypeStr = SECTION.itemData(shopName, clickedButtonName).getString("type");
+            if (buttonTypeStr != null) {
+                ShopType buttonType = ShopType.valueOf(buttonTypeStr);
+
+                switch (buttonType) {
+                    case ITEM, ENCHANTMENT, POTION, SPAWNER -> {
+                        TransactionForm transactionForm = new TransactionForm(uuid, false);
+                        transactionForm.setShopName(shopName);
+                        transactionForm.setButtonName(clickedButtonName);
+                        transactionForm.sendTransactionForm();
+                    }
+                    case COMMAND -> {
+                        TransactionForm transactionForm = new TransactionForm(uuid, true);
+                        transactionForm.setShopName(shopName);
+                        transactionForm.setButtonName(clickedButtonName);
+                        transactionForm.sendTransactionForm();
+                    }
+                    case SUBSHOP -> {
+                        ItemListForm listForm = new ItemListForm(uuid);
+                        listForm.setShopName( SECTION.itemData(getShopName(), clickedButtonName).getString("linked-shop"));
+                        listForm.sendItemListForm();
+                    }
+                    case BACK -> new ShopsForm().sendShopsForm(uuid);
+                    case EXIT -> {
+                        // Do nothing for EXIT type
+                    }
+                    default -> logger.severe("ShopType: " + buttonType + " is not a valid type!");
                 }
-                case COMMAND -> {
-                    TransactionForm transactionForm = new TransactionForm(uuid, true);
-                    transactionForm.setMenuID(getMenuID());
-                    transactionForm.setButtonID(getButtonID());
-                    transactionForm.sendTransactionForm();
-                }
-                case BACK -> new ShopsForm().sendShopsForm(uuid);
-                // If button type is set to cancel we just close the form.
-                case CANCEL -> {}
-                // default gets triggered if no type is set or not matched.
-                default -> logger.severe("ShopType: " + ShopType.valueOf(SECTION.getButtonData(getMenuID(), getButtonID()).getString("type")) + " is not a valid type!");
             }
         });
-        // Build form and send to player.
+
         FloodgateApi.getInstance().sendForm(uuid, form.build());
     }
 }

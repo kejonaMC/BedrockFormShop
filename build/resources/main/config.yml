@@ -1319,7 +1319,6 @@ shops:
         buy-price: 0.0
       Sub-Shop:
         permission: PLAYER
-        image: "default/apple"
         type: SUBSHOP
         linked-shop: Epic-Blocks
 

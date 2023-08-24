@@ -5,6 +5,7 @@ import dev.kejona.bedrockformshop.config.ConfigurationHandler;
 import dev.kejona.bedrockformshop.formdata.ButtonImage;
 import dev.kejona.bedrockformshop.handlers.CommandHandler;
 import dev.kejona.bedrockformshop.shopdata.ShopData;
+import dev.kejona.bedrockformshop.shopdata.ShopType;
 import dev.kejona.bedrockformshop.utils.Permission;
 import org.geysermc.cumulus.form.SimpleForm;
 import org.geysermc.cumulus.util.FormImage;
@@ -14,60 +15,65 @@ import java.math.BigDecimal;
 import java.util.*;
 
 public class ShopsForm extends ShopData {
+
     private final ConfigurationHandler SECTION = BedrockFormShop.getInstance().getSECTION();
+
     /**
-     * A form with shop categories as buttons.
+     * Sends a form with shop categories as buttons.
      */
     public void sendShopsForm(UUID uuid) {
-        // Form Builder
-        SimpleForm.Builder form = SimpleForm.builder()
-        .title(Objects.requireNonNull(SECTION.getMenuData("menu").getString("title")))
-        .content(Objects.requireNonNull(SECTION.getMenuData("menu").getString("content")));
-        // Get all Buttons in config.
-        List<String> buttons = new ArrayList<>(SECTION.getButtons("menu"));
+        // Create the form builder
+        SimpleForm.Builder form = SimpleForm.builder();
+
+        // Set form title and content from configuration
+        form.title(Objects.requireNonNull(SECTION.shopFormData("menu").getString("title")));
+        form.content(Objects.requireNonNull(SECTION.shopFormData("menu").getString("content")));
+
+        List<String> shops = new ArrayList<>(SECTION.getShops());
         List<String> noPermButtons = new ArrayList<>();
 
-        for (String button : buttons) {
-            // Check if player has permission to this button. if not button will not be generated.
-            if (Permission.valueOf(SECTION.getButtonData("menu", button).getString("permission")).checkPermission(uuid)) {
-                String imageLocation = SECTION.getButtonData("menu", button).getString("image");
-                // Check if a title has to be overridden.
-                if (SECTION.getButtonData("menu", button).contains("button-title")) {
-                    button = SECTION.getButtonData("menu", button).getString("button-title");
-                }
-                // set image to button.
-                assert imageLocation != null;
+        for (String shop : shops) {
+            boolean shouldShowInMenu = SECTION.shopData(shop).getBoolean("show-in-menu");
+            boolean hasPermission = Permission.OPEN_SHOP.checkShopPermission(uuid, shop.toLowerCase());
+
+            if (shouldShowInMenu && hasPermission) {
+                String imageLocation = SECTION.shopData(shop).getString("image");
+                String buttonTitle = SECTION.shopData(shop).contains("button-title") ?
+                        SECTION.shopData(shop).getString("button-title") : shop;
                 FormImage image = ButtonImage.createFormImage(imageLocation, imageLocation);
 
-                assert button != null;
-                form.button(button.replace("_", " "), image);
+                form.button(buttonTitle.replace("_", " "), image);
             } else {
-                noPermButtons.add(button);
+                noPermButtons.add(shop);
             }
         }
-        // Remove buttons that player does not have access to.
-        buttons.removeAll(noPermButtons);
+
+        // Remove buttons that player does not have access to
+        shops.removeAll(noPermButtons);
 
         form.validResultHandler(response -> {
-            setButtonID(buttons.get(response.clickedButtonId()));
-            // Check if main meny got boolean isCancel type if true return.
-            if (SECTION.getButtonData("menu", getButtonID()).getBoolean("isExit")) {
+            String clickedShop = shops.get(response.clickedButtonId());
+            setButtonName(clickedShop);
+
+            // Check if the shop type is an exit shop
+            String shopTypeStr = SECTION.shopData(getButtonName()).getString("type");
+            if (shopTypeStr != null && ShopType.EXIT.equals(ShopType.valueOf(shopTypeStr))) {
                 return;
             }
-            List<String> commands = SECTION.getButtonData("menu", getButtonID()).getStringList("commands");
+
+            List<String> commands = SECTION.shopData(getButtonName()).getStringList("commands");
             if (!commands.isEmpty()) {
-                new CommandHandler().executeCommand(
-                        uuid,
-                        commands,
-                        BigDecimal.valueOf(0));
+                new CommandHandler().executeCommand(uuid, commands, BigDecimal.ZERO);
                 return;
             }
-            // Send item-list to player.
+
+            // Send item-list to player
             ItemListForm listForm = new ItemListForm(uuid);
-            listForm.setMenuID(getButtonID());
+            listForm.setShopName(getButtonName());
             listForm.sendItemListForm();
         });
-        // Build form and send to player.
+
+        // Build and send the form to the player
         FloodgateApi.getInstance().sendForm(uuid, form.build());
     }
 }

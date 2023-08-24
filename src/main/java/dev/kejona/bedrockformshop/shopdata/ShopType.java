@@ -4,8 +4,9 @@ public enum ShopType {
     ITEM,
     ENCHANTMENT,
     COMMAND,
+    SUBSHOP,
     SPAWNER,
     POTION,
     BACK,
-    CANCEL
+    EXIT
 }

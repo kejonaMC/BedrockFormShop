@@ -13,6 +13,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.geysermc.cumulus.form.ModalForm;
 import org.geysermc.floodgate.api.FloodgateApi;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
 import java.math.BigDecimal;
@@ -34,11 +35,12 @@ public class ConfirmationForm extends ShopData {
         this.buyPrice = buyPrice;
         this.sellPrice = sellPrice;
         this.quantity = quantity;
+
         // Build the form.
         form = ModalForm.builder();
-        form.title(Objects.requireNonNull(SECTION.getMenuData("confirmation").getString("title")));
-        form.button1(Objects.requireNonNull(SECTION.getMenuData("confirmation").getString("button1")));
-        form.button2(Objects.requireNonNull(SECTION.getMenuData("confirmation").getString("button2")));
+        form.title(Objects.requireNonNull(SECTION.shopFormData("confirmation").getString("title")));
+        form.button1(Objects.requireNonNull(SECTION.shopFormData("confirmation").getString("button1")));
+        form.button2(Objects.requireNonNull(SECTION.shopFormData("confirmation").getString("button2")));
     }
 
     /**
@@ -47,109 +49,133 @@ public class ConfirmationForm extends ShopData {
     public void buyItem() {
         Player player = BedrockFormShop.getInstance().getServer().getPlayer(uuid);
         assert player != null;
-        // Check if player has enough money or if the shop is disabled.
-        // If price is null then item is not buy-able.
+
+        // Check if item is not buy-able.
         if (buyPrice == null) {
             form.content(Placeholders.colorCode(SECTION.getMessages("no-buy-price")));
-            FloodgateApi.getInstance().sendForm(uuid, form.build());
+            sendForm(form);
             return;
         }
+
+        BigDecimal totalBuyPrice = buyPrice.multiply(BigDecimal.valueOf(quantity));
+
         // Check if player has enough balance.
-        if (VaultAPI.eco().getBalance(player).compareTo(buyPrice.multiply(BigDecimal.valueOf(quantity))) < 0) {
+        if (VaultAPI.eco().getBalance(player).compareTo(totalBuyPrice) < 0) {
             form.content(Placeholders.colorCode(SECTION.getMessages("not-enough-money")));
-            FloodgateApi.getInstance().sendForm(uuid, form.build());
+            sendForm(form);
             return;
         }
-        // user can buy the items.
-        form.content(Objects.requireNonNull(Placeholders.set(SECTION.getMenuData("confirmation").getString("content"), item.name(), buyPrice, quantity)));
+
+        // Player can buy the items.
+        String content = Placeholders.set(SECTION.shopFormData("confirmation").getString("content"), item.name(), buyPrice, quantity);
+        form.content(Objects.requireNonNull(content));
+
         form.validResultHandler(response -> {
             if (response.clickedFirst()) {
-                // Setup items and inventory.
-                ItemInventorySetup itemInventorySetup = new ItemInventorySetup(
-                        item,
-                        SECTION.getButtonData(getMenuID(), getButtonID()).getString("type"),
-                        player,
-                        quantity
-                );
-                itemInventorySetup.setMenuID(getMenuID());
-                itemInventorySetup.setButtonID(getButtonID());
-                // If success = item has been successfully created and sent to player inventory.
-                if (itemInventorySetup.buyItemSuccess()) {
-                    // Withdraw money from player.
-                    VaultAPI.eco().withdrawBalance(player, buyPrice.multiply(BigDecimal.valueOf(quantity)));
-                    // Print the transaction to txt file.
-                    try {
-                        new FileWriterShopOutput(player.getName(), buyPrice, quantity, item.name());
-                    } catch (IOException e) {
-                        logger.severe("Could not save shop data." + e.getMessage());
-                    }
-                    player.sendMessage(Placeholders.set(SECTION.getMessages("item-bought"), itemInventorySetup.getItemName(), buyPrice, quantity));
-                }
+                performBuy(player, totalBuyPrice);
             } else {
                 new ShopsForm().sendShopsForm(uuid);
             }
         });
-        FloodgateApi.getInstance().sendForm(uuid, form.build());
+
+        sendForm(form);
+    }
+
+    private void performBuy(Player player, BigDecimal totalBuyPrice) {
+        ItemInventorySetup itemInventorySetup = new ItemInventorySetup(item, SECTION.itemData(getShopName(), getButtonName()).getString("type"), player, quantity);
+        itemInventorySetup.setShopName(getShopName());
+        itemInventorySetup.setButtonName(getButtonName());
+
+        if (itemInventorySetup.buyItemSuccess()) {
+            VaultAPI.eco().withdrawBalance(player, totalBuyPrice);
+            try {
+                new FileWriterShopOutput(player.getName(), buyPrice, quantity, item.name());
+            } catch (IOException e) {
+                logger.severe("Could not save shop data." + e.getMessage());
+            }
+            player.sendMessage(Placeholders.set(SECTION.getMessages("item-bought"), itemInventorySetup.getItemName(), buyPrice, quantity));
+        }
     }
 
     /**
      * Sell Item logic.
      */
     public void sellItem() {
-        // Get Player Instance.
         Player player = BedrockFormShop.getInstance().getServer().getPlayer(uuid);
         assert player != null;
-        // Check if shop is disabled
+
+        // Check if item is not sell-able.
         if (sellPrice == null) {
             form.content(Placeholders.colorCode(SECTION.getMessages("no-sell-price")));
-            FloodgateApi.getInstance().sendForm(uuid, form.build());
+            sendForm(form);
             return;
         }
-        if (!player.getInventory().contains(item)) {
-            form.content(Placeholders.set(SECTION.getMessages("no-items"), item.name()));
-            FloodgateApi.getInstance().sendForm(uuid, form.build());
+
+        // Check if player has enough items to sell.
+        int itemCount = countItemInInventory(player, item);
+        if (itemCount < quantity) {
+            form.content(Placeholders.set(SECTION.getMessages("not-enough-items"), item.name()));
+            sendForm(form);
             return;
         }
-        form.content(Objects.requireNonNull(Placeholders.set(SECTION.getMenuData("confirmation").getString("content"), item.name(), sellPrice, quantity)));
+
+        String content = Placeholders.set(SECTION.shopFormData("confirmation").getString("content"), item.name(), sellPrice, quantity);
+        form.content(Objects.requireNonNull(content));
+
         form.validResultHandler(response -> {
             if (response.clickedFirst()) {
-                // Get an itemstack list from all items in player inventory.
-                List<ItemStack> list = new ArrayList<>();
-                for (ItemStack i : player.getInventory().getContents()) {
-                    if (i != null)
-                        list.add(i);
-                }
-                ItemStack[] inv = list.toArray(new ItemStack[0]);
-                for (ItemStack fullinventory : inv) {
-                    if (fullinventory == null) {
-                        form.content(Placeholders.set(SECTION.getMessages("no-items"), item.name()));
-                        FloodgateApi.getInstance().sendForm(uuid, form.build());
-                        return;
-                    }
-                    // Get item from itemname and has the correct amount of items.
-                    if (fullinventory.getType() == item && fullinventory.getAmount() >= quantity) {
-                        // Withdraw money from player
-                        VaultAPI.eco().depositBalance(player, sellPrice.multiply(BigDecimal.valueOf(quantity)));
-                        // Remove item from player.
-                        fullinventory.setAmount(fullinventory.getAmount() - quantity);
-                        // Print the transaction to txt file
-                        try {
-                            new FileWriterShopOutput(player.getName(), sellPrice, quantity, item.name());
-                        } catch (IOException e) {
-                            logger.severe("Could not save shop data." + e.getMessage());
-                        }
-                        player.sendMessage(Placeholders.set(SECTION.getMessages("item-sold"), item.name(), sellPrice, quantity));
-                        return;
-                        // Player does not have the right amount of items.
-                    } else if (fullinventory.getType() == item && fullinventory.getAmount() < quantity) {
-                        player.sendMessage(Placeholders.set(SECTION.getMessages("not-enough-items"), item.name()));
-                        return;
-                    }
-                }
+                performSell(player);
             } else {
                 new ShopsForm().sendShopsForm(uuid);
             }
         });
+
+        sendForm(form);
+    }
+
+    private void performSell(@NotNull Player player) {
+        int remainingQuantity = quantity;
+        ItemStack[] playerInventory = player.getInventory().getContents();
+
+        for (int i = 0; i < playerInventory.length && remainingQuantity > 0; i++) {
+            ItemStack currentItem = playerInventory[i];
+            if (currentItem != null && currentItem.getType() == item) {
+                int currentAmount = currentItem.getAmount();
+                if (currentAmount >= remainingQuantity) {
+                    currentItem.setAmount(currentAmount - remainingQuantity);
+                    remainingQuantity = 0;
+                } else {
+                    player.getInventory().setItem(i, null);
+                    remainingQuantity -= currentAmount;
+                }
+            }
+        }
+
+        BigDecimal totalSellPrice = sellPrice.multiply(BigDecimal.valueOf(quantity));
+        VaultAPI.eco().depositBalance(player, totalSellPrice);
+
+        try {
+            new FileWriterShopOutput(player.getName(), sellPrice, quantity, item.name());
+        } catch (IOException e) {
+            logger.severe("Could not save shop data." + e.getMessage());
+        }
+
+        player.sendMessage(Placeholders.set(SECTION.getMessages("item-sold"), item.name(), sellPrice, quantity));
+    }
+
+    // Utility method to count the quantity of a specific item in a player's inventory
+    private int countItemInInventory(@NotNull Player player, Material material) {
+        int count = 0;
+        for (ItemStack itemStack : player.getInventory().getContents()) {
+            if (itemStack != null && itemStack.getType() == material) {
+                count += itemStack.getAmount();
+            }
+        }
+        return count;
+    }
+
+    // Utility method to send a form to the player
+    private void sendForm(ModalForm.@NotNull Builder form) {
         FloodgateApi.getInstance().sendForm(uuid, form.build());
     }
 }

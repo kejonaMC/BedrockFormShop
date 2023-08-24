@@ -36,11 +36,11 @@ public class VaultAPI {
         return BigDecimal.valueOf(this.economy.getBalance(player));
     }
     // Withdraws money from a player.
-    public void withdrawBalance(Player player, BigDecimal amount) {
+    public void withdrawBalance(Player player, @NotNull BigDecimal amount) {
         this.economy.withdrawPlayer(player, amount.doubleValue());
     }
     // Deposits money to a player.
-    public void depositBalance(Player player, BigDecimal amount) {
+    public void depositBalance(Player player, @NotNull BigDecimal amount) {
         this.economy.depositPlayer(player, amount.doubleValue());
     }
     // Instance

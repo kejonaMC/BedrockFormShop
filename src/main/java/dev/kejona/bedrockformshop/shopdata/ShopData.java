@@ -4,25 +4,44 @@ import java.math.BigDecimal;
 
 public class ShopData implements ShopIdentifier {
 
-    private String menuID;
-    private String buttonID;
+    private String shopName;
+    private String buttonName;
     private BigDecimal buyPrice;
     private BigDecimal sellPrice;
 
     /**
-     * Get the button id.
+     * Get the shop name.
      */
     @Override
-    public String getButtonID() {
-        return buttonID;
+    public String getShopName() {
+        return shopName;
     }
+
     /**
-     * Get the menu id.
+     * Set the shop name.
      */
     @Override
-    public String getMenuID() {
-        return menuID;
+    public void setShopName(String shopName) {
+        this.shopName = shopName;
     }
+
+    /**
+     * Set the button id.
+     * @param buttonName Set the button id.
+     */
+    @Override
+    public void setButtonName(String buttonName) {
+        this.buttonName = buttonName;
+    }
+
+    /**
+     * get the button name.
+     */
+    @Override
+    public String getButtonName() {
+        return buttonName;
+    }
+
     /**
      * Get the buy price of an item.
      */
@@ -30,6 +49,7 @@ public class ShopData implements ShopIdentifier {
     public BigDecimal getBuyPrice() {
         return  buyPrice;
     }
+
     /**
      * Get the sell price of an item.
      */
@@ -37,22 +57,7 @@ public class ShopData implements ShopIdentifier {
     public BigDecimal getSellPrice() {
         return sellPrice;
     }
-    /**
-     * Set the button id.
-     * @param buttonID Set the button id.
-     */
-    @Override
-    public void setButtonID(String buttonID) {
-        this.buttonID = buttonID;
-    }
-    /**
-     * Set the menu id.
-     * @param menuID Set the menu id.
-     */
-    @Override
-    public void setMenuID(String menuID) {
-        this.menuID = menuID;
-    }
+
     /**
      * Set the buy price of an item.
      * @param buyPrice set the buy price of an item

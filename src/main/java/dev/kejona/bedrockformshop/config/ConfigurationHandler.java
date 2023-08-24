@@ -20,18 +20,27 @@ public class ConfigurationHandler implements ConfigurationInterface {
     }
 
     @Override
-    public Set<String> getButtons(String menuID) {
-        return Objects.requireNonNull(config.getConfigurationSection(menuID + ".buttons")).getKeys(false);
+    public Set<String> getButtons(String shopName) {
+        return Objects.requireNonNull(config.getConfigurationSection("shops." + shopName + ".buttons")).getKeys(false);
     }
 
     @Override
-    public ConfigurationSection getButtonData(String menuID, String buttonID) {
-        return config.getConfigurationSection(menuID + ".buttons." + buttonID);
+    public Set<String> getShops() {
+        return Objects.requireNonNull(config.getConfigurationSection("shops")).getKeys(false);
     }
 
     @Override
-    public ConfigurationSection getMenuData(String menuID) {
-        return config.getConfigurationSection(menuID);
+    public ConfigurationSection itemData(String shopName, String buttonName) {
+        return config.getConfigurationSection("shops." + shopName + ".buttons." + buttonName);
+    }
+
+    @Override
+    public ConfigurationSection shopData(String shopName) {
+        return config.getConfigurationSection("shops." + shopName);
+    }
+
+    public ConfigurationSection shopFormData(String shopName) {
+        return config.getConfigurationSection(shopName);
     }
 
     @Override
