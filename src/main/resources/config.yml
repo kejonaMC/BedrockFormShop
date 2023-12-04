@@ -69,6 +69,7 @@ shops:
         image: "default"
         type: ITEM
         item: "COAL_ORE"
+        max-item: 32
         buy-price: 0.0
         sell-price: 0.0
       iron-ore:

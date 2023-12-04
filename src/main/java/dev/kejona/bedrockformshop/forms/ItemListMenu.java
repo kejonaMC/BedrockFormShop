@@ -13,12 +13,12 @@ import org.geysermc.floodgate.api.FloodgateApi;
 
 import java.util.*;
 
-public class ItemListForm extends ShopData {
+public class ItemListMenu extends ShopData {
     private final ConfigurationHandler SECTION = BedrockFormShop.getInstance().getSECTION();
     private final Logger logger = Logger.getLogger();
     private final UUID uuid;
 
-    public ItemListForm(UUID uuid) {
+    public ItemListMenu(UUID uuid) {
         this.uuid = uuid;
     }
 
@@ -67,23 +67,23 @@ public class ItemListForm extends ShopData {
 
                 switch (buttonType) {
                     case ITEM, ENCHANTMENT, POTION, SPAWNER -> {
-                        TransactionForm transactionForm = new TransactionForm(uuid, false);
-                        transactionForm.setShopName(shopName);
-                        transactionForm.setButtonName(clickedButtonName);
-                        transactionForm.sendTransactionForm();
+                        TransactionMenu transactionMenu = new TransactionMenu(uuid, false);
+                        transactionMenu.setShopName(shopName);
+                        transactionMenu.setButtonName(clickedButtonName);
+                        transactionMenu.sendTransactionForm();
                     }
                     case COMMAND -> {
-                        TransactionForm transactionForm = new TransactionForm(uuid, true);
-                        transactionForm.setShopName(shopName);
-                        transactionForm.setButtonName(clickedButtonName);
-                        transactionForm.sendTransactionForm();
+                        TransactionMenu transactionMenu = new TransactionMenu(uuid, true);
+                        transactionMenu.setShopName(shopName);
+                        transactionMenu.setButtonName(clickedButtonName);
+                        transactionMenu.sendTransactionForm();
                     }
                     case SUBSHOP -> {
-                        ItemListForm listForm = new ItemListForm(uuid);
+                        ItemListMenu listForm = new ItemListMenu(uuid);
                         listForm.setShopName( SECTION.itemData(getShopName(), clickedButtonName).getString("linked-shop"));
                         listForm.sendItemListForm();
                     }
-                    case BACK -> new ShopsForm().sendShopsForm(uuid);
+                    case BACK -> new MainShopMenu().sendShopsForm(uuid);
                     case EXIT -> {
                         // Do nothing for EXIT type
                     }

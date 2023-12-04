@@ -14,7 +14,7 @@ import org.geysermc.floodgate.api.FloodgateApi;
 import java.math.BigDecimal;
 import java.util.*;
 
-public class ShopsForm extends ShopData {
+public class MainShopMenu extends ShopData {
 
     private final ConfigurationHandler SECTION = BedrockFormShop.getInstance().getSECTION();
 
@@ -68,7 +68,7 @@ public class ShopsForm extends ShopData {
             }
 
             // Send item-list to player
-            ItemListForm listForm = new ItemListForm(uuid);
+            ItemListMenu listForm = new ItemListMenu(uuid);
             listForm.setShopName(getButtonName());
             listForm.sendItemListForm();
         });

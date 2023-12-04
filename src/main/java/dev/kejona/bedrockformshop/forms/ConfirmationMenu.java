@@ -19,7 +19,7 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.*;
 
-public class ConfirmationForm extends ShopData {
+public class ConfirmationMenu extends ShopData {
     private final ConfigurationHandler SECTION = BedrockFormShop.getInstance().getSECTION();
     private final UUID uuid;
     private final Material item;
@@ -29,7 +29,7 @@ public class ConfirmationForm extends ShopData {
     private final Logger logger = Logger.getLogger();
     private final ModalForm.Builder form;
 
-    public ConfirmationForm(UUID uuid, Material item, BigDecimal buyPrice, BigDecimal sellPrice, int quantity) {
+    public ConfirmationMenu(UUID uuid, Material item, BigDecimal buyPrice, BigDecimal sellPrice, int quantity) {
         this.uuid = uuid;
         this.item = item;
         this.buyPrice = buyPrice;
@@ -74,7 +74,7 @@ public class ConfirmationForm extends ShopData {
             if (response.clickedFirst()) {
                 performBuy(player, totalBuyPrice);
             } else {
-                new ShopsForm().sendShopsForm(uuid);
+                new MainShopMenu().sendShopsForm(uuid);
             }
         });
 
@@ -126,7 +126,7 @@ public class ConfirmationForm extends ShopData {
             if (response.clickedFirst()) {
                 performSell(player);
             } else {
-                new ShopsForm().sendShopsForm(uuid);
+                new MainShopMenu().sendShopsForm(uuid);
             }
         });
 

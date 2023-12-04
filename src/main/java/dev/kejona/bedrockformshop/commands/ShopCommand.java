@@ -2,8 +2,8 @@ package dev.kejona.bedrockformshop.commands;
 
 import dev.kejona.bedrockformshop.BedrockFormShop;
 import dev.kejona.bedrockformshop.config.ConfigurationHandler;
-import dev.kejona.bedrockformshop.forms.ItemListForm;
-import dev.kejona.bedrockformshop.forms.ShopsForm;
+import dev.kejona.bedrockformshop.forms.ItemListMenu;
+import dev.kejona.bedrockformshop.forms.MainShopMenu;
 import dev.kejona.bedrockformshop.utils.FloodgateUser;
 import dev.kejona.bedrockformshop.utils.Permission;
 import org.bukkit.ChatColor;
@@ -13,7 +13,6 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
@@ -39,7 +38,7 @@ public class ShopCommand implements CommandExecutor {
             return;
         }
 
-        ShopsForm mainMenuForm = new ShopsForm();
+        MainShopMenu mainMenuForm = new MainShopMenu();
         mainMenuForm.sendShopsForm(player.getUniqueId());
     }
 
@@ -100,7 +99,7 @@ public class ShopCommand implements CommandExecutor {
             return;
         }
 
-        ItemListForm listForm = new ItemListForm(player.getUniqueId());
+        ItemListMenu listForm = new ItemListMenu(player.getUniqueId());
         listForm.setShopName(foundShop); // Use the found shop name, not the input
         listForm.sendItemListForm();
     }
