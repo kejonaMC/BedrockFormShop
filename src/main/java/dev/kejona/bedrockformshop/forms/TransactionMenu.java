@@ -37,13 +37,14 @@ public class TransactionMenu extends ShopData {
             setSellPrice(price.sellPrice());
             form.title(Placeholders.set((SECTION.shopFormData("buy-sell").getString("title")), item));
             form.toggle(Placeholders.colorCode(SECTION.shopFormData("buy-sell").getString("buy-or-sell")), false);
-            form.label(Placeholders.set(SECTION.shopFormData("buy-sell").getString("label"), getBuyPrice(), getSellPrice()));
 
             if (SECTION.itemData(getShopName(), getButtonName()).getInt("max-item") == 0) {
                 form.slider(Placeholders.colorCode(SECTION.shopFormData("buy-sell").getString("slider")), 1, SECTION.shopFormData("buy-sell").getInt("max-slider"));
             } else {
                 form.slider(Placeholders.colorCode(SECTION.shopFormData("buy-sell").getString("slider")), 1, SECTION.itemData(getShopName(), getButtonName()).getInt("max-item"));
             }
+
+            form.label(Placeholders.set(SECTION.shopFormData("buy-sell").getString("label"), getBuyPrice(), getSellPrice()));
 
         } else {
             form.title(Placeholders.colorCode(SECTION.itemData(getShopName(), getButtonName()).getString("title")));

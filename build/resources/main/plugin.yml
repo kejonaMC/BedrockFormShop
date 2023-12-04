@@ -1,5 +1,5 @@
 name: BedrockFormShop
-version: 1.0.0
+version: 1.1.0
 main: dev.kejona.bedrockformshop.BedrockFormShop
 api-version: 1.15
 depend: [ floodgate, Vault ]
