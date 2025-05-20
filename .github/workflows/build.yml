@@ -27,7 +27,7 @@ jobs:
 
       - name: Upload build artifact
         if: github.ref_type != 'tag'
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: BedrockFormShop-jar
           path: build/libs/BedrockFormShop.jar
