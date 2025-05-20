@@ -2,6 +2,8 @@ package dev.kejona.bedrockformshop.utils;
 
 import dev.kejona.bedrockformshop.BedrockFormShop;
 import org.bukkit.entity.Player;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.UUID;
 
@@ -12,7 +14,8 @@ public enum Permission {
     VIP("bedrockformshop.vipmenu"),
     DONATOR("bedrockformshop.donatormenu"),
     ADMIN("bedrockformshop.adminmenu"),
-    RELOAD("bedrockformshop.reload");
+    RELOAD("bedrockformshop.reload"),
+    OPEN_SHOP("bedrockformshop.open");
 
     private final String key;
 
@@ -20,10 +23,18 @@ public enum Permission {
         this.key = key;
     }
     // Check if player has permission.
-    public boolean checkPermission(UUID uuid) {
+    public boolean checkItemPermission(UUID uuid) {
         Player p = BedrockFormShop.getInstance().getServer().getPlayer(uuid);
         if (p != null) {
             return p.hasPermission(this.getKey());
+        }
+        return false;
+    }
+
+    public boolean checkShopPermission(UUID uuid, String shopName) {
+        Player p = BedrockFormShop.getInstance().getServer().getPlayer(uuid);
+        if (p != null) {
+            return p.hasPermission(this.getKey()+ "." + shopName.toLowerCase());
         }
         return false;
     }

@@ -1,6 +1,6 @@
 package dev.kejona.bedrockformshop.listeners;
 
-import dev.kejona.bedrockformshop.forms.ShopsForm;
+import dev.kejona.bedrockformshop.forms.MainShopMenu;
 import dev.kejona.bedrockformshop.utils.FloodgateUser;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -27,7 +27,7 @@ public class CommandInterceptor implements Listener {
         if (commands.contains(event.getMessage().split(" ")[0])) {
             // Command is in list so cancel event and send our shop form.
             event.setCancelled(true);
-            ShopsForm mainMenuForm = new ShopsForm();
+            MainShopMenu mainMenuForm = new MainShopMenu();
             mainMenuForm.sendShopsForm(event.getPlayer().getUniqueId());
         }
     }

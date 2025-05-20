@@ -21,9 +21,16 @@ public interface ConfigurationInterface {
     /**
      * Get list of buttons.
      * @param menuID path to the buttons
-     * @return list of buttons from config
+     * @return set of buttons from config
      */
     Set<String> getButtons(String menuID);
+
+    /**
+     * Get list of shops.
+     *
+     * @return set of shops from config
+     */
+    Set<String> getShops();
 
     /**
      * Get data from button yaml block
@@ -31,14 +38,9 @@ public interface ConfigurationInterface {
      * @param buttonID set buttonID path
      * @return yaml block section
      */
-    ConfigurationSection getButtonData(String menuID, String buttonID);
+    ConfigurationSection itemData(String menuID, String buttonID);
 
-    /**
-     * Get data from menu yaml block
-     * @param menuID set menuID path
-     * @return yaml block section
-     */
-    ConfigurationSection getMenuData(String menuID);
+    ConfigurationSection shopData(String buttonID);
 
     /**
      * Get a list of command overrides from config

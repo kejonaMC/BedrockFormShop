@@ -12,17 +12,17 @@ public class PriceProvider {
     private final String menuID;
     private final String buttonID;
 
-    public PriceProvider(String menuID, String buttonID) {
-        this.menuID = menuID;
-        this.buttonID = buttonID;
+    public PriceProvider(String shopName, String buttonName) {
+        this.menuID = shopName;
+        this.buttonID = buttonName;
     }
     /**
      * Buy price setter.
      */
     @Nullable
     public BigDecimal buyPrice() {
-        if (SECTION.getButtonData(menuID, buttonID).isSet("buy-price")) {
-            return BigDecimal.valueOf(SECTION.getButtonData(menuID, buttonID).getDouble("buy-price"));
+        if (SECTION.itemData(menuID, buttonID).isSet("buy-price")) {
+            return BigDecimal.valueOf(SECTION.itemData(menuID, buttonID).getDouble("buy-price"));
         } else {
             return null;
         }
@@ -32,8 +32,8 @@ public class PriceProvider {
      */
     @Nullable
     public BigDecimal sellPrice() {
-        if (SECTION.getButtonData(menuID, buttonID).isSet("sell-price")) {
-            return BigDecimal.valueOf(SECTION.getButtonData(menuID, buttonID).getDouble("sell-price"));
+        if (SECTION.itemData(menuID, buttonID).isSet("sell-price")) {
+            return BigDecimal.valueOf(SECTION.itemData(menuID, buttonID).getDouble("sell-price"));
         } else {
             return null;
         }

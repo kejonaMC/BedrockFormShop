@@ -43,10 +43,10 @@ public class ItemInventorySetup extends ShopData {
         }
         switch (ShopType.valueOf(shopType)) {
             // Add spawner name to item.
-            case SPAWNER -> item.setItemMeta(itemEffects.addMobToBlock(SECTION.getButtonData(getMenuID(), getButtonID()), item));
+            case SPAWNER -> item.setItemMeta(itemEffects.addMobToBlock(SECTION.itemData(getShopName(), getButtonName()), item));
             case ENCHANTMENT -> {
                 // Get enchantment name from config
-                String getEnchantment = SECTION.getButtonData(getMenuID(), getButtonID()).getString("enchantment");
+                String getEnchantment = SECTION.itemData(getShopName(), getButtonName()).getString("enchantment");
                 // Get level from enchantmentData with a split.
                 assert getEnchantment != null;
                 int level = Integer.parseInt(getEnchantment.split(":")[1]);
@@ -65,7 +65,7 @@ public class ItemInventorySetup extends ShopData {
                 }
             }
             // Add potion name to item.
-            case POTION -> item.setItemMeta(itemEffects.addPotionEffect(SECTION.getButtonData(getMenuID(), getButtonID()), item));
+            case POTION -> item.setItemMeta(itemEffects.addPotionEffect(SECTION.itemData(getShopName(), getButtonName()), item));
         }
         // Set item inventory logic
         boolean notStackable = item.getMaxStackSize() == 1;

@@ -4,17 +4,17 @@ import java.math.BigDecimal;
 
 public interface ShopIdentifier {
 
-    String getButtonID();
+    String getShopName();
 
-    String getMenuID();
+    void setShopName(String shopName);
+
+    void setButtonName(String shopName);
+
+    String getButtonName();
 
     BigDecimal getBuyPrice();
 
     BigDecimal getSellPrice();
-
-    void setButtonID(String buttonID);
-
-    void setMenuID(String menuID);
 
     void setBuyPrice(BigDecimal buyPrice);
 
